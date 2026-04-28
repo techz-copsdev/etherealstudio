@@ -76,8 +76,8 @@ export default function AutomationServicePage() {
               <MessageCircle className="h-4 w-4" />
               Diskusikan kebutuhan automation
             </Button>
-            <Button href="/pricing" variant="outline" size="lg">
-              Lihat pricing
+            <Button href="/portfolio" variant="outline" size="lg">
+              Lihat studi kasus
               <ArrowUpRight className="h-4 w-4" />
             </Button>
           </div>

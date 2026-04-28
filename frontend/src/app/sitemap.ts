@@ -11,7 +11,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/templates",
     "/services/website",
     "/services/automation",
-    "/pricing",
     "/portfolio",
     "/about",
     "/contact",
@@ -31,11 +30,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: path === "" ? 1.0 : 0.7,
     })),
-    ...templates.map((t) => ({
-      url: `${base}/templates/${t.slug}`,
-      lastModified: new Date(t.updatedAt),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
+    ...templates.flatMap((t) => [
+      {
+        url: `${base}/templates/${t.slug}`,
+        lastModified: new Date(t.updatedAt),
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      },
+      {
+        url: `${base}/preview/${t.slug}`,
+        lastModified: new Date(t.updatedAt),
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+      },
+    ]),
   ];
 }

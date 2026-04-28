@@ -5,6 +5,7 @@
 @layer base {
   :root {
     color-scheme: light;
+    --plate: #ffffff;
   }
 
   html {
@@ -19,11 +20,29 @@
   }
 
   ::selection {
-    background: theme("colors.accent.600");
-    color: white;
+    background: theme("colors.accent.500");
+    color: theme("colors.ink.DEFAULT");
   }
 
-  /* Hairline divider used across sections */
+  /* Scrollbar — restrained, navy on paper */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(10, 24, 48, 0.18);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(10, 24, 48, 0.32);
+    background-clip: padding-box;
+  }
+
   .hairline {
     @apply border-t border-ink-100;
   }
@@ -39,23 +58,42 @@
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-ink-500;
+    @apply inline-flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest2 text-ink-500;
   }
 
   .eyebrow::before {
     content: "";
-    @apply inline-block h-px w-6 bg-ink-300;
+    @apply inline-block h-px w-8 bg-accent-500;
+  }
+
+  .eyebrow-on-dark {
+    @apply inline-flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest2 text-paper/70;
+  }
+  .eyebrow-on-dark::before {
+    content: "";
+    @apply inline-block h-px w-8 bg-accent-400;
   }
 
   .display {
     @apply font-display tracking-tightish;
   }
 
+  .gold-rule {
+    @apply h-px w-12 bg-accent-500;
+  }
+
   .grid-bg {
     background-image:
-      linear-gradient(to right, rgba(11, 15, 25, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(11, 15, 25, 0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
+      linear-gradient(to right, rgba(10, 24, 48, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10, 24, 48, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .grid-bg-dark {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
 
   .link-underline {
@@ -67,5 +105,25 @@
   }
   .link-underline:hover::after {
     @apply origin-left scale-x-100;
+  }
+
+  .gold-italic {
+    @apply font-display italic text-accent-600;
+  }
+
+  .ring-focus {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
+  }
+}
+
+@layer utilities {
+  .pb-safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
   }
 }

@@ -14,6 +14,6 @@ export const PRESETS = {
     `Halo ${site.brand}, saya ingin diskusi pembuatan website custom sesuai kebutuhan bisnis saya.`,
   automation: () =>
     `Halo ${site.brand}, saya ingin diskusi kebutuhan IT automation / system development untuk bisnis saya.`,
-  pricing: (plan: string) =>
-    `Halo ${site.brand}, saya tertarik dengan paket "${plan}". Bisa konsultasi lebih lanjut?`,
+  preview: (name: string) =>
+    `Halo ${site.brand}, saya baru saja melihat preview "${name}". Bisa diskusi lanjut untuk implementasi?`,
 } as const;

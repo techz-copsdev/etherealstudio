@@ -1,0 +1,33 @@
+# Node
+node_modules/
+*.log
+.npm
+.cache
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Prisma (using db push in dev — migrations folder is local-only)
+*.db
+*.db-journal
+backend/prisma/migrations/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Local dev artifacts
+test-plan.md
+test-report.md

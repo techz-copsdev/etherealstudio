@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { Chrome } from "@/components/layout/Chrome";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -66,9 +65,7 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${inter.variable} ${fraunces.variable}`}>
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <Chrome>{children}</Chrome>
       </body>
     </html>
   );

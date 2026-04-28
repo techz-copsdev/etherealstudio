@@ -66,8 +66,8 @@ export default function CustomWebsiteServicePage() {
               <MessageCircle className="h-4 w-4" />
               Diskusikan kebutuhan
             </Button>
-            <Button href="/pricing" variant="outline" size="lg">
-              Lihat pricing
+            <Button href="/templates" variant="outline" size="lg">
+              Lihat template showroom
               <ArrowUpRight className="h-4 w-4" />
             </Button>
           </div>

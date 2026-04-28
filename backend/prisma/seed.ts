@@ -12,7 +12,7 @@ const templates = [
       "Template profesional untuk klinik kesehatan, dokter spesialis, dan praktik mandiri. Fokus pada trust building, jadwal layanan, profil dokter, dan CTA booking via WhatsApp.",
     niche: "KLINIK",
     thumbnail: "/templates/arsa.svg",
-    previewUrl: null as string | null,
+    previewUrl: "/preview/klinik-arsa" as string | null,
     features: [
       "Booking janji temu via WhatsApp",
       "Profil dokter & spesialisasi",
@@ -30,7 +30,7 @@ const templates = [
       "Untuk kontraktor, jasa renovasi, dan general builder. Menonjolkan portofolio project, sertifikasi, dan formulir RAB cepat yang diteruskan ke WhatsApp owner.",
     niche: "KONTRAKTOR",
     thumbnail: "/templates/batas.svg",
-    previewUrl: null,
+    previewUrl: "/preview/kontraktor-batas",
     features: [
       "Galeri project before/after",
       "Estimator biaya cepat",
@@ -48,7 +48,7 @@ const templates = [
       "Untuk developer, agen properti, dan project marketing. Listing unit dengan filter, simulasi KPR ringan, dan CTA jadwal site visit ke WhatsApp marketing.",
     niche: "PROPERTI",
     thumbnail: "/templates/citra.svg",
-    previewUrl: null,
+    previewUrl: "/preview/properti-citra",
     features: [
       "Listing unit dengan filter",
       "Simulasi KPR sederhana",
@@ -65,7 +65,7 @@ const templates = [
       "Untuk catering harian, prasmanan, hingga catering corporate event. Menampilkan paket menu, gallery hidangan, dan formulir pemesanan terstruktur.",
     niche: "CATERING",
     thumbnail: "/templates/dapur.svg",
-    previewUrl: null,
+    previewUrl: "/preview/catering-dapur",
     features: [
       "Paket menu prasmanan / nasi box",
       "Galeri hidangan",
@@ -82,7 +82,7 @@ const templates = [
       "Untuk biro perjalanan wisata, open trip, dan honeymoon package. Menonjolkan itinerary, harga per pax, dan CTA chat travel consultant.",
     niche: "TRAVEL",
     thumbnail: "/templates/elara.svg",
-    previewUrl: null,
+    previewUrl: "/preview/travel-elara",
     features: [
       "Detail itinerary per hari",
       "Harga per pax transparan",
@@ -99,7 +99,7 @@ const templates = [
       "Untuk wedding organizer, MUA, dan vendor pernikahan. Fokus pada gallery dokumentasi, paket all-in, dan booking konsultasi via WhatsApp.",
     niche: "WEDDING",
     thumbnail: "/templates/fajar.svg",
-    previewUrl: null,
+    previewUrl: "/preview/wedding-fajar",
     features: [
       "Galeri dokumentasi",
       "Paket all-in transparan",
@@ -116,7 +116,7 @@ const templates = [
       "Untuk gym, studio fitness, personal trainer, dan martial arts. Tampilkan jadwal kelas, profil coach, paket membership, dan trial class registration.",
     niche: "GYM",
     thumbnail: "/templates/grit.svg",
-    previewUrl: null,
+    previewUrl: "/preview/gym-grit",
     features: [
       "Jadwal kelas mingguan",
       "Profil coach & sertifikasi",
@@ -133,7 +133,7 @@ const templates = [
       "Untuk brand skincare, klinik kecantikan, dan beauty retailer. Highlight komposisi produk, before/after, dan booking konsultasi kulit.",
     niche: "SKINCARE",
     thumbnail: "/templates/halia.svg",
-    previewUrl: null,
+    previewUrl: "/preview/skincare-halia",
     features: [
       "Katalog produk dengan ingredient",
       "Konsultasi tipe kulit",
@@ -150,7 +150,7 @@ const templates = [
       "Cocok untuk UMKM kuliner, fashion, kerajinan tangan, dan toko offline. Menampilkan katalog ringkas, lokasi, dan tombol order WhatsApp di setiap produk.",
     niche: "UMKM",
     thumbnail: "/templates/inara.svg",
-    previewUrl: null,
+    previewUrl: "/preview/umkm-inara",
     features: [
       "Katalog produk grid",
       "Order WhatsApp per produk",
@@ -168,7 +168,7 @@ const templates = [
       "Untuk perusahaan B2B, konsultan, dan corporate small business yang ingin tampil premium. Struktur company profile lengkap dengan layanan, klien, dan request proposal.",
     niche: "CORPORATE",
     thumbnail: "/templates/jaya.svg",
-    previewUrl: null,
+    previewUrl: "/preview/corporate-jaya",
     features: [
       "Halaman About komprehensif",
       "Daftar layanan & lini bisnis",
