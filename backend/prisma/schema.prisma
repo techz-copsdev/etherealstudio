@@ -1,0 +1,80 @@
+// Prisma schema for Ethereal Studio backend.
+// Default datasource is SQLite for fast local development; swap provider to
+// `postgresql` and update DATABASE_URL for production deployments.
+//
+// Note: SQLite does not support native enums. Enum-like fields use String with
+// app-level validation via Zod. The constants are mirrored in src/constants.ts.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Template {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  tagline      String
+  description  String
+  niche        String   // see NICHES in src/constants.ts
+  thumbnail    String   // public URL or /public path
+  previewUrl   String?  // optional live demo URL
+  features     String   // JSON-serialized string[]
+  isFeatured   Boolean  @default(false)
+  published    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([niche])
+  @@index([published])
+}
+
+model PortfolioCase {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  client       String
+  industry     String
+  summary      String
+  challenge    String
+  solution     String
+  outcome      String   // e.g. "+187% conversion"
+  thumbnail    String
+  niche        String
+  published    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Inquiry {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  company     String?
+  topic       String   @default("GENERAL") // see INQUIRY_TOPICS
+  templateId  String?
+  budget      String?
+  message     String
+  status      String   @default("NEW")     // see INQUIRY_STATUSES
+  source      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  type      String
+  path      String?
+  meta      String?
+  createdAt DateTime @default(now())
+
+  @@index([type])
+  @@index([createdAt])
+}
