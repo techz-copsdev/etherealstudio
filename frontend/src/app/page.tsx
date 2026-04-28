@@ -1,400 +1,411 @@
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  CheckCircle2,
-  MessageCircle,
-  LayoutTemplate,
-  Code2,
-  Workflow,
-  ShieldCheck,
-  Sparkles,
-  Gauge,
-} from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { Section, SectionHeader } from "@/components/ui/Section";
-import { CTABand } from "@/components/CTABand";
-import { TemplateCard } from "@/components/TemplateCard";
-import { HeroVisual } from "@/components/HeroVisual";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { Marquee } from "@/components/motion/Marquee";
-import { fetchTemplates } from "@/lib/api";
+import { Reveal } from "@/components/motion/Reveal";
+import { SplitLines } from "@/components/motion/SplitText";
 import { whatsappLink, PRESETS } from "@/lib/whatsapp";
-import { NICHES } from "@/lib/site";
+import { fetchTemplates } from "@/lib/api";
+import type { Template } from "@/lib/api";
 
 export const revalidate = 60;
+
+async function safeFetchFeatured(): Promise<Template[]> {
+  try {
+    const all = await fetchTemplates();
+    return all.slice(0, 4);
+  } catch {
+    return [];
+  }
+}
 
 export default async function HomePage() {
   const featured = await safeFetchFeatured();
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg opacity-[0.6]" aria-hidden />
-        <div
-          className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent-500/10 blur-3xl"
-          aria-hidden
-        />
-
-        <div className="container-wide relative grid grid-cols-1 gap-16 pb-20 pt-14 md:pb-28 md:pt-20 lg:grid-cols-12 lg:gap-12 lg:pt-24">
-          <div className="lg:col-span-7">
-            <Reveal y={10}>
-              <p className="eyebrow">Premium Digital Service Studio · Est. Jakarta</p>
-            </Reveal>
-
-            <Reveal delay={0.05}>
-              <h1 className="display mt-7 text-balance text-4xl leading-[1.04] text-ink md:text-6xl lg:text-[70px]">
-                Website yang dirancang untuk{" "}
-                <span className="gold-italic">mengonversi</span>,{" "}
-                <span className="text-ink-400">bukan</span> sekadar tampil.
+      {/* —— HERO ——————————————————————————————————————————————————————— */}
+      <section className="relative pt-12 md:pt-20 lg:pt-28">
+        <div className="frame">
+          <div className="grid grid-cols-12 items-end gap-x-8 gap-y-10">
+            <div className="col-span-12 md:col-span-2">
+              <p className="marker">— Index 00</p>
+              <p className="marker mt-2">Studio</p>
+            </div>
+            <div className="col-span-12 md:col-span-10">
+              <h1 className="display text-[44px] leading-[0.92] text-ink sm:text-[68px] md:text-[110px] lg:text-[148px] xl:text-[176px]">
+                <SplitLines
+                  lines={[
+                    <>Komposisi</>,
+                    <>
+                      <em className="display-italic">premium</em> yang
+                    </>,
+                    <>fokus pada konversi.</>,
+                  ]}
+                  delay={0.15}
+                  stagger={0.1}
+                />
               </h1>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <p className="mt-7 max-w-2xl text-pretty text-base leading-relaxed text-ink-500 md:text-lg">
-                Kami merancang landing page, website custom, dan IT automation untuk bisnis serius —
-                UMKM, klinik, kontraktor, properti, hingga corporate. Pilih template, lihat preview
-                penuh per industri, lalu konsultasikan kebutuhan Anda.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.15}>
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Button href={whatsappLink(PRESETS.general())} external variant="primary" size="lg">
-                  <MessageCircle className="h-4 w-4" />
-                  Diskusikan kebutuhan Anda
-                </Button>
-                <Button href="/templates" variant="outline" size="lg">
-                  Lihat template
-                  <ArrowUpRight className="h-4 w-4" />
-                </Button>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <ul className="mt-10 grid max-w-xl grid-cols-1 gap-3 text-[15px] text-ink-600 sm:grid-cols-2">
-                {[
-                  "Konsultasi langsung dengan owner",
-                  "Closing via WhatsApp, bukan checkout buta",
-                  "Frontend & backend terpisah, scalable",
-                  "Fokus konversi, bukan style asal jadi",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+            </div>
           </div>
 
-          <div className="lg:col-span-5">
-            <HeroVisual />
-          </div>
-        </div>
-      </section>
-
-      {/* INDUSTRY MARQUEE */}
-      <section className="relative border-y border-ink/[0.06] bg-cream/40 py-6">
-        <Marquee speed={48} className="text-ink-500">
-          {NICHES.map((n) => (
-            <span
-              key={n.value}
-              className="inline-flex items-center gap-3 text-[12px] uppercase tracking-widest2"
-            >
-              <span className="h-1 w-1 rounded-full bg-accent-500" />
-              {n.label}
-            </span>
-          ))}
-        </Marquee>
-      </section>
-
-      {/* METRICS */}
-      <Section pad="sm" bordered>
-        <div className="container-wide">
-          <Stagger className="grid grid-cols-2 gap-x-10 gap-y-12 md:grid-cols-4">
-            {[
-              { value: "120+", label: "Project diluncurkan" },
-              { value: "10", label: "Industri vertikal" },
-              { value: "+187%", label: "Rata-rata uplift konversi" },
-              { value: "≤14 hari", label: "Timeline landing page" },
-            ].map((m, i) => (
-              <StaggerItem key={m.label}>
-                <div className="relative">
-                  <span className="absolute -left-3 top-1 h-6 w-px bg-accent-500/60" />
-                  <div className="display text-[34px] leading-none text-ink md:text-[44px]">
-                    {m.value}
-                  </div>
-                  <div className="mt-3 text-[13px] uppercase tracking-widest2 text-ink-400">
-                    {String(i + 1).padStart(2, "0")} · {m.label}
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </Section>
-
-      {/* SERVICES */}
-      <Section pad="lg" bordered>
-        <div className="container-wide">
-          <SectionHeader
-            eyebrow="Layanan"
-            title={
-              <>
-                Tiga lini layanan yang saling{" "}
-                <span className="gold-italic">melengkapi.</span>
-              </>
-            }
-            description="Mulai dari template siap pakai hingga sistem otomasi internal — kami menyusun pendekatan yang sesuai dengan tahap bisnis Anda."
-          />
-
-          <Stagger className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3" stagger={0.08}>
-            <StaggerItem>
-              <ServiceCard
-                idx="01"
-                icon={<LayoutTemplate className="h-5 w-5" />}
-                title="Template Landing Page"
-                description="Pilih dari koleksi template per niche. Lihat preview asli, customize copy, brand, dan integrasi WhatsApp lalu siap launch."
-                href="/templates"
-                cta="Lihat showroom"
-              />
-            </StaggerItem>
-            <StaggerItem>
-              <ServiceCard
-                idx="02"
-                icon={<Code2 className="h-5 w-5" />}
-                title="Custom Website"
-                description="Company profile, sales funnel, corporate website, hingga website dengan sistem custom yang sesuai workflow Anda."
-                href="/services/website"
-                cta="Pelajari layanan"
-              />
-            </StaggerItem>
-            <StaggerItem>
-              <ServiceCard
-                idx="03"
-                icon={<Workflow className="h-5 w-5" />}
-                title="IT Automation"
-                description="WhatsApp automation, CRM, lead management, internal dashboard, dan workflow otomatis untuk efisiensi tim."
-                href="/services/automation"
-                cta="Pelajari layanan"
-              />
-            </StaggerItem>
-          </Stagger>
-        </div>
-      </Section>
-
-      {/* FEATURED TEMPLATES */}
-      <Section pad="lg" bordered>
-        <div className="container-wide">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <SectionHeader
-              eyebrow="Template Pilihan"
-              title={
-                <>
-                  Template paling sering <span className="gold-italic">dipilih</span> klien.
-                </>
-              }
-              description="Setiap template dirancang per industri — bukan cuma desain, tetapi struktur konversi yang sudah teruji. Buka preview untuk melihat langsung."
-            />
-            <Link
-              href="/templates"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-ink hover:text-accent-700"
-            >
-              Lihat semua template
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
+          <div className="mt-16 grid grid-cols-12 gap-x-8 gap-y-10 md:mt-24">
+            <div className="col-span-12 md:col-span-2 md:col-start-3">
+              <Reveal delay={0.4} y={20}>
+                <p className="marker">— 00 / a</p>
+              </Reveal>
+            </div>
+            <div className="col-span-12 md:col-span-7">
+              <Reveal delay={0.45} y={20}>
+                <p className="text-balance text-[18px] leading-[1.55] text-ink/80 md:text-[22px] md:leading-[1.5]">
+                  Studio digital untuk pelaku bisnis di Indonesia. Kami merancang
+                  landing page, website custom, dan IT automation yang dibuat per
+                  bisnis — bukan template, bukan kit yang dirakit.
+                </p>
+              </Reveal>
+            </div>
           </div>
 
-          <Stagger className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" stagger={0.06}>
-            {featured.map((t) => (
-              <StaggerItem key={t.id}>
-                <TemplateCard template={t} />
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </Section>
-
-      {/* WHY US */}
-      <Section pad="lg" bordered>
-        <div className="container-wide grid grid-cols-1 gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <SectionHeader
-              eyebrow="Mengapa kami"
-              title={
-                <>
-                  Kami partner, <br />
-                  <span className="gold-italic">bukan vendor cetakan.</span>
-                </>
-              }
-              description="Setiap project dimulai dari pertanyaan strategis. Kami tidak membuat website cantik yang gagal mendatangkan lead."
-            />
-          </div>
-          <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:col-span-7">
-            <Pillar
-              icon={<ShieldCheck className="h-5 w-5" />}
-              title="Trust-first design"
-              description="Setiap section dibangun untuk meningkatkan kepercayaan: testimoni, sertifikasi, lokasi, dan studi kasus yang relevan."
-            />
-            <Pillar
-              icon={<Gauge className="h-5 w-5" />}
-              title="Performance & SEO"
-              description="Stack modern (Next.js 14), bobot ringan, structured data, sitemap otomatis, dan optimasi Core Web Vitals."
-            />
-            <Pillar
-              icon={<Workflow className="h-5 w-5" />}
-              title="Operational automation"
-              description="Lead masuk langsung dialirkan ke WhatsApp atau CRM. Tidak ada lead yang hilang di tengah jalan."
-            />
-            <Pillar
-              icon={<Sparkles className="h-5 w-5" />}
-              title="Premium craft"
-              description="Typography kuat, whitespace generous, hierarki tajam. Bukan template AI generator — dibuat seperti high-end agency."
-            />
-          </div>
-        </div>
-      </Section>
-
-      {/* PROCESS */}
-      <Section pad="lg" bordered>
-        <div className="container-wide">
-          <SectionHeader
-            eyebrow="Proses"
-            title={
-              <>
-                Empat tahap. <span className="gold-italic">Transparan.</span> Terstruktur.
-              </>
-            }
-          />
-          <ol className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-[20px] border border-ink/[0.08] bg-ink/[0.06] md:grid-cols-4">
-            {[
-              {
-                k: "01",
-                t: "Konsultasi",
-                d: "Anda chat ke customer service. Kami pahami bisnis, target audience, dan tujuan utama project.",
-              },
-              {
-                k: "02",
-                t: "Pilih pendekatan",
-                d: "Template siap pakai, custom website, atau gabungan dengan automation. Kami sodorkan opsi paling efektif.",
-              },
-              {
-                k: "03",
-                t: "Eksekusi",
-                d: "Tim kami merancang & develop. Anda dapat preview di setiap milestone, bukan hanya di akhir.",
-              },
-              {
-                k: "04",
-                t: "Launch & support",
-                d: "Go live, training admin panel, hingga dukungan iterasi pasca-launch agar konversi naik konsisten.",
-              },
-            ].map((step) => (
-              <li key={step.k} className="group relative bg-paper p-8 transition-colors hover:bg-cream/40">
-                <span className="absolute left-8 top-8 inline-block h-6 w-px bg-accent-500/70 transition-all duration-300 group-hover:h-8" />
-                <div className="ml-4 text-xs font-medium uppercase tracking-widest2 text-ink-400">
-                  {step.k}
-                </div>
-                <div className="display ml-4 mt-3 text-xl text-ink">{step.t}</div>
-                <p className="ml-4 mt-3 text-[14.5px] leading-relaxed text-ink-500">{step.d}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </Section>
-
-      {/* INDUSTRIES */}
-      <Section pad="md" bordered>
-        <div className="container-wide">
-          <SectionHeader
-            eyebrow="Industri yang kami layani"
-            title="Bisnis kami pelajari, bukan sekadar dipoles."
-          />
-          <div className="mt-10 flex flex-wrap gap-2.5">
-            {NICHES.map((n) => (
-              <Link
-                key={n.value}
-                href={`/templates?niche=${n.value}`}
-                className="group inline-flex items-center gap-2 rounded-full border border-ink/[0.1] px-4 py-2 text-[13px] text-ink-600 transition-all hover:border-accent-500 hover:bg-cream/40 hover:text-ink"
+          <div className="mt-14 flex flex-wrap items-center gap-3 md:mt-20">
+            <Reveal delay={0.55} y={10}>
+              <a
+                href={whatsappLink(PRESETS.general())}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pill-solid"
               >
-                <span className="h-1 w-1 rounded-full bg-accent-500 transition-all group-hover:w-2" />
-                {n.label}
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                Mulai percakapan
+                <span className="text-paper/60">→</span>
+              </a>
+            </Reveal>
+            <Reveal delay={0.6} y={10}>
+              <Link href="/templates" className="pill">
+                Lihat showroom
+                <span className="text-ink/40">→</span>
               </Link>
-            ))}
+            </Reveal>
           </div>
         </div>
-      </Section>
 
-      <Section pad="lg">
-        <CTABand />
-      </Section>
+        <div className="mt-24 md:mt-32">
+          <div className="rule" />
+        </div>
+      </section>
+
+      {/* —— 01 / STUDIO STATEMENT ——————————————————————————————————————— */}
+      <section className="py-24 md:py-36">
+        <div className="frame">
+          <div className="grid grid-cols-12 gap-x-8 gap-y-10">
+            <div className="col-span-12 md:col-span-3">
+              <Reveal>
+                <p className="marker">— 01</p>
+                <p className="marker mt-1.5">Pendekatan</p>
+              </Reveal>
+            </div>
+            <div className="col-span-12 md:col-span-9 md:col-start-4">
+              <Reveal y={20}>
+                <p className="display-md text-[28px] leading-[1.18] text-ink md:text-[44px] md:leading-[1.12] lg:text-[56px]">
+                  Kami menulis ulang halaman, bukan menambal-nambal.
+                  Setiap project dibuka dengan diskusi produk, audit
+                  konversi, dan pemetaan funnel — sebelum satu garis pun
+                  digambar. Tujuannya bukan website yang cantik. Tujuannya
+                  adalah <em className="display-italic">closing</em>.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="rule" />
+
+      {/* —— 02 / TEMPLATES (editorial list, not card grid) ————————————— */}
+      <section className="py-20 md:py-32">
+        <div className="frame">
+          <div className="mb-16 grid grid-cols-12 gap-x-8 md:mb-24">
+            <div className="col-span-12 md:col-span-3">
+              <Reveal>
+                <p className="marker">— 02</p>
+                <p className="marker mt-1.5">Showroom</p>
+              </Reveal>
+            </div>
+            <div className="col-span-12 md:col-span-9 md:col-start-4">
+              <Reveal y={20}>
+                <h2 className="display text-[40px] leading-[0.98] text-ink md:text-[80px] lg:text-[112px]">
+                  Sepuluh{" "}
+                  <em className="display-italic">arah</em>,
+                  <br />
+                  satu standar.
+                </h2>
+              </Reveal>
+              <Reveal y={20} delay={0.1}>
+                <p className="mt-8 max-w-xl text-[16px] leading-relaxed text-ink/70 md:text-[18px]">
+                  Setiap template di showroom kami dibuat penuh — bukan
+                  thumbnail, bukan mockup. Buka, telusuri, lalu pilih
+                  yang paling cocok untuk industri Anda. Atau diskusikan
+                  arah baru dari nol.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+
+          {/* Editorial list of templates — numbered, full-width row each */}
+          <div>
+            {featured.length === 0 ? (
+              <Reveal y={20}>
+                <p className="text-ink/60">
+                  Showroom akan tampil setelah backend tersambung.{" "}
+                  <Link href="/templates" className="anchor">
+                    Lihat semua →
+                  </Link>
+                </p>
+              </Reveal>
+            ) : (
+              featured.map((t, i) => (
+                <Reveal key={t.slug} y={24} delay={i * 0.05}>
+                  <Link
+                    href={`/preview/${t.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block border-t border-ink/10 transition-colors duration-500 hover:bg-ink hover:text-paper"
+                    style={{ transitionTimingFunction: "var(--easing)" }}
+                  >
+                    <div className="grid grid-cols-12 items-baseline gap-x-8 px-2 py-7 md:py-10">
+                      <span className="col-span-2 font-mono text-[12px] tracking-widest3 text-ink/40 group-hover:text-paper/40 md:col-span-1">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="col-span-10 md:col-span-7">
+                        <span className="display block text-[28px] leading-[1.05] md:text-[44px] lg:text-[56px]">
+                          {t.name}
+                        </span>
+                      </span>
+                      <span className="col-span-12 mt-3 text-[13px] uppercase tracking-widest2 text-ink/55 group-hover:text-paper/55 md:col-span-3 md:col-start-9 md:mt-0 md:text-right">
+                        {t.niche}
+                      </span>
+                      <span className="col-span-12 mt-4 hidden md:col-span-7 md:col-start-2 md:mt-0 md:flex md:justify-end md:gap-2 md:text-[13px] md:tracking-wide md:opacity-0 md:transition-opacity md:duration-500 md:group-hover:opacity-100">
+                        Open preview <span>→</span>
+                      </span>
+                    </div>
+                  </Link>
+                </Reveal>
+              ))
+            )}
+            <div className="border-t border-ink/10" />
+          </div>
+
+          <div className="mt-12 flex justify-end">
+            <Reveal y={10}>
+              <Link href="/templates" className="pill">
+                Lihat semua sepuluh
+                <span className="text-ink/40">→</span>
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <div className="rule" />
+
+      {/* —— 03 / LAYANAN (2-col editorial, not feature grid) ————————— */}
+      <section className="py-20 md:py-32">
+        <div className="frame">
+          <div className="mb-16 grid grid-cols-12 gap-x-8 md:mb-24">
+            <div className="col-span-12 md:col-span-3">
+              <Reveal>
+                <p className="marker">— 03</p>
+                <p className="marker mt-1.5">Layanan</p>
+              </Reveal>
+            </div>
+            <div className="col-span-12 md:col-span-9 md:col-start-4">
+              <Reveal y={20}>
+                <h2 className="display text-[40px] leading-[0.98] text-ink md:text-[80px] lg:text-[112px]">
+                  Dua disiplin,
+                  <br />
+                  <em className="display-italic">satu</em> arah.
+                </h2>
+              </Reveal>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-12 gap-x-8 gap-y-16">
+            <article className="col-span-12 md:col-span-6">
+              <Reveal y={20}>
+                <p className="marker mb-4">— 03 / a</p>
+                <h3 className="display-md text-[28px] leading-[1.05] text-ink md:text-[44px]">
+                  Custom Website &amp; Landing Page
+                </h3>
+                <p className="mt-6 max-w-md text-[15px] leading-relaxed text-ink/70 md:text-[16px]">
+                  Landing page konversi tinggi, company profile, sales
+                  funnel, hingga corporate website. Arsitektur frontend
+                  yang ringan, stack modern, tanpa template builder.
+                </p>
+                <ul className="mt-8 divide-y divide-ink/10 text-[14px]">
+                  {[
+                    "Landing page closing",
+                    "Company profile",
+                    "Sales funnel multi-step",
+                    "Corporate / multi-locale",
+                  ].map((s, i) => (
+                    <li key={s} className="flex items-baseline gap-6 py-3">
+                      <span className="font-mono text-[11px] text-ink/40">
+                        0{i + 1}
+                      </span>
+                      <span className="text-ink/85">{s}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/services/website"
+                  className="anchor mt-10 inline-block text-[14px]"
+                >
+                  Selengkapnya tentang Website →
+                </Link>
+              </Reveal>
+            </article>
+
+            <article className="col-span-12 md:col-span-5 md:col-start-8">
+              <Reveal y={20} delay={0.08}>
+                <p className="marker mb-4">— 03 / b</p>
+                <h3 className="display-md text-[28px] leading-[1.05] text-ink md:text-[44px]">
+                  IT Automation &amp; System
+                </h3>
+                <p className="mt-6 max-w-md text-[15px] leading-relaxed text-ink/70 md:text-[16px]">
+                  WhatsApp automation, CRM integration, internal
+                  dashboard, lead routing, workflow operasional. Kami
+                  membangun sistem yang menghapus kerja repetitif.
+                </p>
+                <ul className="mt-8 divide-y divide-ink/10 text-[14px]">
+                  {[
+                    "WhatsApp automation",
+                    "CRM integration",
+                    "Lead management",
+                    "Internal admin dashboard",
+                  ].map((s, i) => (
+                    <li key={s} className="flex items-baseline gap-6 py-3">
+                      <span className="font-mono text-[11px] text-ink/40">
+                        0{i + 1}
+                      </span>
+                      <span className="text-ink/85">{s}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/services/automation"
+                  className="anchor mt-10 inline-block text-[14px]"
+                >
+                  Selengkapnya tentang Automation →
+                </Link>
+              </Reveal>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div className="rule" />
+
+      {/* —— 04 / PRINSIP (numbered, not card grid) ——————————————————— */}
+      <section className="py-20 md:py-32">
+        <div className="frame">
+          <div className="grid grid-cols-12 gap-x-8 gap-y-12">
+            <div className="col-span-12 md:col-span-3">
+              <Reveal>
+                <p className="marker">— 04</p>
+                <p className="marker mt-1.5">Prinsip kerja</p>
+              </Reveal>
+            </div>
+            <div className="col-span-12 md:col-span-9 md:col-start-4">
+              <ol className="divide-y divide-ink/10">
+                {[
+                  {
+                    n: "01",
+                    h: "Dialog dulu, kontrak kemudian.",
+                    p: "Konsultasi dilakukan langsung dengan owner studio. Tidak ada CS skrip.",
+                  },
+                  {
+                    n: "02",
+                    h: "Konversi sebagai metric utama.",
+                    p: "Setiap halaman diuji ulang dengan funnel analytics — bukan sekadar tampil.",
+                  },
+                  {
+                    n: "03",
+                    h: "Frontend dan backend dipisah bersih.",
+                    p: "Anda bisa redesign tampilan tanpa membongkar sistem yang sudah jalan.",
+                  },
+                  {
+                    n: "04",
+                    h: "Closing via percakapan.",
+                    p: "WhatsApp adalah pintu kerja kami — bukan checkout buta yang dingin.",
+                  },
+                ].map((item, i) => (
+                  <Reveal key={item.n} y={16} delay={i * 0.06}>
+                    <li className="grid grid-cols-12 items-baseline gap-x-8 py-7 md:py-10">
+                      <span className="col-span-12 font-mono text-[11px] tracking-widest3 text-ink/40 md:col-span-1">
+                        {item.n}
+                      </span>
+                      <h3 className="col-span-12 display-md text-[24px] leading-[1.15] text-ink md:col-span-7 md:text-[32px]">
+                        {item.h}
+                      </h3>
+                      <p className="col-span-12 mt-3 max-w-md text-[15px] leading-relaxed text-ink/65 md:col-span-4 md:col-start-9 md:mt-0">
+                        {item.p}
+                      </p>
+                    </li>
+                  </Reveal>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* —— 05 / CTA (oversized question, type-only) ———————————————— */}
+      <section className="bg-ink py-24 text-paper md:py-40">
+        <div className="frame">
+          <div className="grid grid-cols-12 gap-x-8 gap-y-12">
+            <div className="col-span-12 md:col-span-3">
+              <Reveal>
+                <p className="marker text-paper/55">— 05</p>
+                <p className="marker mt-1.5 text-paper/55">Mulai</p>
+              </Reveal>
+            </div>
+            <div className="col-span-12 md:col-span-9 md:col-start-4">
+              <Reveal y={20}>
+                <h2 className="display text-[40px] leading-[0.98] text-paper md:text-[80px] lg:text-[120px]">
+                  Mau mulai dari{" "}
+                  <em className="display-italic">mana</em>?
+                </h2>
+              </Reveal>
+              <Reveal y={16} delay={0.1}>
+                <p className="mt-10 max-w-xl text-[16px] leading-relaxed text-paper/70 md:text-[18px]">
+                  Cerita singkat soal bisnis Anda. Apa yang sudah jalan,
+                  apa yang macet, dan apa yang Anda kejar tahun ini.
+                  Kami balas dalam 1–2 jam di jam kerja.
+                </p>
+              </Reveal>
+              <Reveal y={10} delay={0.15}>
+                <div className="mt-12 flex flex-wrap items-center gap-3">
+                  <a
+                    href={whatsappLink(PRESETS.general())}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 rounded-full bg-paper px-6 py-3 text-[14px] tracking-wide text-ink transition-colors duration-500 hover:bg-accent hover:text-paper"
+                    style={{ transitionTimingFunction: "var(--easing)" }}
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                    WhatsApp
+                    <span className="text-ink/40">→</span>
+                  </a>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-3 rounded-full border border-paper/25 px-6 py-3 text-[14px] tracking-wide text-paper transition-colors duration-500 hover:border-paper hover:bg-paper hover:text-ink"
+                    style={{ transitionTimingFunction: "var(--easing)" }}
+                  >
+                    Form konsultasi
+                    <span className="text-paper/40">→</span>
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
-  );
-}
-
-async function safeFetchFeatured() {
-  try {
-    const all = await fetchTemplates({ featured: true });
-    return all.slice(0, 6);
-  } catch {
-    return [];
-  }
-}
-
-function ServiceCard({
-  idx,
-  icon,
-  title,
-  description,
-  href,
-  cta,
-}: {
-  idx: string;
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  href: string;
-  cta: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="group relative flex h-full flex-col rounded-2xl border border-ink/[0.08] bg-paper p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent-500/40 hover:shadow-plate"
-    >
-      <div className="flex items-start justify-between">
-        <span className="grid h-10 w-10 place-items-center rounded-full border border-ink/[0.08] bg-cream/40 text-accent-700">
-          {icon}
-        </span>
-        <span className="text-[11px] font-medium uppercase tracking-widest2 text-ink-400">
-          {idx}
-        </span>
-      </div>
-      <h3 className="display mt-7 text-2xl text-ink">{title}</h3>
-      <p className="mt-3 text-[15px] leading-relaxed text-ink-500">{description}</p>
-      <span className="mt-7 inline-flex items-center gap-1.5 text-sm font-medium text-ink">
-        {cta}
-        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </span>
-    </Link>
-  );
-}
-
-function Pillar({
-  icon,
-  title,
-  description,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div>
-      <span className="grid h-10 w-10 place-items-center rounded-full border border-accent-500/30 bg-cream/40 text-accent-700">
-        {icon}
-      </span>
-      <h4 className="display mt-5 text-xl text-ink">{title}</h4>
-      <p className="mt-2 text-[14.5px] leading-relaxed text-ink-500">{description}</p>
-    </div>
   );
 }

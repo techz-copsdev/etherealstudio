@@ -4,31 +4,23 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
-import { Button } from "@/components/ui/Button";
 import { whatsappLink, PRESETS } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { href: "/templates", label: "Template" },
-  { href: "/services/website", label: "Custom Website" },
-  { href: "/services/automation", label: "IT Automation" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/about", label: "About" },
+  { href: "/templates", label: "Templates", index: "01" },
+  { href: "/services/website", label: "Website", index: "02" },
+  { href: "/services/automation", label: "Automation", index: "03" },
+  { href: "/portfolio", label: "Work", index: "04" },
+  { href: "/about", label: "Studio", index: "05" },
+  { href: "/contact", label: "Contact", index: "06" },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const [time, setTime] = useState<string>("");
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -41,30 +33,39 @@ export function Header() {
     setOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const tick = () => {
+      const now = new Date();
+      const jakarta = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Jakarta",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).format(now);
+      setTime(jakarta);
+    };
+    tick();
+    const id = setInterval(tick, 30_000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-40 w-full transition-colors duration-300",
-        scrolled
-          ? "border-b border-ink/[0.08] bg-paper/85 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent",
-      )}
-    >
-      <div className="container-wide flex h-16 items-center justify-between md:h-20">
-        <Link href="/" className="text-ink ring-focus rounded-sm" aria-label="Beranda">
+    <header className="sticky top-0 z-40 w-full bg-paper/85 backdrop-blur-sm">
+      <div className="frame flex items-center justify-between py-5 md:py-6">
+        <Link href="/" aria-label="Beranda" className="group">
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-9 md:flex">
-          {NAV_ITEMS.map((item) => {
+        <nav className="hidden items-center gap-10 md:flex">
+          {NAV_ITEMS.slice(0, 5).map((item) => {
             const active = pathname === item.href || pathname?.startsWith(item.href + "/");
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "link-underline text-[14px] tracking-wide transition-colors ring-focus",
-                  active ? "text-ink" : "text-ink-500 hover:text-ink",
+                  "anchor text-[13px] tracking-wide transition-colors duration-300",
+                  active ? "text-ink" : "text-ink/60 hover:text-ink",
                 )}
               >
                 {item.label}
@@ -73,22 +74,21 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-4 md:flex">
-          <Link
-            href="/contact"
-            className="text-[14px] text-ink-500 transition-colors hover:text-ink ring-focus rounded-sm"
-          >
-            Contact
-          </Link>
-          <Button
+        <div className="hidden items-center gap-6 md:flex">
+          <span className="marker hidden lg:inline-flex items-center gap-2">
+            <span className="h-1 w-1 rounded-full bg-ink/40" />
+            Jakarta · {time || "—"}
+          </span>
+          <a
             href={whatsappLink(PRESETS.general())}
-            external
-            variant="primary"
-            size="sm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pill"
           >
-            <MessageCircle className="h-4 w-4" />
-            Chat Customer Service
-          </Button>
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            <span>Konsultasi</span>
+            <span className="text-ink/40 group-hover:text-paper/60">→</span>
+          </a>
         </div>
 
         <button
@@ -96,70 +96,75 @@ export function Header() {
           aria-label={open ? "Tutup menu" : "Buka menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full text-ink hover:bg-ink/5 ring-focus"
+          className="md:hidden inline-flex h-10 w-10 flex-col items-center justify-center gap-[5px]"
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          <span
+            className={cn(
+              "block h-px w-5 bg-ink transition-transform duration-300 ease-out",
+              open && "translate-y-[3px] rotate-45",
+            )}
+          />
+          <span
+            className={cn(
+              "block h-px w-5 bg-ink transition-transform duration-300 ease-out",
+              open && "-translate-y-[3px] -rotate-45",
+            )}
+          />
         </button>
       </div>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            key="overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden fixed inset-0 top-16 z-30 bg-ink/40 backdrop-blur-sm"
-            onClick={() => setOpen(false)}
-            aria-hidden
-          />
-        ) : null}
-      </AnimatePresence>
+      <div className="rule" />
 
       <AnimatePresence>
         {open ? (
           <motion.div
             key="drawer"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.32, ease: [0.22, 0.61, 0.36, 1] }}
-            className="md:hidden fixed right-0 top-16 z-40 h-[calc(100vh-4rem)] w-[88%] max-w-sm overflow-y-auto border-l border-ink/[0.08] bg-paper shadow-plate"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden fixed inset-x-0 top-[57px] bottom-0 z-30 overflow-y-auto bg-paper"
           >
-            <nav className="flex flex-col px-6 pb-12 pt-6">
-              <span className="eyebrow mb-6">Menu</span>
-              {NAV_ITEMS.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="display border-b border-ink/[0.06] py-4 text-2xl text-ink"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link
-                href="/contact"
-                className="display border-b border-ink/[0.06] py-4 text-2xl text-ink"
+            <div className="frame flex h-full flex-col py-10">
+              <span className="marker mb-8">Index</span>
+              <nav className="flex flex-1 flex-col gap-1">
+                {NAV_ITEMS.map((item, i) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.08 + i * 0.04, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Link
+                      href={item.href}
+                      className="display group flex items-baseline justify-between border-b border-ink/10 py-5 text-4xl text-ink"
+                    >
+                      <span>{item.label}</span>
+                      <span className="font-mono text-[11px] tracking-widest3 text-ink/40">{item.index}</span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="mt-10"
               >
-                Contact
-              </Link>
-              <div className="mt-8">
-                <Button
+                <a
                   href={whatsappLink(PRESETS.general())}
-                  external
-                  variant="primary"
-                  size="lg"
-                  className="w-full"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pill-solid w-full justify-center"
                 >
-                  <MessageCircle className="h-4 w-4" />
-                  Chat Customer Service
-                </Button>
-              </div>
-              <p className="mt-6 text-xs text-ink-500">
-                Respons di jam kerja Senin–Jumat, 09.00–18.00 WIB. Biasanya membalas dalam 1–2 jam.
-              </p>
-            </nav>
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  Konsultasi via WhatsApp
+                </a>
+                <p className="marker mt-6">
+                  Jakarta · {time || "—"} · Senin–Jumat 09.00–18.00
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
         ) : null}
       </AnimatePresence>

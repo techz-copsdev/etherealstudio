@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, MessageCircle } from "lucide-react";
 import { whatsappLink, PRESETS } from "@/lib/whatsapp";
 import { site } from "@/lib/site";
 
@@ -18,34 +17,29 @@ export function PreviewShell({
 }) {
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <div className="sticky top-0 z-50 border-b border-ink/[0.06] bg-paper/85 backdrop-blur">
-        <div className="container-wide flex h-12 items-center justify-between gap-4">
+      <div className="sticky top-0 z-50 bg-paper/90 backdrop-blur-sm">
+        <div className="mx-auto flex h-11 max-w-[1480px] items-center justify-between gap-4 px-6 lg:px-12">
           <Link
             href="/templates"
-            className="inline-flex items-center gap-2 text-[12px] text-ink-500 hover:text-ink"
+            className="group inline-flex items-center gap-3 text-[11px] uppercase tracking-widest2 text-ink/55 hover:text-ink"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Showroom</span>
-            <span className="hidden text-ink-300 sm:inline">/</span>
+            <span aria-hidden>←</span>
+            <span className="hidden sm:inline">{site.brand}</span>
+            <span className="hidden text-ink/30 sm:inline">/</span>
             <span className="text-ink">{templateName}</span>
           </Link>
-          <div className="flex items-center gap-3">
-            <span className="hidden text-[11px] uppercase tracking-widest2 text-ink-400 md:inline">
-              {site.brand} · Preview Mode
-            </span>
-            <a
-              href={whatsappLink(PRESETS.preview(templateName))}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-8 items-center gap-1.5 rounded-full bg-ink px-3.5 text-[12px] font-medium text-paper hover:bg-ink-800"
-            >
-              <MessageCircle className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Gunakan template ini</span>
-              <span className="sm:hidden">Pakai</span>
-              <ExternalLink className="h-3 w-3 opacity-60" />
-            </a>
-          </div>
+          <a
+            href={whatsappLink(PRESETS.preview(templateName))}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-widest2 text-ink hover:text-accent"
+          >
+            <span className="hidden sm:inline">Gunakan template</span>
+            <span className="sm:hidden">Pakai</span>
+            <span aria-hidden>→</span>
+          </a>
         </div>
+        <div className="rule" />
       </div>
       {children}
     </div>

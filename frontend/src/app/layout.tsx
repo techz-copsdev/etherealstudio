@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import { Chrome } from "@/components/layout/Chrome";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -15,9 +15,17 @@ const inter = Inter({
 const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
-  axes: ["opsz"],
+  axes: ["opsz", "SOFT", "WONK"],
   variable: "--font-display",
   fallback: ["Georgia", "Times New Roman", "serif"],
+  adjustFontFallback: false,
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
   adjustFontFallback: false,
 });
 
@@ -63,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="id" className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}>
       <body>
         <Chrome>{children}</Chrome>
       </body>

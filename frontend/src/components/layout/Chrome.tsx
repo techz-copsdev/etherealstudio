@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
+import { Cursor } from "@/components/motion/Cursor";
 
 /**
  * Wraps page content with the global studio chrome (Header, Footer, sticky CTA)
@@ -19,6 +20,7 @@ export function Chrome({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <Cursor />
       <Header />
       <main className="pb-16 md:pb-0">{children}</main>
       <Footer />
