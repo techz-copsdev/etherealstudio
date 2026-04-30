@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex,nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="stylesheet" href="../assets/css/style.css" />
   <style>
     body { overflow: hidden; height: 100vh; }
@@ -18,50 +18,63 @@
 
   <div class="admin-shell">
 
-    <aside class="side">
-      <a class="brand" href=".">
-        <span class="brand-mark" aria-hidden="true"></span>
+    <!-- ============== SIDEBAR ============== -->
+    <aside class="admin-side">
+      <a class="brand-block" href=".">
+        <img class="brand-logo-mark" src="../assets/brand/logo-mark.svg" alt="" />
         <span>
-          <span class="brand-name">B Risky<em style="font-style:italic; color:var(--cobalt);">.</em></span>
-          <span class="brand-tag">Console v0.1</span>
+          <strong>Optik B Risky</strong>
+          <span>Console v0.1</span>
         </span>
       </a>
 
-      <nav>
+      <nav class="admin-nav">
         <a href="#" class="active" data-tab="inbox">
-          <i data-icon="inbox"></i><span>Inbox &amp; Antrian</span>
-          <span class="badge-count">5</span>
+          <i data-icon="inbox"></i>
+          <span class="label">Inbox &amp; Antrian</span>
+          <span class="badge">5</span>
         </a>
-        <a href="#" data-tab="catalog"><i data-icon="grid"></i><span>Katalog</span></a>
-        <a href="#" data-tab="archive"><i data-icon="archive"></i><span>Riwayat Chat</span></a>
-        <a href="#" data-tab="branches"><i data-icon="store"></i><span>Cabang &amp; Staff</span></a>
-        <a href="#" data-tab="replies"><i data-icon="spark"></i><span>Quick Replies</span></a>
-        <a href="#" data-tab="profile"><i data-icon="user"></i><span>Profil Saya</span></a>
-        <a href="#" data-tab="settings"><i data-icon="settings"></i><span>Pengaturan</span></a>
+        <a href="#" data-tab="catalog">
+          <i data-icon="grid"></i>
+          <span class="label">Katalog</span>
+        </a>
+        <a href="#" data-tab="archive">
+          <i data-icon="archive"></i>
+          <span class="label">Riwayat Chat</span>
+        </a>
+        <a href="#" data-tab="branches">
+          <i data-icon="store"></i>
+          <span class="label">Cabang &amp; Staff</span>
+        </a>
+        <a href="#" data-tab="replies">
+          <i data-icon="bell"></i>
+          <span class="label">Quick Replies</span>
+        </a>
+        <a href="#" data-tab="profile">
+          <i data-icon="user"></i>
+          <span class="label">Profil Saya</span>
+        </a>
+        <a href="#" data-tab="settings">
+          <i data-icon="settings"></i>
+          <span class="label">Pengaturan</span>
+        </a>
       </nav>
 
-      <div class="footer-side">
-        <span class="av" id="me-av">A</span>
-        <div style="flex:1; min-width:0;">
-          <div class="who" id="me-name">Admin</div>
-          <div class="role">Krian · Pusat</div>
-        </div>
-        <a href="../login/" class="icon-btn" style="border-color:rgba(245,243,237,0.4); color:var(--chalk);" title="Keluar"><i data-icon="logout"></i></a>
-      </div>
+      <a href="../login/" class="btn btn-ghost btn-block">
+        <i data-icon="logout"></i>
+        <span class="label">Keluar</span>
+      </a>
     </aside>
 
-    <div class="admin-main">
+    <!-- ============== MAIN ============== -->
+    <main class="admin-main">
 
       <header class="admin-top">
-        <div>
-          <div class="crumb">N° 01 — Inbox</div>
-          <h1>Percakapan <em style="font-style:italic; color:var(--cobalt);">aktif</em>.</h1>
-        </div>
-        <div style="display:flex; gap:10px; align-items:center;">
+        <h2>Percakapan <em>Aktif</em></h2>
+        <div class="top-actions">
           <button class="online-toggle on" id="online-toggle">
             <span class="switch"></span>
             <span class="lbl-on">Online · Menerima chat</span>
-            <span class="lbl-off">Offline · Tidak menerima</span>
           </button>
           <button class="icon-btn" data-theme-toggle aria-label="Tema">
             <i data-icon="sun" class="show-light"></i>
@@ -70,212 +83,220 @@
         </div>
       </header>
 
-      <!-- INBOX VIEW -->
+      <!-- ============== INBOX BOARD ============== -->
       <section class="admin-board" data-view="inbox">
 
-        <div class="queue-list">
+        <!-- LEFT: queue -->
+        <aside class="queue">
           <div class="queue-head">
-            <h3>Antrian</h3>
-            <span class="badge-num">5 menunggu</span>
+            <div class="row">
+              <h3>Antrian</h3>
+              <span class="count">5 menunggu</span>
+            </div>
+            <input type="search" placeholder="Cari nama / email..." id="q-search" />
           </div>
-          <div class="queue-search">
-            <input type="search" placeholder="Cari nama / email pelanggan..." id="q-search" />
-          </div>
-          <div class="queue-scroll" id="queue-scroll">
-            <div class="q-item active live" data-id="risky" onclick="openConvo('risky')">
-              <div class="av">RP<span class="pip"></span></div>
-              <div>
-                <div class="name"><span>Risky Pradana</span><span class="t">2 mnt</span></div>
+          <div class="queue-list" id="queue-list">
+            <div class="q-item active" data-id="risky" onclick="openConvo('risky')">
+              <div class="avatar">RP</div>
+              <div class="body">
+                <div class="row1">
+                  <div class="name">Risky Pradana</div>
+                  <div class="time">2m</div>
+                </div>
                 <div class="preview">Halo, saya mau tanya soal frame Linea Nº 01...</div>
-                <div class="meta"><span class="pos">● LIVE</span><span>Krian</span></div>
+                <span class="pip live">LIVE · Krian</span>
               </div>
             </div>
-            <div class="q-item waiting" data-id="dewi" onclick="openConvo('dewi')">
-              <div class="av">DK<span class="pip"></span></div>
-              <div>
-                <div class="name"><span>Dewi Kurniawati</span><span class="t">5 mnt</span></div>
+            <div class="q-item" data-id="dewi" onclick="openConvo('dewi')">
+              <div class="avatar">DK</div>
+              <div class="body">
+                <div class="row1">
+                  <div class="name">Dewi Kurniawati</div>
+                  <div class="time">5m</div>
+                </div>
                 <div class="preview">Periksa mata gratis bisa hari Sabtu?</div>
-                <div class="meta"><span class="pos">● POS #1</span><span>Sidoarjo</span></div>
+                <span class="pip wait">POS #1 · Sidoarjo</span>
               </div>
             </div>
-            <div class="q-item waiting" data-id="bayu" onclick="openConvo('bayu')">
-              <div class="av">BS<span class="pip"></span></div>
-              <div>
-                <div class="name"><span>Bayu Setiawan</span><span class="t">7 mnt</span></div>
-                <div class="preview">Lensa progressive Hoya harganya berapa ya?</div>
-                <div class="meta"><span class="pos">● POS #2</span><span>Surabaya</span></div>
+            <div class="q-item" data-id="bayu" onclick="openConvo('bayu')">
+              <div class="avatar">BS</div>
+              <div class="body">
+                <div class="row1">
+                  <div class="name">Bayu Setiawan</div>
+                  <div class="time">7m</div>
+                </div>
+                <div class="preview">Lensa progressive Hoya harganya berapa?</div>
+                <span class="pip wait">POS #2 · Surabaya</span>
               </div>
             </div>
-            <div class="q-item waiting" data-id="nadya" onclick="openConvo('nadya')">
-              <div class="av">NA<span class="pip"></span></div>
-              <div>
-                <div class="name"><span>Nadya Aulia</span><span class="t">9 mnt</span></div>
+            <div class="q-item" data-id="nadya" onclick="openConvo('nadya')">
+              <div class="avatar">NA</div>
+              <div class="body">
+                <div class="row1">
+                  <div class="name">Nadya Aulia</div>
+                  <div class="time">9m</div>
+                </div>
                 <div class="preview">Bisa pesan kacamata anak?</div>
-                <div class="meta"><span class="pos">● POS #3</span><span>Mojokerto</span></div>
+                <span class="pip wait">POS #3 · Mojokerto</span>
               </div>
             </div>
             <div class="q-item" data-id="firdaus" onclick="openConvo('firdaus')">
-              <div class="av">FR<span class="pip"></span></div>
-              <div>
-                <div class="name"><span>Firdaus Ramadhan</span><span class="t">22 mnt</span></div>
+              <div class="avatar">FR</div>
+              <div class="body">
+                <div class="row1">
+                  <div class="name">Firdaus Ramadhan</div>
+                  <div class="time">22m</div>
+                </div>
                 <div class="preview">Terima kasih, sudah saya transfer.</div>
-                <div class="meta"><span class="pos" style="color:var(--gray);">SELESAI</span><span>Krian</span></div>
+                <span class="pip done">SELESAI · Krian</span>
               </div>
             </div>
           </div>
-        </div>
+        </aside>
 
-        <div class="convo">
-          <div class="convo-head">
-            <div class="av" id="convo-av">RP</div>
-            <div class="who">
-              <div class="n" id="convo-name">Risky Pradana</div>
-              <div class="e" id="convo-meta"><span>risky.pradana@gmail.com</span><span>· Krian</span><span>· LIVE 2 mnt</span></div>
+        <!-- CENTER: convo -->
+        <section class="convo">
+          <header class="convo-head">
+            <div class="avatar" id="convo-av">RP</div>
+            <div class="info">
+              <div class="name" id="convo-name">Risky Pradana</div>
+              <div class="meta" id="convo-meta">risky.pradana@gmail.com · Krian · LIVE 2 mnt</div>
             </div>
-            <div class="convo-actions">
+            <div class="actions">
               <button class="icon-btn" title="Tandai selesai"><i data-icon="check"></i></button>
               <button class="icon-btn" title="Arsipkan"><i data-icon="archive"></i></button>
             </div>
-          </div>
+          </header>
           <div class="convo-body" id="convo-body">
             <!-- messages injected -->
           </div>
-          <div class="convo-foot">
-            <div class="replies">
+          <footer class="convo-foot">
+            <div class="quick-replies">
               <button onclick="quickReply('Halo, terima kasih sudah menghubungi B Risky.')">Sapa pelanggan</button>
               <button onclick="quickReply('Stoknya masih ada. Silakan kunjungi cabang terdekat ya.')">Stok tersedia</button>
               <button onclick="quickReply('Periksa mata gratis bisa langsung tanpa janji, kami buka 09.00 - 20.00.')">Info periksa</button>
               <button onclick="quickReply('Saya kirim katalog frame yang cocok ya.')">Kirim katalog</button>
               <button onclick="quickReply('Terima kasih, ditunggu kunjungannya.')">Tutup chat</button>
             </div>
-            <div class="composer">
+            <div class="editor">
               <textarea id="composer" placeholder="Tulis balasan… (Enter untuk kirim, Shift+Enter baris baru)"></textarea>
-              <button onclick="sendReply()"><i data-icon="send"></i><span>Kirim</span></button>
+              <button onclick="sendReply()" aria-label="Kirim"><i data-icon="send"></i></button>
             </div>
-          </div>
-        </div>
+          </footer>
+        </section>
 
-        <aside class="side-panel">
-          <div class="panel-section">
-            <h4>Pelanggan</h4>
-            <dl class="kv">
-              <dt>Nama</dt><dd id="cust-name">Risky Pradana</dd>
-              <dt>Email</dt><dd id="cust-email">risky.pradana@gmail.com</dd>
-              <dt>Cabang</dt><dd id="cust-branch">Krian — Pusat</dd>
-              <dt>Mulai</dt><dd id="cust-start">2 menit lalu</dd>
-              <dt>Status</dt><dd style="color:var(--cobalt); font-weight:500;">● Live Chat</dd>
-            </dl>
+        <!-- RIGHT: detail panel -->
+        <aside class="panel">
+          <div class="panel-block">
+            <h5>Pelanggan</h5>
+            <div class="field-pair"><span>Nama</span><span id="cust-name">Risky Pradana</span></div>
+            <div class="field-pair"><span>Email</span><span id="cust-email">risky.pradana@gmail.com</span></div>
+            <div class="field-pair"><span>Cabang</span><span id="cust-branch">Krian — Pusat</span></div>
+            <div class="field-pair"><span>Mulai</span><span id="cust-start">2 menit lalu</span></div>
+            <div class="field-pair"><span>Status</span><span style="color: var(--primary);">● Live</span></div>
           </div>
-          <div class="panel-section">
-            <h4>Catatan Internal</h4>
-            <textarea placeholder="Catatan untuk staff lain (tidak dilihat pelanggan)..." style="width:100%; min-height:90px; padding:10px 12px; border:1.5px solid var(--ink); background:var(--chalk); resize:none; font-family:var(--f-body); outline:none;"></textarea>
-            <button class="btn btn-ghost" style="margin-top:10px; width:100%;"><span>Simpan Catatan</span></button>
+          <div class="panel-block">
+            <h5>Catatan Internal</h5>
+            <textarea placeholder="Catatan untuk staff lain (tidak dilihat pelanggan)..."></textarea>
+            <button class="full">Simpan Catatan</button>
           </div>
-          <div class="panel-section">
-            <h4>Cabang Aktif</h4>
-            <div class="branch-mini">
+          <div class="panel-block">
+            <h5>Cabang Aktif</h5>
+            <div class="branch-row">
               <div>
-                <div class="n">Krian</div>
-                <div class="a">Ruko Central Point · 09.00–20.00</div>
+                <div class="nm">Krian</div>
+                <div class="meta">Ruko Central Point · 09.00–20.00</div>
               </div>
-              <span class="tag-mono" style="color:var(--cobalt);">● Online</span>
+              <span class="stat-pip online">● Online</span>
             </div>
-            <div class="branch-mini">
+            <div class="branch-row">
               <div>
-                <div class="n">Sidoarjo</div>
-                <div class="a">Jl. Ahmad Yani · 09.00–20.00</div>
+                <div class="nm">Sidoarjo</div>
+                <div class="meta">Jl. Ahmad Yani · 09.00–20.00</div>
               </div>
-              <span class="tag-mono" style="color:var(--cobalt);">● Online</span>
+              <span class="stat-pip online">● Online</span>
             </div>
-            <div class="branch-mini">
+            <div class="branch-row">
               <div>
-                <div class="n">Surabaya</div>
-                <div class="a">Jl. Wonokromo · 09.00–21.00</div>
+                <div class="nm">Surabaya</div>
+                <div class="meta">Jl. Wonokromo · 09.00–21.00</div>
               </div>
-              <span class="tag-mono" style="color:var(--gray);">○ Offline</span>
+              <span class="stat-pip offline">○ Offline</span>
             </div>
-            <div class="branch-mini">
+            <div class="branch-row">
               <div>
-                <div class="n">Mojokerto</div>
-                <div class="a">Jl. Bhayangkara · 09.00–19.00</div>
+                <div class="nm">Mojokerto</div>
+                <div class="meta">Jl. Bhayangkara · 09.00–19.00</div>
               </div>
-              <span class="tag-mono" style="color:var(--cobalt);">● Online</span>
+              <span class="stat-pip online">● Online</span>
             </div>
           </div>
-          <div class="panel-section">
-            <h4>Statistik Hari Ini</h4>
-            <dl class="kv">
-              <dt>Chat masuk</dt><dd>27</dd>
-              <dt>Diselesaikan</dt><dd>22</dd>
-              <dt>Rata-rata respon</dt><dd>1m 48d</dd>
-              <dt>Konversi</dt><dd style="color:var(--cobalt); font-weight:500;">31%</dd>
-            </dl>
+          <div class="panel-block">
+            <h5>Statistik Hari Ini</h5>
+            <div class="field-pair"><span>Chat masuk</span><span>27</span></div>
+            <div class="field-pair"><span>Diselesaikan</span><span>22</span></div>
+            <div class="field-pair"><span>Rata-rata respon</span><span>1m 48d</span></div>
+            <div class="field-pair"><span>Konversi</span><span style="color: var(--primary);">31%</span></div>
           </div>
         </aside>
 
       </section>
 
-      <!-- KATALOG VIEW (hidden by default) -->
-      <section class="admin-board hidden" data-view="catalog" style="display:block; grid-template-columns: 1fr;">
-        <div style="padding:32px clamp(20px, 3vw, 36px); overflow-y:auto; height:100%;">
-          <div style="display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:24px;">
+      <!-- ============== KATALOG VIEW ============== -->
+      <section class="admin-board hidden" data-view="catalog" style="display: none; grid-template-columns: 1fr;">
+        <div style="padding: clamp(20px, 3vw, 32px); overflow-y: auto; height: 100%; width: 100%;">
+          <div class="cat-head">
             <div>
-              <div class="crumb">N° 02 — Katalog</div>
-              <h1 style="font-family:var(--f-display); font-size:48px; line-height:1; margin:6px 0 0;">Frame &amp; <em style="font-style:italic; color:var(--cobalt);">Stok</em></h1>
+              <h2>Frame &amp; Stok</h2>
+              <p>Kelola produk yang tampil di katalog publik.</p>
             </div>
-            <button class="btn btn-cobalt"><span>+ Tambah Frame</span></button>
+            <button class="btn btn-accent">
+              <i data-icon="check"></i>
+              <span>+ Tambah Frame</span>
+            </button>
           </div>
-          <div class="cat-grid" id="admin-cat-grid" style="border-top:1.5px solid var(--ink);">
-            <!-- mini catalog injected by JS -->
-          </div>
+          <div class="product-grid" id="admin-cat-grid"></div>
         </div>
       </section>
 
-    </div>
+    </main>
   </div>
 
   <script src="../assets/js/icons.js"></script>
   <script src="../assets/js/common.js"></script>
   <script>
-    // ============================================================
     // session
-    // ============================================================
     const me = (() => {
       try { return JSON.parse(sessionStorage.getItem("obr-admin")) || { name: "Admin", email: "admin@brisky.optik" }; }
       catch { return { name: "Admin", email: "admin@brisky.optik" }; }
     })();
-    document.getElementById("me-name").textContent = me.name;
-    document.getElementById("me-av").textContent = (me.name[0] || "A").toUpperCase();
 
-    // ============================================================
     // online toggle
-    // ============================================================
     document.getElementById("online-toggle").addEventListener("click", (e) => {
       e.currentTarget.classList.toggle("on");
+      const onLabel = e.currentTarget.querySelector(".lbl-on");
+      onLabel.textContent = e.currentTarget.classList.contains("on") ? "Online · Menerima chat" : "Offline · Tidak menerima";
     });
 
-    // ============================================================
     // tab switching
-    // ============================================================
-    document.querySelectorAll(".side nav a[data-tab]").forEach((a) => {
+    document.querySelectorAll(".admin-nav a[data-tab]").forEach((a) => {
       a.addEventListener("click", (e) => {
         e.preventDefault();
         const tab = a.dataset.tab;
-        document.querySelectorAll(".side nav a").forEach((x) => x.classList.remove("active"));
+        document.querySelectorAll(".admin-nav a").forEach((x) => x.classList.remove("active"));
         a.classList.add("active");
         document.querySelectorAll(".admin-board").forEach((sec) => {
-          sec.style.display = sec.dataset.view === tab ? "" : "none";
-          if (sec.dataset.view === "inbox") {
-            sec.style.display = sec.dataset.view === tab ? "grid" : "none";
+          if (sec.dataset.view === tab) {
+            sec.style.display = tab === "inbox" ? "grid" : "block";
+          } else {
+            sec.style.display = "none";
           }
         });
         if (tab === "catalog") renderAdminCat();
       });
     });
 
-    // ============================================================
     // mock conversations
-    // ============================================================
     const convos = {
       risky: {
         name: "Risky Pradana", email: "risky.pradana@gmail.com",
@@ -291,9 +312,7 @@
       dewi: {
         name: "Dewi Kurniawati", email: "dewi.k@yahoo.com",
         branch: "Sidoarjo Kota", start: "5 menit lalu",
-        msgs: [
-          { in: true, t: "10:21", text: "Selamat siang, periksa mata gratis untuk hari Sabtu masih bisa?" },
-        ],
+        msgs: [{ in: true, t: "10:21", text: "Selamat siang, periksa mata gratis untuk hari Sabtu masih bisa?" }],
       },
       bayu: {
         name: "Bayu Setiawan", email: "bayuset@gmail.com",
@@ -306,9 +325,7 @@
       nadya: {
         name: "Nadya Aulia", email: "nadya@gmail.com",
         branch: "Mojokerto", start: "9 menit lalu",
-        msgs: [
-          { in: true, t: "10:17", text: "Bisa pesan kacamata anak? Anak saya umur 7 tahun, minus 1.5." },
-        ],
+        msgs: [{ in: true, t: "10:17", text: "Bisa pesan kacamata anak? Anak saya umur 7 tahun, minus 1.5." }],
       },
       firdaus: {
         name: "Firdaus Ramadhan", email: "firdaus.r@gmail.com",
@@ -330,7 +347,7 @@
 
       document.getElementById("convo-av").textContent = OBR.initials(c.name);
       document.getElementById("convo-name").textContent = c.name;
-      document.getElementById("convo-meta").innerHTML = `<span>${c.email}</span><span>· ${c.branch}</span><span>· ${c.start}</span>`;
+      document.getElementById("convo-meta").textContent = `${c.email} · ${c.branch} · ${c.start}`;
       document.getElementById("cust-name").textContent = c.name;
       document.getElementById("cust-email").textContent = c.email;
       document.getElementById("cust-branch").textContent = c.branch;
@@ -339,7 +356,7 @@
       const body = document.getElementById("convo-body");
       body.innerHTML = c.msgs.map((m) => `
         <div class="msg ${m.in ? "in" : "out"}">
-          ${m.in ? `<span class="msg sender-name">${c.name.split(" ")[0]}</span>` : ""}
+          ${m.in ? `<span class="sender-name">${c.name.split(" ")[0]} · Pelanggan</span>` : ""}
           ${m.text}
           <span class="time">${m.t}</span>
         </div>
@@ -347,7 +364,7 @@
       body.scrollTop = body.scrollHeight;
     }
 
-    function quickReply(text) { document.getElementById("composer").value = text; }
+    function quickReply(text) { document.getElementById("composer").value = text; document.getElementById("composer").focus(); }
     function sendReply() {
       const ta = document.getElementById("composer");
       const v = ta.value.trim(); if (!v) return;
@@ -358,7 +375,6 @@
       body.appendChild(m);
       ta.value = "";
       body.scrollTop = body.scrollHeight;
-      // mock customer reply
       setTimeout(() => {
         const r = ["Oke, terima kasih.", "Baik, saya tunggu.", "Siap, saya kabari lagi.", "Mantap, makasih ya."];
         const m2 = document.createElement("div");
@@ -374,41 +390,35 @@
     document.getElementById("q-search").addEventListener("input", (e) => {
       const q = e.target.value.toLowerCase();
       document.querySelectorAll(".q-item").forEach((it) => {
-        const txt = it.textContent.toLowerCase();
-        it.style.display = txt.includes(q) ? "" : "none";
+        it.style.display = it.textContent.toLowerCase().includes(q) ? "" : "none";
       });
     });
 
     // initial load
     openConvo("risky");
 
-    // ============================================================
     // admin catalog (mini grid)
-    // ============================================================
     function renderAdminCat() {
       const g = document.getElementById("admin-cat-grid");
       if (g.dataset.rendered) return;
-      g.innerHTML = OBR.catalog.map((it) => `
-        <article class="frame-card" data-id="${it.id}">
-          <div class="badges">
-            ${it.badges.map((b) => `<span class="badge ${b === 'NEW' ? 'solid' : ''}">${b}</span>`).join("")}
-          </div>
-          <div class="frame-img">
-            <div data-tilt>${OBR.frameSVG(it)}</div>
-            <div class="frame-shine"></div>
-          </div>
-          <div class="frame-meta">
-            <h3 class="name">${it.name}<span class="sub">${it.sub}</span></h3>
-            <div class="price">${OBR.fmtIDR(it.price)}</div>
-          </div>
-          <div class="frame-actions">
-            <button data-no-modal>Edit</button>
-            <a href="#" data-no-modal>Stok</a>
-          </div>
-        </article>
-      `).join("");
+      g.innerHTML = OBR.catalog.map((it) => {
+        const old = it.priceOld ? `<s>${OBR.fmtIDR(it.priceOld)}</s>` : "";
+        const badge = it.badges[0] ? `<span class="badge">${it.badges[0]}</span>` : "";
+        return `
+          <article class="product-card" data-id="${it.id}">
+            <div class="pic">
+              ${badge}
+              <img src="${it.image}" alt="${it.name}" loading="lazy" onerror="this.src='${OBR.assets.framesAccent}'" />
+            </div>
+            <div class="info">
+              <div class="name">${it.name}</div>
+              <div class="sub">${it.sub}</div>
+              <div class="price">${old}${OBR.fmtIDR(it.price)}</div>
+            </div>
+          </article>
+        `;
+      }).join("");
       g.dataset.rendered = "1";
-      g.querySelectorAll(".frame-card").forEach((card) => OBR.bindTilt(card, { max: 10 }));
     }
   </script>
 </body>

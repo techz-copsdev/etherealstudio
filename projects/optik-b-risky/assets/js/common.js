@@ -160,7 +160,7 @@
       desc: "Bingkai bundar tebal acetate Italia. Karakter klasik dengan engsel pegas tahan banting.",
     },
     {
-      id: "linea-02", name: "Studio Nº 02", sub: "Square / Titanium",
+      id: "studio-02", name: "Studio Nº 02", sub: "Square / Titanium",
       shape: "square", gender: "male", material: "titanium",
       colors: ["#1f2933", "#8e8a83", "#ff4d2e"],
       price: 1250000,
@@ -168,7 +168,7 @@
       desc: "Kerangka titanium ringan 12g. Bidang kotak dengan ujung membulat untuk profil tegas.",
     },
     {
-      id: "linea-03", name: "Aero Nº 03", sub: "Aviator / Metal",
+      id: "aero-03", name: "Aero Nº 03", sub: "Aviator / Metal",
       shape: "aviator", gender: "unisex", material: "metal",
       colors: ["#b78a3f", "#0a0908", "#7a8c95"],
       price: 875000,
@@ -176,7 +176,7 @@
       desc: "Teardrop aviator stainless. Hidung silikon adjustable, lensa tone abu-soft.",
     },
     {
-      id: "linea-04", name: "Cinta Nº 04", sub: "Cat-eye / Acetate",
+      id: "cinta-04", name: "Cinta Nº 04", sub: "Cat-eye / Acetate",
       shape: "cat", gender: "female", material: "acetate",
       colors: ["#0a0908", "#9e2a3f", "#caa680"],
       price: 980000, priceOld: 1150000,
@@ -184,7 +184,7 @@
       desc: "Sudut cat-eye lembut, dimensi optimal untuk wajah oval & heart.",
     },
     {
-      id: "linea-05", name: "Klub Nº 05", sub: "Browline / Mixed",
+      id: "klub-05", name: "Klub Nº 05", sub: "Browline / Mixed",
       shape: "brow", gender: "male", material: "acetate",
       colors: ["#0a0908", "#3a2a1c"],
       price: 1100000,
@@ -192,7 +192,7 @@
       desc: "Atas tebal acetate, bawah metal halus. Ikon sejak dekade 50-an.",
     },
     {
-      id: "linea-06", name: "Wave Nº 06", sub: "Wayfarer / TR-90",
+      id: "wave-06", name: "Wave Nº 06", sub: "Wayfarer / TR-90",
       shape: "wayfarer", gender: "unisex", material: "tr90",
       colors: ["#0a0908", "#1e3aff", "#c8a06c"],
       price: 540000,
@@ -200,7 +200,7 @@
       desc: "TR-90 fleksibel, ringan, dan nyaman dipakai harian dari pagi sampai malam.",
     },
     {
-      id: "linea-07", name: "Mini Nº 07", sub: "Round / Kids",
+      id: "mini-07", name: "Mini Nº 07", sub: "Round / Kids",
       shape: "round", gender: "kids", material: "tr90",
       colors: ["#1e3aff", "#ff4d2e", "#22c55e"],
       price: 320000,
@@ -208,7 +208,7 @@
       desc: "Khusus anak. Engsel berputar 180°, bahan aman & lentur.",
     },
     {
-      id: "linea-08", name: "Panel Nº 08", sub: "Square / Acetate",
+      id: "panel-08", name: "Panel Nº 08", sub: "Square / Acetate",
       shape: "square", gender: "female", material: "acetate",
       colors: ["#3b2a4a", "#0a0908", "#caa680"],
       price: 740000,
@@ -216,7 +216,7 @@
       desc: "Kotak proporsi medium dengan tail temple bermotif marble.",
     },
     {
-      id: "linea-09", name: "Halo Nº 09", sub: "Round / Metal",
+      id: "halo-09", name: "Halo Nº 09", sub: "Round / Metal",
       shape: "round", gender: "female", material: "metal",
       colors: ["#caa680", "#b78a3f", "#0a0908"],
       price: 685000,
@@ -224,7 +224,7 @@
       desc: "Lingkaran tipis stainless. Vintage minimalis, cocok foto profesional.",
     },
     {
-      id: "linea-10", name: "Linear Nº 10", sub: "Wayfarer / Acetate",
+      id: "linear-10", name: "Linear Nº 10", sub: "Wayfarer / Acetate",
       shape: "wayfarer", gender: "male", material: "acetate",
       colors: ["#0a0908", "#1c2230"],
       price: 920000, priceOld: 1080000,
@@ -232,7 +232,7 @@
       desc: "Wayfarer klasik proporsi besar. Hadir dengan case kulit dan kain microfiber.",
     },
     {
-      id: "linea-11", name: "Spark Nº 11", sub: "Cat-eye / Metal",
+      id: "tora-11", name: "Tora Nº 11", sub: "Cat-eye / Metal",
       shape: "cat", gender: "female", material: "metal",
       colors: ["#b78a3f", "#0a0908", "#9e2a3f"],
       price: 760000,
@@ -240,7 +240,7 @@
       desc: "Cat-eye versi metal. Detail rim emas tipis, end-piece runcing.",
     },
     {
-      id: "linea-12", name: "Cadet Nº 12", sub: "Aviator / Titanium",
+      id: "riku-12", name: "Riku Nº 12", sub: "Aviator / Titanium",
       shape: "aviator", gender: "male", material: "titanium",
       colors: ["#7a8c95", "#0a0908", "#b78a3f"],
       price: 1480000,
@@ -248,7 +248,7 @@
       desc: "Aviator titanium murni. Bahan medical-grade, hipoalergenik untuk kulit sensitif.",
     },
     {
-      id: "linea-13", name: "Daily Nº 13", sub: "Square / TR-90",
+      id: "nova-13", name: "Nova Nº 13", sub: "Square / TR-90",
       shape: "square", gender: "unisex", material: "tr90",
       colors: ["#0a0908", "#1e3aff", "#1f2933"],
       price: 380000,
@@ -256,7 +256,7 @@
       desc: "Frame harian. Tahan keringat, bobot 14g. Pilihan paling banyak dipakai pelajar.",
     },
     {
-      id: "linea-14", name: "Stage Nº 14", sub: "Browline / Metal",
+      id: "azure-14", name: "Azure Nº 14", sub: "Browline / Metal",
       shape: "brow", gender: "unisex", material: "metal",
       colors: ["#0a0908", "#caa680"],
       price: 990000,
@@ -264,7 +264,7 @@
       desc: "Browline metal — atas dan bawah keduanya logam. Look modern executive.",
     },
     {
-      id: "linea-15", name: "Petit Nº 15", sub: "Cat-eye / Kids",
+      id: "hexa-15", name: "Hexa Nº 15", sub: "Cat-eye / Kids",
       shape: "cat", gender: "kids", material: "tr90",
       colors: ["#ff4d2e", "#1e3aff", "#caa680"],
       price: 295000,
@@ -272,7 +272,7 @@
       desc: "Cat-eye anak. Tail dengan motif glitter halus, nyaman untuk hidung kecil.",
     },
     {
-      id: "linea-16", name: "Block Nº 16", sub: "Square / Acetate",
+      id: "oslo-16", name: "Oslo Nº 16", sub: "Square / Acetate",
       shape: "square", gender: "male", material: "acetate",
       colors: ["#0a0908", "#3a2a1c", "#1c2230"],
       price: 850000,
@@ -280,7 +280,7 @@
       desc: "Acetate tebal Italia, lugas, tegas. Ukuran besar untuk wajah lebar.",
     },
     {
-      id: "linea-17", name: "Halo Nº 17", sub: "Round / Acetate",
+      id: "polar-17", name: "Polar Nº 17", sub: "Round / Acetate",
       shape: "round", gender: "female", material: "acetate",
       colors: ["#9e2a3f", "#caa680", "#0a0908"],
       price: 720000,
@@ -288,7 +288,7 @@
       desc: "Round size kecil 48mm. Cocok untuk look reading vintage.",
     },
     {
-      id: "linea-18", name: "Drift Nº 18", sub: "Wayfarer / Titanium",
+      id: "bento-18", name: "Bento Nº 18", sub: "Wayfarer / Titanium",
       shape: "wayfarer", gender: "unisex", material: "titanium",
       colors: ["#1f2933", "#7a8c95", "#0a0908"],
       price: 1320000,
@@ -452,8 +452,24 @@
     });
   }
 
-  // inject Pexels image to each catalog item (cycled from framePool)
-  catalog.forEach((it, i) => { it.image = assets.framePool[i % assets.framePool.length]; });
+  // ---- ASSET RESOLUTION ----
+  // setiap item katalog: prioritas (1) /assets/catalog/{id}-front.{svg|jpg|png}
+  //                       (2) framePool CDN (Pexels/Unsplash) sebagai fallback
+  // user tinggal drop file foto produk dengan nama yang sama — JS otomatis pakai itu.
+  // base resolved relative to where common.js script tag lives (so works from any page depth)
+  const COMMON_SCRIPT =
+    (document.currentScript && document.currentScript.src) ||
+    Array.from(document.scripts).map((s) => s.src).find((s) => s && s.includes("common.js")) ||
+    "";
+  const ASSET_BASE = COMMON_SCRIPT.replace(/\/[^/]*common\.js.*$/, "/../");
+  function localCatalogPath(id, ext) { return ASSET_BASE + `catalog/${id}-front.${ext}`; }
+
+  catalog.forEach((it, i) => {
+    it.image = localCatalogPath(it.id, "svg");
+    it.imageFallback = assets.framePool[i % assets.framePool.length];
+    it.imageJpg = localCatalogPath(it.id, "jpg");
+    it.imagePng = localCatalogPath(it.id, "png");
+  });
 
   // ---- expose ----
   window.OBR = {

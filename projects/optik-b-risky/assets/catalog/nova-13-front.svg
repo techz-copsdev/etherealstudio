@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  REPLACE-ME: ganti file ini dengan foto produk asli "Nova N° 13" (nova-13-front).
+  Disarankan: 1600x1200 JPG kompres 80% atau PNG transparent.
+  Lokasi: assets/catalog/nova-13-front.jpg
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="bg-nova-13" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAFBFD"/>
+      <stop offset="1" stop-color="#EAEDF2"/>
+    </linearGradient>
+    <radialGradient id="lens-nova-13" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="0.6" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.15"/>
+    </radialGradient>
+    <filter id="shadow-nova-13" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dx="0" dy="8" result="offsetblur"/>
+      <feFlood flood-color="#1D2A39" flood-opacity="0.18"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg-nova-13)"/>
+  <text x="40" y="40" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#1D2A39" opacity="0.35">PLACEHOLDER · REPLACE-ME</text>
+  <text x="40" y="380" font-family="Poppins, sans-serif" font-size="14" font-weight="600" fill="#1D2A39" opacity="0.7">Nova N° 13 · CAT</text>
+
+  <g filter="url(#shadow-nova-13)">
+    <!-- temple kiri -->
+    <path d="M170 195 q-50 -10 -100 -2" fill="none" stroke="#0F1115" stroke-width="6" stroke-linecap="round"/>
+    <!-- temple kanan -->
+    <path d="M630 195 q50 -10 100 -2" fill="none" stroke="#0F1115" stroke-width="6" stroke-linecap="round"/>
+    <!-- frame kiri -->
+    <path d="M170 130 q70 -20 200 0 q-30 100 -110 120 q-100 -10 -90 -120 z" fill="#1D2A39" stroke="#0F1115" stroke-width="4"/>
+    <!-- lens kiri -->
+    <path d="M170 130 q70 -20 200 0 q-30 100 -110 120 q-100 -10 -90 -120 z" fill="url(#lens-nova-13)"/>
+    <!-- frame kanan -->
+    <path d="M630 130 q-70 -20 -200 0 q30 100 110 120 q100 -10 90 -120 z" fill="#1D2A39" stroke="#0F1115" stroke-width="4"/>
+    <!-- lens kanan -->
+    <path d="M630 130 q-70 -20 -200 0 q30 100 110 120 q100 -10 90 -120 z" fill="url(#lens-nova-13)"/>
+    <!-- bridge -->
+    <path d="M370 165 q30 -6 60 0" fill="none" stroke="#0F1115" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  REPLACE-ME: ganti file ini dengan foto produk asli "Azure N° 14" (azure-14-front).
+  Disarankan: 1600x1200 JPG kompres 80% atau PNG transparent.
+  Lokasi: assets/catalog/azure-14-front.jpg
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="bg-azure-14" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAFBFD"/>
+      <stop offset="1" stop-color="#EAEDF2"/>
+    </linearGradient>
+    <radialGradient id="lens-azure-14" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="0.6" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.15"/>
+    </radialGradient>
+    <filter id="shadow-azure-14" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dx="0" dy="8" result="offsetblur"/>
+      <feFlood flood-color="#1D2A39" flood-opacity="0.18"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg-azure-14)"/>
+  <text x="40" y="40" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#1D2A39" opacity="0.35">PLACEHOLDER · REPLACE-ME</text>
+  <text x="40" y="380" font-family="Poppins, sans-serif" font-size="14" font-weight="600" fill="#1D2A39" opacity="0.7">Azure N° 14 · AVIATOR</text>
+
+  <g filter="url(#shadow-azure-14)">
+    <!-- temple kiri -->
+    <path d="M170 195 q-50 -10 -100 -2" fill="none" stroke="#2A3645" stroke-width="6" stroke-linecap="round"/>
+    <!-- temple kanan -->
+    <path d="M630 195 q50 -10 100 -2" fill="none" stroke="#2A3645" stroke-width="6" stroke-linecap="round"/>
+    <!-- frame kiri -->
+    <path d="M170 130 q90 -10 200 30 q-30 90 -110 100 q-100 -10 -90 -130 z" fill="#4A6680" stroke="#2A3645" stroke-width="4"/>
+    <!-- lens kiri -->
+    <path d="M170 130 q90 -10 200 30 q-30 90 -110 100 q-100 -10 -90 -130 z" fill="url(#lens-azure-14)"/>
+    <!-- frame kanan -->
+    <path d="M630 130 q-90 -10 -200 30 q30 90 110 100 q100 -10 90 -130 z" fill="#4A6680" stroke="#2A3645" stroke-width="4"/>
+    <!-- lens kanan -->
+    <path d="M630 130 q-90 -10 -200 30 q30 90 110 100 q100 -10 90 -130 z" fill="url(#lens-azure-14)"/>
+    <!-- bridge -->
+    <path d="M370 168 q30 -8 60 0" fill="none" stroke="#2A3645" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  REPLACE-ME: ganti file ini dengan foto produk asli "Wave N° 06" (wave-06-front).
+  Disarankan: 1600x1200 JPG kompres 80% atau PNG transparent.
+  Lokasi: assets/catalog/wave-06-front.jpg
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="bg-wave-06" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAFBFD"/>
+      <stop offset="1" stop-color="#EAEDF2"/>
+    </linearGradient>
+    <radialGradient id="lens-wave-06" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="0.6" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.15"/>
+    </radialGradient>
+    <filter id="shadow-wave-06" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dx="0" dy="8" result="offsetblur"/>
+      <feFlood flood-color="#1D2A39" flood-opacity="0.18"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg-wave-06)"/>
+  <text x="40" y="40" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#1D2A39" opacity="0.35">PLACEHOLDER · REPLACE-ME</text>
+  <text x="40" y="380" font-family="Poppins, sans-serif" font-size="14" font-weight="600" fill="#1D2A39" opacity="0.7">Wave N° 06 · WAYFARER</text>
+
+  <g filter="url(#shadow-wave-06)">
+    <!-- temple kiri -->
+    <path d="M170 195 q-50 -10 -100 -2" fill="none" stroke="#0F1115" stroke-width="6" stroke-linecap="round"/>
+    <!-- temple kanan -->
+    <path d="M630 195 q50 -10 100 -2" fill="none" stroke="#0F1115" stroke-width="6" stroke-linecap="round"/>
+    <!-- frame kiri -->
+    <path d="M170 140 q-10 110 70 120 q150 0 130 -110 q-110 -25 -200 -10 z" fill="#0F1115" stroke="#0F1115" stroke-width="4"/>
+    <!-- lens kiri -->
+    <path d="M170 140 q-10 110 70 120 q150 0 130 -110 q-110 -25 -200 -10 z" fill="url(#lens-wave-06)"/>
+    <!-- frame kanan -->
+    <path d="M630 140 q10 110 -70 120 q-150 0 -130 -110 q110 -25 200 -10 z" fill="#0F1115" stroke="#0F1115" stroke-width="4"/>
+    <!-- lens kanan -->
+    <path d="M630 140 q10 110 -70 120 q-150 0 -130 -110 q110 -25 200 -10 z" fill="url(#lens-wave-06)"/>
+    <!-- bridge -->
+    <path d="M370 188 q30 -8 60 0" fill="none" stroke="#0F1115" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>

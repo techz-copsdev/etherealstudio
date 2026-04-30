@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  REPLACE-ME: ganti file ini dengan logo mark / favicon final.
+  Lokasi: assets/brand/logo-mark.svg
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 56" role="img" aria-label="Optik B Risky">
+  <path d="M5 30 q0 -10 10 -10 h12 q10 0 10 10 q0 10 -10 10 h-12 q-10 0 -10 -10 z"
+        fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
+  <path d="M44 30 q0 -10 10 -10 h12 q10 0 10 10 q0 10 -10 10 h-12 q-10 0 -10 -10 z"
+        fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
+  <path d="M37 30 h7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M5 30 l-4 -3" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M76 30 l4 -3" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+  <circle cx="63" cy="22" r="1.8" fill="var(--primary, #EF5A2D)"/>
+</svg>

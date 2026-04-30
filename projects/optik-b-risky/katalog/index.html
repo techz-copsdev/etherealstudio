@@ -1,190 +1,174 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Katalog Frame — Optik B Risky</title>
+  <title>Katalog Produk — Optik B Risky</title>
   <meta name="description" content="18+ pilihan frame: round, square, aviator, cat-eye, browline, wayfarer. Acetate, titanium, metal, TR-90. Mulai 295rb." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 <body>
-  <div class="page-loader" aria-hidden="true">
-    <div class="mark">Katalog</div>
-  </div>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>18 Pilihan Frame · Acetate · Titanium · Metal · TR-90 · Lensa Essilor · Hoya · Periksa Mata Gratis · </span>
-      <span>18 Pilihan Frame · Acetate · Titanium · Metal · TR-90 · Lensa Essilor · Hoya · Periksa Mata Gratis · </span>
-    </div>
-  </div>
-
-  <header class="shell nav">
-    <a href="../" class="brand">
-      <span class="brand-mark"><i data-icon="eye"></i></span>
-      <span>
-        <span class="brand-name">Optik B Risky</span>
-        <span class="brand-tag">Krian · Sidoarjo · est. 2014</span>
-      </span>
-    </a>
-
-    <nav class="nav-menu">
-      <a href="../#beranda">Beranda</a>
-      <a href="./" class="active">Katalog</a>
-      <a href="../#layanan">Layanan</a>
-      <a href="../#cabang">Cabang</a>
-      <a href="../#harga">Harga</a>
-      <a href="../#kontak">Kontak</a>
-    </nav>
-
-    <div class="nav-actions">
-      <button class="icon-btn" data-theme-toggle aria-label="Ubah tema">
-        <i data-icon="sun" class="show-light"></i>
-        <i data-icon="moon" class="show-dark"></i>
-      </button>
-      <a href="https://wa.me/6285123297477" class="icon-btn" aria-label="WhatsApp">
-        <i data-icon="whatsapp"></i>
+  <!-- ============== HEADER ============== -->
+  <header class="site-header">
+    <div class="bleed row">
+      <a href="../" class="brand" aria-label="Optik B Risky">
+        <img class="brand-logo-img" src="../assets/brand/logo-full.svg" alt="Optik B Risky" />
       </a>
-      <button class="btn btn-primary magnet" id="open-chat">
-        <i data-icon="chat" style="font-size:13px;"></i>
-        <span>Konsultasi</span>
-      </button>
+
+      <nav class="nav-menu">
+        <a href="../#beranda">Beranda</a>
+        <a href="./" class="active">Katalog</a>
+        <a href="../#promo">Promo</a>
+        <a href="../#cabang">Cabang</a>
+        <a href="../#tentang">Tentang Kami</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" data-theme-toggle aria-label="Ubah tema">
+          <i data-icon="sun" class="show-light"></i>
+          <i data-icon="moon" class="show-dark"></i>
+        </button>
+        <button class="btn btn-primary" id="open-chat-header">
+          <i data-icon="chat"></i>
+          <span>Chat Sekarang</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main class="shell cat-shell">
-    <div class="cat-head reveal">
+  <!-- ============== KATALOG HERO ============== -->
+  <section class="bleed section">
+    <div class="kat-hero reveal-stagger">
       <div>
-        <div class="eyebrow"><span class="bar"></span>Katalog Lengkap</div>
-        <h1>Frame yang <em>dipilih</em> dengan tangan.</h1>
+        <span class="eyebrow"><span class="dot"></span> Katalog Produk</span>
+        <h1 class="mt-2">Frame &amp; lensa <em>pilihan kami</em>.</h1>
       </div>
-      <p>Kami tidak menjual ratusan model. Kami pilih 18 yang menurut kami benar-benar layak. Klik untuk lihat 3D, atau langsung tanya admin.</p>
+      <p>Kami tidak menjual ratusan model. Kami pilih 18 yang menurut kami benar-benar layak. Klik untuk lihat detail, atau langsung tanya admin.</p>
+    </div>
+  </section>
+
+  <!-- ============== FILTER BAR ============== -->
+  <section class="bleed">
+    <div class="kat-toolbar">
+      <div class="filters" data-group="shape">
+        <button class="chip active" data-val="all">Semua</button>
+        <button class="chip" data-val="round">Round</button>
+        <button class="chip" data-val="square">Square</button>
+        <button class="chip" data-val="aviator">Aviator</button>
+        <button class="chip" data-val="cat">Cat-eye</button>
+        <button class="chip" data-val="brow">Browline</button>
+        <button class="chip" data-val="wayfarer">Wayfarer</button>
+      </div>
+      <select class="sort" id="sort">
+        <option value="rec">Rekomendasi</option>
+        <option value="asc">Harga ↑</option>
+        <option value="desc">Harga ↓</option>
+        <option value="name">A — Z</option>
+      </select>
     </div>
 
-    <div class="cat-filters">
-      <div>
-        <span class="label-mono">Bentuk</span>
-        <div class="chips" data-group="shape">
-          <button class="chip active" data-val="all">Semua</button>
-          <button class="chip" data-val="round">Round</button>
-          <button class="chip" data-val="square">Square</button>
-          <button class="chip" data-val="aviator">Aviator</button>
-          <button class="chip" data-val="cat">Cat-eye</button>
-          <button class="chip" data-val="brow">Browline</button>
-          <button class="chip" data-val="wayfarer">Wayfarer</button>
-        </div>
+    <div class="kat-toolbar" style="border-top: 0;">
+      <div class="filters" data-group="gender">
+        <span style="font-family: var(--f-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.06em; text-transform: uppercase; align-self: center; margin-right: 4px;">Gender:</span>
+        <button class="chip active" data-val="all">All</button>
+        <button class="chip" data-val="male">Pria</button>
+        <button class="chip" data-val="female">Wanita</button>
+        <button class="chip" data-val="unisex">Unisex</button>
+        <button class="chip" data-val="kids">Anak</button>
       </div>
-      <div>
-        <span class="label-mono">Gender</span>
-        <div class="chips" data-group="gender">
-          <button class="chip active" data-val="all">All</button>
-          <button class="chip" data-val="male">Pria</button>
-          <button class="chip" data-val="female">Wanita</button>
-          <button class="chip" data-val="unisex">Unisex</button>
-          <button class="chip" data-val="kids">Anak</button>
-        </div>
-      </div>
-      <div>
-        <span class="label-mono">Material</span>
-        <div class="chips" data-group="material">
-          <button class="chip active" data-val="all">All</button>
-          <button class="chip" data-val="acetate">Acetate</button>
-          <button class="chip" data-val="metal">Metal</button>
-          <button class="chip" data-val="titanium">Titanium</button>
-          <button class="chip" data-val="tr90">TR-90</button>
-        </div>
-      </div>
-      <div>
-        <span class="label-mono">Urut</span>
-        <select class="sort-mono" id="sort">
-          <option value="rec">Rekomendasi</option>
-          <option value="asc">Harga ↑</option>
-          <option value="desc">Harga ↓</option>
-          <option value="name">A — Z</option>
-        </select>
+      <div class="filters" data-group="material">
+        <span style="font-family: var(--f-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.06em; text-transform: uppercase; align-self: center; margin-right: 4px;">Material:</span>
+        <button class="chip active" data-val="all">All</button>
+        <button class="chip" data-val="acetate">Acetate</button>
+        <button class="chip" data-val="metal">Metal</button>
+        <button class="chip" data-val="titanium">Titanium</button>
+        <button class="chip" data-val="tr90">TR-90</button>
       </div>
     </div>
 
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; padding-inline:4px;">
-      <span class="tag-mono" style="color:var(--mute);" id="count-label">— produk</span>
-      <span class="tag-mono" style="color:var(--mute);">Mulai dari Rp295.000</span>
+    <div class="kat-meta">
+      <span id="count-label">— produk</span>
+      <span>Mulai dari Rp320.000</span>
     </div>
 
-    <div class="cat-grid" id="cat-grid">
-      <!-- frames injected -->
-    </div>
-  </main>
+    <div class="product-grid" id="cat-grid"></div>
+  </section>
 
-  <!-- footer simplified -->
+  <!-- ============== FOOTER ============== -->
   <footer class="foot">
-    <div class="shell">
-      <div class="foot-bottom" style="padding:0; border:0;">
-        <span>© 2026 Optik B Risky · All Rights Reserved</span>
-        <span><a href="../" style="color:rgba(245,243,237,0.7);">Kembali ke Beranda →</a></span>
+    <div class="bleed">
+      <div class="foot-bot" style="border-top: 0; margin-top: 0; padding-top: 0;">
+        <span>© 2026 Optik B Risky · Semua hak dilindungi</span>
+        <span><a href="../" style="color: var(--primary);">← Kembali ke Beranda</a></span>
       </div>
     </div>
   </footer>
 
-  <!-- chat reused (same markup as index) -->
-  <button class="chat-fab" id="chat-fab" aria-label="Buka live chat">
-    <span class="dot" aria-hidden="true"></span>
+  <!-- ============== CHAT FAB + PANEL ============== -->
+  <button class="chat-fab" id="chat-fab" aria-label="Buka chat">
+    <span class="live-dot"></span>
     <i data-icon="chat"></i>
-    <span>Live Chat</span>
+    <span>Chat Sekarang</span>
   </button>
-  <aside class="chat-panel" id="chat-panel">
+
+  <div class="chat-panel" id="chat-panel">
     <div class="chat-head">
       <div class="avatar">B</div>
       <div class="info">
-        <div class="name">B Risky <em>Care</em></div>
-        <div class="status"><span class="dot"></span> Online · Rata-rata balas 2 menit</div>
+        <div class="name">Tim Optik B Risky</div>
+        <div class="status"><span class="dot"></span> 3 staff online</div>
       </div>
-      <button id="chat-close" aria-label="Tutup chat"><i data-icon="close"></i></button>
+      <button id="chat-close" aria-label="Tutup chat"><i data-icon="x"></i></button>
     </div>
     <div class="chat-body" id="chat-body">
       <form class="chat-gate" id="chat-gate">
-        <h4>Halo, kami siap <em>bantu</em>.</h4>
-        <p>Sebelum mulai, isi data sebentar.</p>
-        <div class="field"><label for="cg-name">Nama lengkap</label><input id="cg-name" name="name" type="text" required /></div>
-        <div class="field"><label for="cg-email">Email</label><input id="cg-email" name="email" type="email" required /></div>
-        <div class="field"><label for="cg-branch">Cabang yang dituju</label>
-          <select id="cg-branch" name="branch" required>
+        <h4>Halo, mari kita <em>mulai obrolan</em></h4>
+        <p>Isi nama dan email biar tim kami bisa lanjut bantu via chat.</p>
+        <div class="field">
+          <label>Nama lengkap</label>
+          <input name="name" required />
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input name="email" type="email" required />
+        </div>
+        <div class="field">
+          <label>Cabang</label>
+          <select name="branch" class="select" required>
             <option value="">— Pilih cabang —</option>
-            <option value="krian">Krian — Pusat</option>
-            <option value="sidoarjo">Sidoarjo Kota</option>
-            <option value="surabaya">Surabaya Selatan</option>
-            <option value="mojokerto">Mojokerto</option>
           </select>
         </div>
-        <div class="field"><label for="cg-topic">Topik</label>
-          <select id="cg-topic" name="topic">
-            <option>Tanya frame / produk</option>
-            <option>Konsultasi resep</option>
-            <option>Janji periksa mata</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-cobalt btn-block btn-lg"><span>Mulai Chat</span><i data-icon="arrow-up-right" style="font-size:14px;"></i></button>
+        <button type="submit" class="btn btn-accent btn-lg btn-block">
+          <span>Mulai Chat</span>
+          <i data-icon="arrow-right"></i>
+        </button>
       </form>
     </div>
-    <div class="chat-foot hidden" id="chat-foot">
-      <button class="icon-btn" style="width:36px; height:36px; border-color:transparent;" aria-label="Lampirkan"><i data-icon="paperclip" style="font-size:14px;"></i></button>
-      <input id="chat-input" placeholder="Tulis pesan…" autocomplete="off" />
-      <button id="chat-send" aria-label="Kirim"><i data-icon="send"></i></button>
-    </div>
-  </aside>
+    <form class="chat-foot hidden" id="chat-foot">
+      <input id="ch-msg" placeholder="Tulis pesan..." autocomplete="off" />
+      <button type="submit" aria-label="Kirim"><i data-icon="send"></i></button>
+    </form>
+  </div>
 
-  <!-- frame modal -->
+  <!-- ============== FRAME MODAL (3D-view) ============== -->
   <div class="modal" id="frame-modal">
     <div class="modal-box">
-      <button class="modal-close" id="frame-close"><i data-icon="close"></i></button>
+      <button class="modal-close" id="frame-close" aria-label="Tutup"><i data-icon="x"></i></button>
       <div class="modal-grid">
-        <div class="modal-visual" id="frame-stage">
-          <div class="modal-3d-stage">
-            <div class="modal-3d" id="frame-3d"></div>
+        <div class="modal-visual">
+          <div class="angle-pills" id="angle-pills">
+            <button data-angle="front" class="active">FRONT</button>
+            <button data-angle="side">SIDE</button>
+            <button data-angle="detail">DETAIL</button>
           </div>
-          <div class="modal-spin-hint"><i data-icon="locate"></i><span>Geser kursor untuk putar 3D</span></div>
+          <div class="modal-3d-stage" id="frame-stage">
+            <div class="modal-3d spinning" id="frame-3d"></div>
+          </div>
+          <div class="hint-3d">Geser kursor — putar 3D · idle: auto-spin</div>
         </div>
         <div class="modal-info" id="frame-info"></div>
       </div>
@@ -194,269 +178,277 @@
   <script src="../assets/js/icons.js"></script>
   <script src="../assets/js/common.js"></script>
   <script>
-    // ============================================================
-    // catalog rendering with filters
-    // ============================================================
+    // ====== populate branch select ======
+    const chBranch = document.querySelector("#chat-gate select[name='branch']");
+    OBR.branches.forEach((b) => {
+      chBranch.insertAdjacentHTML("beforeend", `<option value="${b.id}">${b.name}</option>`);
+    });
+
+    // ====== filters ======
     const grid = document.getElementById("cat-grid");
     const countLabel = document.getElementById("count-label");
     const sortSel = document.getElementById("sort");
-
     const filters = { shape: "all", gender: "all", material: "all" };
-    let activeSort = "rec";
 
-    document.querySelectorAll(".chips").forEach((group) => {
-      const key = group.dataset.group;
+    document.querySelectorAll(".kat-toolbar .filters").forEach((group) => {
+      const g = group.dataset.group;
       group.addEventListener("click", (e) => {
-        const chip = e.target.closest(".chip"); if (!chip) return;
-        group.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
-        chip.classList.add("active");
-        filters[key] = chip.dataset.val;
+        const c = e.target.closest(".chip");
+        if (!c) return;
+        group.querySelectorAll(".chip").forEach((x) => x.classList.remove("active"));
+        c.classList.add("active");
+        filters[g] = c.dataset.val;
         render();
       });
     });
-    sortSel.addEventListener("change", (e) => { activeSort = e.target.value; render(); });
+    sortSel.addEventListener("change", render);
 
     function render() {
-      let arr = OBR.catalog.filter((it) => {
+      let items = OBR.catalog.filter((it) => {
         if (filters.shape !== "all" && it.shape !== filters.shape) return false;
         if (filters.gender !== "all" && it.gender !== filters.gender) return false;
         if (filters.material !== "all" && it.material !== filters.material) return false;
         return true;
       });
-      if (activeSort === "asc") arr.sort((a, b) => a.price - b.price);
-      else if (activeSort === "desc") arr.sort((a, b) => b.price - a.price);
-      else if (activeSort === "name") arr.sort((a, b) => a.name.localeCompare(b.name));
+      const s = sortSel.value;
+      if (s === "asc") items.sort((a, b) => a.price - b.price);
+      else if (s === "desc") items.sort((a, b) => b.price - a.price);
+      else if (s === "name") items.sort((a, b) => a.name.localeCompare(b.name));
 
-      countLabel.textContent = `${arr.length} dari ${OBR.catalog.length} produk`;
-      grid.innerHTML = arr.map(buildCard).join("");
-      // bind tilt + click
-      grid.querySelectorAll(".frame-card").forEach((card) => {
-        card.addEventListener("click", (e) => {
-          if (e.target.closest("[data-no-modal]")) return;
-          openFrameModal(card.dataset.id);
-        });
-        card.addEventListener("mousemove", (e) => {
-          const r = card.getBoundingClientRect();
-          const x = ((e.clientX - r.left) / r.width) * 100;
-          const y = ((e.clientY - r.top) / r.height) * 100;
-          const shine = card.querySelector(".shine");
-          if (shine) { shine.style.setProperty("--mx", x + "%"); shine.style.setProperty("--my", y + "%"); }
-        });
-      });
-      // re-render icons in case
-      setTimeout(() => {
-        document.querySelectorAll("[data-icon]:not([data-icon-rendered])").forEach((el) => {
-          el.innerHTML = `<svg aria-hidden="true"><use href="#i-${el.getAttribute('data-icon')}"/></svg>`;
-          el.setAttribute("data-icon-rendered", "");
-        });
-      }, 30);
-    }
-
-    function buildCard(it) {
-      const old = it.priceOld ? `<s>${OBR.fmtIDR(it.priceOld)}</s>` : "";
-      const badges = it.badges.map((b) => {
-        let cls = "";
-        if (b === "NEW" || b === "BEST") cls = "solid";
-        if (b === "LIMITED") cls = "alert";
-        if (b === "PRO") cls = "dark";
-        return `<span class="badge ${cls}">${b}</span>`;
-      }).join("");
-      return `
-        <article class="frame-card" data-id="${it.id}">
-          <div class="badges">${badges}</div>
-          <div class="frame-img">
-            <img src="${it.image}" alt="${it.name}" loading="lazy"
-                 onerror="this.src='${OBR.assets.framesAccent}'" />
-            <div class="shine"></div>
-          </div>
-          <div class="frame-meta">
-            <div class="row1">
-              <div>
-                <h3 class="name">${it.name}</h3>
-                <div class="sub">${it.sub}</div>
-              </div>
+      countLabel.textContent = `${items.length} produk`;
+      grid.innerHTML = items.map((it) => {
+        const old = it.priceOld ? `<s>${OBR.fmtIDR(it.priceOld)}</s>` : "";
+        const badge = it.badges[0] ? `<span class="badge">${it.badges[0]}</span>` : "";
+        return `
+          <article class="product-card" data-id="${it.id}">
+            <div class="pic">
+              ${badge}
+              <img src="${it.image}" alt="${it.name}" loading="lazy" onerror="this.src='${OBR.assets.framesAccent}'" />
+            </div>
+            <div class="info">
+              <div class="name">${it.name}</div>
+              <div class="sub">${it.sub}</div>
               <div class="price">${old}${OBR.fmtIDR(it.price)}</div>
             </div>
-            <div class="frame-actions">
-              <button data-no-modal type="button" data-ask="${it.id}">Tanya</button>
-              <a href="#" data-no-modal onclick="openFrameModal('${it.id}'); return false;">Detail 3D</a>
-            </div>
-          </div>
-        </article>
-      `;
+          </article>
+        `;
+      }).join("");
+      grid.querySelectorAll(".product-card").forEach((c) => {
+        c.addEventListener("click", () => openFrameModal(c.dataset.id));
+      });
     }
-
     render();
 
-    // ============================================================
-    // frame modal (same as index)
-    // ============================================================
-    const frameModal = document.getElementById("frame-modal");
-    const frameStage = document.getElementById("frame-stage");
+    // ====== modal ======
+    const modal = document.getElementById("frame-modal");
     const frame3d = document.getElementById("frame-3d");
+    const frameStage = document.getElementById("frame-stage");
     const frameInfo = document.getElementById("frame-info");
-    document.getElementById("frame-close").addEventListener("click", () => frameModal.classList.remove("open"));
-    frameModal.addEventListener("click", (e) => { if (e.target === frameModal) frameModal.classList.remove("open"); });
 
-    function openFrameModal(id) {
+    let currentItem = null;
+    let currentAngle = "front";
+    function imgForAngle(it, angle) {
+      // try local /assets/catalog/{id}-{angle}.{svg,jpg,png}; fallback to front svg, then CDN
+      const base = `../assets/catalog/${it.id}-${angle}`;
+      // since we cannot HEAD-check filesystem, use onerror chain in img
+      return base + ".svg";
+    }
+    function fallbackChain(it) {
+      // chain: -front.jpg -> -front.png -> CDN
+      return [
+        `../assets/catalog/${it.id}-front.jpg`,
+        `../assets/catalog/${it.id}-front.png`,
+        it.imageFallback,
+      ].join("|");
+    }
+    function renderStageImage(it, angle) {
+      const src = imgForAngle(it, angle);
+      const chain = fallbackChain(it);
+      frame3d.innerHTML = `<img src="${src}" alt="${it.name}" data-fb='${chain}' />`;
+      const im = frame3d.querySelector("img");
+      im.addEventListener("error", function handle() {
+        const arr = (im.dataset.fb || "").split("|").filter(Boolean);
+        const next = arr.shift();
+        im.dataset.fb = arr.join("|");
+        if (next) im.src = next; else im.removeEventListener("error", handle);
+      });
+    }
+
+    window.openFrameModal = function (id) {
       const it = OBR.catalog.find((c) => c.id === id);
       if (!it) return;
-      frame3d.innerHTML = `<img src="${it.image}" alt="${it.name}"
-                                 onerror="this.src='${OBR.assets.framesAccent}'" />`;
+      currentItem = it;
+      currentAngle = "front";
+      document.querySelectorAll("#angle-pills button").forEach((b) => b.classList.toggle("active", b.dataset.angle === "front"));
+      renderStageImage(it, "front");
       const swatches = it.colors.map((c, i) => `<span class="swatch ${i === 0 ? "active" : ""}" style="background:${c};"></span>`).join("");
       const old = it.priceOld ? `<s>${OBR.fmtIDR(it.priceOld)}</s>` : "";
       frameInfo.innerHTML = `
-        <div class="crumbs"><span>Katalog</span> · <strong>${it.sub}</strong></div>
+        <div class="crumbs">Katalog · <strong>${it.shape.toUpperCase()}</strong> · ${it.material.toUpperCase()}</div>
         <h2>${it.name}</h2>
-        <p style="color:var(--mute); line-height:1.65; max-width:46ch; margin:0;">${it.desc}</p>
-        <div class="price-line"><span class="price">${OBR.fmtIDR(it.price)}</span>${old}</div>
+        <p>${it.desc}</p>
+        <div class="price-line">
+          ${old}
+          <span class="price">${OBR.fmtIDR(it.price)}</span>
+        </div>
         <dl class="specs">
           <div><dt>Bentuk</dt><dd>${it.shape}</dd></div>
           <div><dt>Material</dt><dd>${it.material}</dd></div>
           <div><dt>Gender</dt><dd>${it.gender}</dd></div>
-          <div><dt>Kode</dt><dd>${it.id.toUpperCase()}</dd></div>
+          <div><dt>Berat</dt><dd>${it.weight || (it.material === "titanium" ? 12 : 22)}g</dd></div>
         </dl>
-        <div><span class="tag-mono" style="color:var(--mute);">Pilihan warna</span><div class="colors" style="margin-top:8px;">${swatches}</div></div>
+        <div>
+          <div style="font-family: var(--f-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px;">Pilihan warna</div>
+          <div class="colors">${swatches}</div>
+        </div>
         <div class="actions">
-          <button class="btn btn-cobalt magnet" data-ask="${it.id}"><span>Tanya via Chat</span><i data-icon="chat" style="font-size:14px;"></i></button>
-          <a href="https://wa.me/6285123297477" class="btn btn-ghost magnet"><span>WhatsApp</span><i data-icon="whatsapp" style="font-size:14px;"></i></a>
+          <button class="btn btn-accent btn-lg" type="button" onclick="askAboutFrame('${it.id}')">
+            <i data-icon="chat"></i>
+            <span>Tanya frame ini</span>
+          </button>
+          <a href="https://wa.me/6285123297477" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
+            <i data-icon="whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
         </div>
       `;
-      frameModal.classList.add("open");
-      setTimeout(() => {
-        document.querySelectorAll("[data-icon]:not([data-icon-rendered])").forEach((el) => {
-          el.innerHTML = `<svg aria-hidden="true"><use href="#i-${el.getAttribute('data-icon')}"/></svg>`;
-          el.setAttribute("data-icon-rendered", "");
-        });
-        frameInfo.querySelectorAll(".magnet").forEach((el) => OBR.bindMagnet(el, 0.18));
-      }, 30);
+      modal.classList.add("open");
+      // re-render icons after innerHTML overwrite (delegate to icons.js loader)
+      if (window.OBRIcons && OBRIcons.render) OBRIcons.render(modal);
+    };
+    document.getElementById("frame-close").addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("open"); });
+
+    // angle pills
+    document.getElementById("angle-pills").addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-angle]");
+      if (!b || !currentItem) return;
+      document.querySelectorAll("#angle-pills button").forEach((x) => x.classList.toggle("active", x === b));
+      currentAngle = b.dataset.angle;
+      renderStageImage(currentItem, currentAngle);
+    });
+
+    // 3D parallax — mouse mengontrol rotasi, idle = auto-spin
+    let idleTimer = null;
+    function suspendSpin() {
+      frame3d.classList.remove("spinning");
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        frame3d.style.transform = "";
+        frame3d.classList.add("spinning");
+      }, 1800);
     }
     frameStage.addEventListener("mousemove", (e) => {
+      suspendSpin();
       const r = frameStage.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width;
       const y = (e.clientY - r.top) / r.height;
-      const ry = (x - 0.5) * 50;
-      const rx = (0.5 - y) * 30;
-      frame3d.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+      const ry = (x - 0.5) * 36;
+      const rx = (0.5 - y) * 18;
+      frame3d.style.transform = `rotateX(${rx.toFixed(1)}deg) rotateY(${ry.toFixed(1)}deg)`;
     });
-    frameStage.addEventListener("mouseleave", () => { frame3d.style.transform = ""; });
-    let autoT = 0;
-    setInterval(() => {
-      if (!frameModal.classList.contains("open")) return;
-      if (frameStage.matches(":hover")) return;
-      autoT += 0.018;
-      const ry = Math.sin(autoT) * 14;
-      const rx = Math.cos(autoT * 0.6) * 5;
-      frame3d.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-    }, 30);
+    frameStage.addEventListener("mouseleave", () => {
+      clearTimeout(idleTimer);
+      frame3d.style.transform = "";
+      frame3d.classList.add("spinning");
+    });
 
-    // ============================================================
-    // chat
-    // ============================================================
-    const fab = document.getElementById("chat-fab");
-    const panel = document.getElementById("chat-panel");
+    // ====== chat (gate + queue + thread) ======
+    const chatFab = document.getElementById("chat-fab");
+    const chatPanel = document.getElementById("chat-panel");
     const chatBody = document.getElementById("chat-body");
     const chatFoot = document.getElementById("chat-foot");
-    const chatInput = document.getElementById("chat-input");
-    const chatSend = document.getElementById("chat-send");
+    const chatClose = document.getElementById("chat-close");
     const gateForm = document.getElementById("chat-gate");
+    const msgInput = document.getElementById("ch-msg");
     let convo = null;
     let pendingPrefill = null;
 
-    function openChat() { panel.classList.add("open"); fab.style.display = "none"; }
-    function closeChat() { panel.classList.remove("open"); fab.style.display = ""; }
-    fab.addEventListener("click", openChat);
-    document.getElementById("chat-close").addEventListener("click", closeChat);
-    document.getElementById("open-chat").addEventListener("click", openChat);
-
-    document.body.addEventListener("click", (e) => {
-      const ask = e.target.closest("[data-ask]");
-      if (!ask) return;
-      e.preventDefault();
-      e.stopPropagation();
-      const id = ask.dataset.ask;
-      const it = OBR.catalog.find((c) => c.id === id);
-      openChat();
-      pendingPrefill = `Halo, saya tertarik dengan ${it.name} (${it.sub}). Apakah masih ada stok?`;
+    function openChat(prefill) {
+      chatPanel.classList.add("open");
+      if (prefill) pendingPrefill = prefill;
+      if (convo) startConvo();
+    }
+    [chatFab, document.getElementById("open-chat-header")].forEach((el) => {
+      if (el) el.addEventListener("click", () => openChat());
     });
+    chatClose.addEventListener("click", () => chatPanel.classList.remove("open"));
+
+    window.askAboutFrame = function (id) {
+      const it = OBR.catalog.find((c) => c.id === id);
+      if (!it) return;
+      modal.classList.remove("open");
+      openChat(`Halo, saya tertarik dengan ${it.name} (${it.shape} · ${it.material}). Apakah masih tersedia? Harga: ${OBR.fmtIDR(it.price)}.`);
+    };
 
     gateForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const fd = new FormData(gateForm);
       const data = Object.fromEntries(fd.entries());
       if (!data.name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email) || !data.branch) {
-        gateForm.reportValidity();
-        return;
+        gateForm.reportValidity(); return;
       }
       convo = data;
       showQueue();
     });
 
     function showQueue() {
+      const branchName = OBR.branches.find((b) => b.id === convo.branch)?.name || convo.branch;
       chatBody.innerHTML = `
         <div class="queue-wait">
           <div class="spinner"></div>
-          <div><span class="num" id="q-num">3</span></div>
+          <div class="num" id="q-num">3</div>
           <div class="lbl">Antrian di depan kamu</div>
-          <p>Admin cabang <strong>${OBR.branches.find(b=>b.id===convo.branch)?.name || convo.branch}</strong> akan terhubung sebentar lagi.</p>
+          <p>Admin cabang <strong>${branchName}</strong> akan terhubung sebentar lagi.</p>
         </div>
       `;
       let n = 3;
       const t = setInterval(() => {
         n -= 1;
         const el = document.getElementById("q-num");
-        if (el) el.textContent = n > 0 ? n : "✓";
+        if (el) el.textContent = n > 0 ? n : "0";
         if (n <= 0) { clearInterval(t); setTimeout(startConvo, 700); }
       }, 900);
     }
-
     function startConvo() {
       chatBody.innerHTML = "";
       chatFoot.classList.remove("hidden");
-      pushSystem("Terhubung dengan admin · cabang " + (OBR.branches.find(b=>b.id===convo.branch)?.name || ""));
-      pushIn("admin", `Halo ${convo.name.split(" ")[0]}, terima kasih sudah menghubungi B Risky. Ada yang bisa kami bantu hari ini?`);
+      const branchName = OBR.branches.find((b) => b.id === convo.branch)?.name || "";
+      pushSystem("Terhubung dengan staff · " + branchName + " · " + OBR.fmtTime());
+      pushIn("Risky", `Halo ${convo.name.split(" ")[0]}, terima kasih sudah menghubungi B Risky. Ada yang bisa kami bantu hari ini?`);
       if (pendingPrefill) {
         setTimeout(() => {
           pushOut(convo.name, pendingPrefill);
           pendingPrefill = null;
-          setTimeout(() => {
-            pushIn("admin", "Stoknya masih ada. Apakah berkenan datang langsung ke cabang atau mau saya bantu reservasikan?");
-          }, 1100);
-        }, 600);
+          setTimeout(() => pushIn("Risky", "Stok masih ada. Apakah berkenan datang langsung untuk fitting, atau saya bantu reservasikan?"), 1200);
+        }, 700);
       }
     }
     function pushIn(name, text) {
-      const m = document.createElement("div");
-      m.className = "msg in";
-      m.innerHTML = `<span class="msg sender-name">${name}</span>${text}<span class="time">${OBR.fmtTime()}</span>`;
-      chatBody.appendChild(m);
+      chatBody.insertAdjacentHTML("beforeend", `<div class="msg in"><span class="sender-name">${name} · Staff</span>${text}<span class="time">${OBR.fmtTime()}</span></div>`);
       chatBody.scrollTop = chatBody.scrollHeight;
     }
     function pushOut(name, text) {
-      const m = document.createElement("div");
-      m.className = "msg out";
-      m.innerHTML = `${text}<span class="time">${OBR.fmtTime()}</span>`;
-      chatBody.appendChild(m);
+      chatBody.insertAdjacentHTML("beforeend", `<div class="msg out">${text}<span class="time">${OBR.fmtTime()}</span></div>`);
       chatBody.scrollTop = chatBody.scrollHeight;
     }
     function pushSystem(text) {
-      const m = document.createElement("div");
-      m.className = "msg system";
-      m.textContent = text;
-      chatBody.appendChild(m);
+      chatBody.insertAdjacentHTML("beforeend", `<div class="msg system">${text}</div>`);
     }
-    chatSend.addEventListener("click", sendMsg);
-    chatInput.addEventListener("keydown", (e) => { if (e.key === "Enter") sendMsg(); });
-    function sendMsg() {
-      const v = chatInput.value.trim();
-      if (!v) return;
-      pushOut(convo.name, v);
-      chatInput.value = "";
+    chatFoot.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const txt = msgInput.value.trim();
+      if (!txt) return;
+      pushOut(convo.name, txt);
+      msgInput.value = "";
       setTimeout(() => {
-        const replies = ["Baik, saya catat.", "Sebentar, saya cek stoknya.", "Bisa, kapan waktu yang nyaman?"];
-        pushIn("admin", replies[Math.floor(Math.random() * replies.length)]);
+        const replies = ["Baik, saya cek dulu sebentar ya.", "Untuk pertanyaan ini, saya konfirmasi dulu.", "Boleh share foto atau detail tambahannya?"];
+        pushIn("Risky", replies[Math.floor(Math.random() * replies.length)]);
       }, 900);
-    }
+    });
+
+    // ====== reveal ======
+    OBR.setupReveal();
   </script>
 </body>
 </html>

@@ -1,454 +1,380 @@
-<!doctype html>
-<html lang="id">
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Optik B Risky — Periksa Mata Gratis di Krian, Sidoarjo</title>
-  <meta name="description" content="Optik independen sejak 2014. Periksa mata gratis dengan komputer dan manual. Frame & lensa berkualitas mulai 100ribu. 4 cabang di Sidoarjo, Surabaya, Mojokerto." />
-
+  <title>Optik B Risky — Periksa Mata Gratis · Krian, Sidoarjo</title>
+  <meta name="description" content="Optik B Risky · Periksa mata gratis dengan komputer & manual · Kacamata + lensa mulai 100 ribu · 4 cabang Jawa Timur." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <div class="page-loader" aria-hidden="true">
-    <div class="mark">B Risky</div>
+
+  <!-- scroll progress strip (top, 2px) -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ============== INFO MARQUEE (top of page) ============== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Periksa Mata Gratis</span>
+      <span>Komputer &amp; Manual</span>
+      <span>Kacamata + Lensa Mulai 100rb</span>
+      <span>4 Cabang Jawa Timur</span>
+      <span>Konsultasi Online wa.me/+6285123297477</span>
+      <span>Periksa Mata Gratis</span>
+      <span>Komputer &amp; Manual</span>
+      <span>Kacamata + Lensa Mulai 100rb</span>
+      <span>4 Cabang Jawa Timur</span>
+      <span>Konsultasi Online wa.me/+6285123297477</span>
+    </div>
   </div>
 
-  <header class="shell nav">
-    <a href="/" class="brand" aria-label="Optik B Risky beranda">
-      <span class="brand-mark"><i data-icon="eye"></i></span>
-      <span>
-        <span class="brand-name">Optik B Risky</span>
-        <span class="brand-tag">Krian · Sidoarjo · est. 2014</span>
-      </span>
-    </a>
-
-    <nav class="nav-menu">
-      <a href="#beranda" class="active">Beranda</a>
-      <a href="#layanan">Layanan</a>
-      <a href="katalog/">Koleksi</a>
-      <a href="#cabang">Cabang</a>
-      <a href="#harga">Harga</a>
-      <a href="#kontak">Kontak</a>
-    </nav>
-
-    <div class="nav-actions">
-      <button class="icon-btn" data-theme-toggle aria-label="Ubah tema">
-        <i data-icon="sun" class="show-light"></i>
-        <i data-icon="moon" class="show-dark"></i>
-      </button>
-      <a href="https://wa.me/6285123297477" class="icon-btn" aria-label="WhatsApp" target="_blank" rel="noopener">
-        <i data-icon="whatsapp"></i>
+  <!-- ============== HEADER (full width white) ============== -->
+  <header class="site-header">
+    <div class="bleed row">
+      <a href="#beranda" class="brand" aria-label="Optik B Risky">
+        <!-- logo dari asset — ganti file di assets/brand/logo-full.svg untuk override -->
+        <img class="brand-logo-img" src="assets/brand/logo-full.svg" alt="Optik B Risky" />
       </a>
-      <button class="btn btn-primary magnet" id="open-chat">
-        <i data-icon="chat" style="font-size:13px;"></i>
-        <span>Konsultasi</span>
-      </button>
+
+      <nav class="nav-menu">
+        <a href="#beranda" class="active">Beranda</a>
+        <a href="#katalog">Katalog</a>
+        <a href="#promo">Promo</a>
+        <a href="#cabang">Cabang</a>
+        <a href="#tentang">Tentang Kami</a>
+        <a href="#chat" id="nav-chat">Chat Konsultasi</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" data-theme-toggle aria-label="Ubah tema">
+          <i data-icon="sun" class="show-light"></i>
+          <i data-icon="moon" class="show-dark"></i>
+        </button>
+        <button class="btn btn-primary" id="open-chat-header">
+          <i data-icon="chat"></i>
+          <span>Chat Sekarang</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- ============ HERO ============ -->
-  <section id="beranda" class="shell hero">
-    <div class="hero-curve" aria-hidden="true"></div>
-
-    <span class="hero-watermark tl" aria-hidden="true">EFP</span>
-    <span class="hero-watermark tr" aria-hidden="true">OZ</span>
-
-    <div class="hero-photo-wrap">
-      <div class="hero-photo">
-        <span class="ring" aria-hidden="true"></span>
-        <span class="ticks" aria-hidden="true">
-          <span class="top"></span><span class="right"></span><span class="bottom"></span><span class="left"></span>
-          <span class="ne"></span><span class="nw"></span><span class="se"></span><span class="sw"></span>
-        </span>
-        <div class="img">
-          <img src="https://images.pexels.com/photos/2766408/pexels-photo-2766408.jpeg?auto=compress&cs=tinysrgb&w=1000"
-               alt="Model dengan kacamata Optik B Risky"
-               loading="eager"
-               onerror="this.src='https://images.pexels.com/photos/1212085/pexels-photo-1212085.jpeg?auto=compress&w=900'" />
+  <!-- ============== HERO ============== -->
+  <section class="bleed section" id="beranda">
+    <div class="hero">
+      <!-- LEFT TEXT -->
+      <div class="hero-text reveal-stagger">
+        <span class="eyebrow"><span class="dot"></span> Optik B Risky</span>
+        <h1 class="display-xl">Priksa Mata<br>Gratis</h1>
+        <div>
+          <p class="lead"><strong>Menggunakan komputer dan Manual.</strong></p>
+          <p class="lead">Kacamata + Lensa mulai <strong>100 ribu</strong>.</p>
         </div>
+
+        <div class="hero-cards">
+          <div class="hero-card">
+            <span class="ic"><i data-icon="map-pin"></i></span>
+            <div class="body">
+              <div class="lbl">Alamat Pusat</div>
+              <div class="val">Optik B Risky Krian, Ruko Central Point, Jl. Mayjen Bambang Yuwono, Sidodadi, Kemangsen, Kec. Krian, Sidoarjo, Jawa Timur 61262</div>
+            </div>
+          </div>
+
+          <a href="https://wa.me/6285123297477" target="_blank" rel="noopener" class="hero-card" style="text-decoration: none;">
+            <span class="ic"><i data-icon="whatsapp"></i></span>
+            <div class="body">
+              <div class="lbl">WhatsApp Langsung</div>
+              <div class="val">wa.me/+6285123297477</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT PHOTO + FLOATING CTA (3D layered) -->
+      <div class="hero-photo reveal">
+        <div class="hero-photo-frame">
+          <img id="hero-photo-img" alt="Optik B Risky — interior toko" />
+        </div>
+        <button class="float-cta" id="open-chat-hero" type="button">
+          <span class="ic"><i data-icon="whatsapp"></i></span>
+          <span class="body">
+            <strong>Konsultasi Online</strong>
+            <span>Tanya jawab langsung dengan tim kami</span>
+          </span>
+        </button>
       </div>
     </div>
 
-    <div class="hero-text reveal">
-      <div class="eyebrow"><span class="bar"></span> Visi Jernih, Hidup Bermakna</div>
-      <h1>Melihat Dunia<br />dengan Lebih <em>Nyaman</em>.</h1>
-      <p class="lead">
-        Optik B Risky menyediakan solusi penglihatan terbaik untuk Anda dan keluarga. Menggabungkan pemeriksaan akurat dengan komputer &amp; manual, lensa berkualitas dari Essilor, Hoya, Zeiss, dan layanan personal yang sabar.
-      </p>
-
-      <div class="hero-cta">
-        <button class="btn btn-primary btn-lg magnet" id="hero-chat">
-          <i data-icon="chat" style="font-size:13px;"></i>
-          <span>Konsultasi Live</span>
-        </button>
-        <a href="katalog/" class="btn btn-ghost btn-lg magnet">
-          <span>Lihat Koleksi</span>
-          <i data-icon="arrow-right" style="font-size:13px;"></i>
-        </a>
+    <!-- 4-FEATURE STRIP -->
+    <div class="feature-strip reveal-stagger">
+      <div class="feat">
+        <span class="ic"><i data-icon="periksa-mata"></i></span>
+        <div class="body">
+          <strong>Periksa Mata</strong>
+          <span>Gratis di setiap cabang</span>
+        </div>
       </div>
-
-      <div class="hero-icons">
-        <div class="hero-icon">
-          <span class="ic"><i data-icon="search"></i></span>
-          <span class="lbl">Pemeriksaan<br />Akurat</span>
+      <div class="feat">
+        <span class="ic"><i data-icon="tools"></i></span>
+        <div class="body">
+          <strong>Peralatan</strong>
+          <span>Modern & Manual</span>
         </div>
-        <div class="hero-icon">
-          <span class="ic"><i data-icon="glasses"></i></span>
-          <span class="lbl">Produk<br />Berkualitas</span>
+      </div>
+      <div class="feat">
+        <span class="ic"><i data-icon="lens"></i></span>
+        <div class="body">
+          <strong>Lensa Berkualitas</strong>
+          <span>Berbagai pilihan brand</span>
         </div>
-        <div class="hero-icon">
-          <span class="ic"><i data-icon="shield"></i></span>
-          <span class="lbl">Garansi<br />Resmi</span>
-        </div>
-        <div class="hero-icon">
-          <span class="ic"><i data-icon="user"></i></span>
-          <span class="lbl">Layanan<br />Personal</span>
+      </div>
+      <div class="feat">
+        <span class="ic"><i data-icon="tag"></i></span>
+        <div class="body">
+          <strong>Harga Terjangkau</strong>
+          <span>Mulai 100 ribu</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 5-COL GRID SECTION ============ -->
-  <section id="layanan" class="shell section">
-    <div class="grid-5 reveal-stagger">
+  <!-- ============== BRANCH FINDER ============== -->
+  <section class="bleed section" id="cabang">
+    <div class="branch-section reveal">
+      <div class="branch-side">
+        <div>
+          <h3>Pilih Cabang Terdekat</h3>
+          <p>Temukan cabang Optik B Risky terdekat dari lokasi Anda.</p>
+        </div>
 
-      <!-- Box 1 — Periksa Mata Gratis -->
-      <div class="box dark">
-        <span class="watermark-tx" aria-hidden="true">E<br />FP<br />OZ</span>
-        <div style="position:relative; z-index:1; display:flex; flex-direction:column; height:100%;">
-          <span class="box-eyebrow">Periksa Mata Gratis</span>
-          <span class="box-bar"></span>
-          <p class="box-text">
-            Gunakan fasilitas kami untuk menjaga dan merawat kesehatan mata Anda. Tanpa biaya, tanpa janji.
-          </p>
-          <button class="btn btn-gold btn-sm" id="ask-exam" style="align-self:flex-start; margin-top:auto;">
-            <span>Booking Sekarang</span>
-            <i data-icon="arrow-right" style="font-size:12px;"></i>
-          </button>
+        <div class="field">
+          <label>Pilih cabang</label>
+          <select class="select" id="branch-select">
+            <option value="">— Pilih cabang —</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" id="find-near">
+          <i data-icon="crosshair"></i>
+          <span>Cari Lokasi Saya</span>
+        </button>
+
+        <div id="branch-distance" class="muted" style="font-size: 13px; line-height: 1.5;"></div>
+      </div>
+
+      <div class="map-area">
+        <div id="map"></div>
+        <div class="map-popup" id="map-popup" style="display: none;">
+          <h4 id="popup-name"></h4>
+          <p id="popup-addr"></p>
+          <a id="popup-maps" href="#" target="_blank" rel="noopener">
+            Lihat di Maps
+            <i data-icon="arrow-right"></i>
+          </a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Box 2 — Layanan list -->
-      <div class="box cream">
-        <span class="box-eyebrow">Layanan Kami</span>
-        <span class="box-bar"></span>
-        <ul class="box-list">
-          <li><span class="ic"><i data-icon="check"></i></span><span>Pemeriksaan Mata</span></li>
-          <li><span class="ic"><i data-icon="check"></i></span><span>Lensa &amp; Frame</span></li>
-          <li><span class="ic"><i data-icon="check"></i></span><span>Lensa Kontak</span></li>
-          <li><span class="ic"><i data-icon="check"></i></span><span>Terapi &amp; Konsultasi</span></li>
-          <li><span class="ic"><i data-icon="check"></i></span><span>Reservasi Online</span></li>
-        </ul>
-      </div>
-
-      <!-- Box 3 — image -->
-      <div class="box image">
-        <img src="https://images.pexels.com/photos/1493111/pexels-photo-1493111.jpeg?auto=compress&cs=tinysrgb&w=800"
-             alt="Kacamata elegan koleksi" loading="lazy" />
-      </div>
-
-      <!-- Box 4 — Koleksi terbaru -->
-      <div class="box cream">
-        <span class="box-eyebrow">Koleksi Terbaru</span>
-        <span class="box-bar"></span>
-        <p class="box-text">
-          Temukan berbagai pilihan frame elegan, ringan, dan modern dari acetate Italia, titanium, hingga TR-90 untuk setiap aktivitas Anda.
-        </p>
-        <a href="katalog/" class="box-link">
-          <span>Lihat Koleksi</span>
+  <!-- ============== KATALOG PRODUK (on landing) ============== -->
+  <section class="bleed section" id="katalog">
+    <div class="cat-section reveal">
+      <div class="cat-head">
+        <div>
+          <h2>Katalog Produk</h2>
+          <p>Lihat koleksi kacamata dan lensa pilihan kami.</p>
+        </div>
+        <a href="katalog/" class="btn btn-ghost">
+          <span>Semua Produk</span>
           <i data-icon="arrow-right"></i>
         </a>
       </div>
 
-      <!-- Box 5 — dual image -->
-      <div class="dual">
-        <div class="box image">
-          <img src="https://images.pexels.com/photos/5705492/pexels-photo-5705492.jpeg?auto=compress&cs=tinysrgb&w=600"
-               alt="Alat periksa mata" loading="lazy" />
-        </div>
-        <div class="box image">
-          <img src="https://images.pexels.com/photos/5668774/pexels-photo-5668774.jpeg?auto=compress&cs=tinysrgb&w=600"
-               alt="Interior toko Optik B Risky" loading="lazy" />
-        </div>
+      <div class="tabs" id="cat-tabs">
+        <button class="tab active" data-tab="all">Semua</button>
+        <button class="tab" data-tab="male">Kacamata Pria</button>
+        <button class="tab" data-tab="female">Kacamata Wanita</button>
+        <button class="tab" data-tab="kids">Kacamata Anak</button>
+        <button class="tab" data-tab="paket">Paket Hemat</button>
+      </div>
+
+      <div class="product-grid" id="product-grid"></div>
+
+      <div class="cat-foot">
+        <a href="katalog/" class="btn btn-primary btn-lg btn-pill">
+          <span>Lihat Semua Produk</span>
+          <i data-icon="arrow-right"></i>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ============ WHY (Kenapa Memilih Kami) ============ -->
-  <section class="shell section">
-    <div class="why reveal">
-      <div class="why-title">
-        <h2>Kenapa Memilih<br /><em>Optik B Risky</em>?</h2>
-        <span class="why-bar"></span>
+  <!-- ============== STATS ============== -->
+  <section class="bleed section tight">
+    <div class="stats-row reveal-stagger">
+      <div class="stat">
+        <div class="num"><span data-count="10">0</span>+</div>
+        <div class="lbl">Tahun Melayani</div>
       </div>
-
-      <div class="why-stats">
-        <div class="item">
-          <span class="ic"><i data-icon="spark"></i></span>
-          <span class="num" data-count="11" data-suffix="">0</span>
-          <span class="lbl">Tahun<br />Pengalaman</span>
-        </div>
-        <div class="item">
-          <span class="ic"><i data-icon="store"></i></span>
-          <span class="num" data-count="4" data-suffix="">0</span>
-          <span class="lbl">Cabang<br />Aktif</span>
-        </div>
-        <div class="item">
-          <span class="ic"><i data-icon="shield"></i></span>
-          <span class="num" data-count="9800" data-suffix="+">0</span>
-          <span class="lbl">Pelanggan<br />Terlayani</span>
-        </div>
-        <div class="item">
-          <span class="ic"><i data-icon="user"></i></span>
-          <span class="num" data-count="98" data-suffix="%">0</span>
-          <span class="lbl">Tingkat<br />Kepuasan</span>
-        </div>
+      <div class="stat">
+        <div class="num"><span data-count="4">0</span></div>
+        <div class="lbl">Cabang Jawa Timur</div>
       </div>
-
-      <div class="why-glasses">
-        <img src="https://images.pexels.com/photos/1362558/pexels-photo-1362558.jpeg?auto=compress&cs=tinysrgb&w=700"
-             alt="Kacamata premium" loading="lazy" />
+      <div class="stat">
+        <div class="num"><span data-count="100">0</span>rb</div>
+        <div class="lbl">Mulai Dari (Frame + Lensa)</div>
+      </div>
+      <div class="stat">
+        <div class="num"><span data-count="5800">0</span>+</div>
+        <div class="lbl">Pelanggan Puas</div>
       </div>
     </div>
   </section>
 
-  <!-- ============ SHOWCASE — pilihan frame ============ -->
-  <section id="koleksi-pilihan" class="shell section">
-    <div class="sect-head reveal">
+  <!-- ============== CTA BANNER ============== -->
+  <section class="bleed section" id="promo">
+    <div class="cta-banner reveal">
       <div>
-        <div class="eyebrow"><span class="bar"></span>Koleksi Pilihan</div>
-        <h2>Frame yang sudah <em>dicintai</em><br />pelanggan kami.</h2>
-      </div>
-      <p class="head-side">
-        Empat dari delapan belas pilihan koleksi terbaru. Klik untuk lihat detail, atau langsung tanya admin via live chat.
-      </p>
-    </div>
-
-    <div class="showcase-grid reveal" id="showcase-grid"></div>
-
-    <div style="display:flex; justify-content:flex-end; margin-top:24px;">
-      <a href="katalog/" class="btn btn-primary magnet">
-        <span>Lihat Semua Koleksi</span>
-        <i data-icon="arrow-right" style="font-size:13px;"></i>
-      </a>
-    </div>
-  </section>
-
-  <!-- ============ BRANCHES ============ -->
-  <section id="cabang" class="shell section">
-    <div class="sect-head reveal">
-      <div>
-        <div class="eyebrow"><span class="bar"></span>Cabang Kami</div>
-        <h2>Empat lokasi, semua<br /><em>dekat</em> dengan rumah.</h2>
-      </div>
-      <p class="head-side">
-        Izinkan akses lokasi untuk mengurutkan otomatis berdasarkan jarak terdekat dari posisi kamu. Klik cabang untuk melihat di peta.
-      </p>
-    </div>
-
-    <div class="branches-grid">
-      <div class="branch-controls reveal">
-        <div class="row">
-          <button class="btn btn-primary magnet" id="locate-btn">
-            <i data-icon="locate" style="font-size:13px;"></i><span>Cari Terdekat</span>
+        <span class="eyebrow" style="color: rgba(255,255,255,0.6);"><span class="dot"></span> Promo Bulan Ini</span>
+        <h2 class="mt-2">Periksa mata gratis,<br>lensa mulai <em>100rb saja</em>.</h2>
+        <p>Konsultasi langsung lewat chat — tanya stok, harga, atau buat janji temu di cabang terdekat. Tim staff kami online setiap hari 09:00 — 20:00.</p>
+        <div class="actions">
+          <button class="btn btn-accent btn-lg" id="open-chat-cta">
+            <i data-icon="chat"></i>
+            <span>Mulai Chat Sekarang</span>
           </button>
-          <button class="btn btn-ghost magnet" id="reset-branches">
-            <span>Reset Urutan</span>
-          </button>
+          <a href="https://wa.me/6285123297477" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
+            <i data-icon="whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
         </div>
-        <div class="branch-list" id="branch-list"></div>
       </div>
-
-      <div class="map-wrap reveal">
-        <div class="map-pill"><span class="pulse"></span>Live · 4 Cabang Aktif</div>
-        <div id="map" role="application" aria-label="Peta lokasi cabang"></div>
-      </div>
+      <img src="" alt="frames" id="cta-img" style="border-radius: 16px; aspect-ratio: 4/3; object-fit: cover;" />
     </div>
   </section>
 
-  <!-- ============ PRICING ============ -->
-  <section id="harga" class="shell section">
-    <div class="sect-head reveal">
-      <div>
-        <div class="eyebrow"><span class="bar"></span>Paket Lengkap</div>
-        <h2>Harga yang <em>masuk akal</em>,<br />tanpa biaya tersembunyi.</h2>
-      </div>
-      <p class="head-side">
-        Termasuk frame, lensa, periksa mata gratis, dan garansi 6 bulan. Cicilan 0% via QRIS &amp; e-wallet utama.
-      </p>
-    </div>
-
-    <div class="price-grid reveal-stagger">
-      <div class="price-card">
-        <div class="top-row"><span class="tag">Reguler</span><span class="tag-mono" style="color:var(--mute);">/ harian</span></div>
-        <h3 class="label">Untuk pemakaian sehari-hari.</h3>
-        <div class="price-line">100<small>rb / mulai</small></div>
-        <ul>
-          <li>Frame TR-90 / metal pilihan</li>
-          <li>Lensa single vision standar</li>
-          <li>Periksa mata gratis di tempat</li>
-          <li>Garansi 6 bulan</li>
-        </ul>
-        <a href="#kontak" class="btn btn-ghost"><span>Pilih Paket</span></a>
-      </div>
-
-      <div class="price-card feature">
-        <div class="top-row"><span class="tag">Premium ★</span><span class="tag-mono" style="color:var(--gold);">/ paling laku</span></div>
-        <h3 class="label">Nyaman seharian penuh.</h3>
-        <div class="price-line">425<small>rb / mulai</small></div>
-        <ul>
-          <li>Frame acetate / titanium</li>
-          <li>Lensa anti-radiasi blue-block</li>
-          <li>Anti-gores + anti-air</li>
-          <li>Periksa mata gratis</li>
-          <li>Garansi 12 bulan</li>
-        </ul>
-        <a href="#kontak" class="btn btn-gold"><span>Pilih Paket</span></a>
-      </div>
-
-      <div class="price-card">
-        <div class="top-row"><span class="tag">Progressive</span><span class="tag-mono" style="color:var(--mute);">/ usia 40+</span></div>
-        <h3 class="label">Lensa progressive plus-min.</h3>
-        <div class="price-line">1.2<small>jt / mulai</small></div>
-        <ul>
-          <li>Lensa progressive Essilor / Hoya</li>
-          <li>Konsultasi adaptasi 14 hari</li>
-          <li>Frame premium pilihan</li>
-          <li>Garansi 12 bulan</li>
-        </ul>
-        <a href="#kontak" class="btn btn-ghost"><span>Pilih Paket</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FOOTER ============ -->
-  <footer id="kontak" class="foot">
-    <div class="shell">
+  <!-- ============== FOOTER ============== -->
+  <footer class="foot" id="tentang">
+    <div class="bleed">
       <div class="foot-grid">
         <div class="foot-col">
-          <div class="brand" style="margin-bottom:18px;">
-            <span class="brand-mark"><i data-icon="eye"></i></span>
-            <span>
-              <span class="brand-name">Optik B Risky</span>
-              <span class="brand-tag">Krian · Sidoarjo · est. 2014</span>
-            </span>
+          <a href="#beranda" class="brand" aria-label="Optik B Risky">
+            <img class="brand-logo-img" src="assets/brand/logo-full.svg" alt="Optik B Risky" />
+          </a>
+          <p>Optik keluarga di Krian sejak 2014. Periksa mata gratis dengan komputer + manual, kacamata & lensa berkualitas mulai 100 ribu.</p>
+          <div class="row tight">
+            <a href="https://wa.me/6285123297477" target="_blank" rel="noopener" class="icon-btn"><i data-icon="whatsapp"></i></a>
+            <a href="#" class="icon-btn"><i data-icon="instagram"></i></a>
+            <a href="#" class="icon-btn"><i data-icon="facebook"></i></a>
+            <a href="#" class="icon-btn"><i data-icon="tiktok"></i></a>
           </div>
-          <p>Optik independen melayani Krian, Sidoarjo, Surabaya, dan Mojokerto. Kami percaya kacamata bukan sekadar alat — tapi bagian dari identitas Anda.</p>
         </div>
+
+        <div class="foot-col">
+          <h5>Layanan</h5>
+          <ul>
+            <li><a href="#">Periksa Mata Gratis</a></li>
+            <li><a href="#">Kacamata + Lensa</a></li>
+            <li><a href="#">Lensa Kontak</a></li>
+            <li><a href="#">Konsultasi Optometri</a></li>
+            <li><a href="#">Reparasi & Adjustment</a></li>
+          </ul>
+        </div>
+
         <div class="foot-col">
           <h5>Cabang</h5>
-          <ul>
-            <li><a href="#cabang">Krian — Pusat</a></li>
-            <li><a href="#cabang">Sidoarjo Kota</a></li>
-            <li><a href="#cabang">Surabaya Selatan</a></li>
-            <li><a href="#cabang">Mojokerto</a></li>
-          </ul>
+          <ul id="foot-branches"></ul>
         </div>
+
         <div class="foot-col">
-          <h5>Menu</h5>
+          <h5>Kontak</h5>
           <ul>
-            <li><a href="katalog/">Koleksi Frame</a></li>
-            <li><a href="#layanan">Layanan</a></li>
-            <li><a href="#harga">Paket Harga</a></li>
-            <li><a href="login/">Admin Login</a></li>
-          </ul>
-        </div>
-        <div class="foot-col">
-          <h5>Hubungi</h5>
-          <ul>
-            <li><a href="https://wa.me/6285123297477"><i data-icon="phone" style="font-size:11px; color:var(--gold); margin-right:6px;"></i>+62 851-2329-7477</a></li>
-            <li><a href="mailto:hai@optikbrisky.id"><i data-icon="mail" style="font-size:11px; color:var(--gold); margin-right:6px;"></i>hai@optikbrisky.id</a></li>
-            <li><i data-icon="clock" style="font-size:11px; color:var(--gold); margin-right:6px;"></i>Senin – Minggu, 09.00 – 20.00</li>
+            <li><i data-icon="phone" class="ic"></i> +62 851 2329 7477</li>
+            <li><i data-icon="mail" class="ic"></i> halo@brisky.optik</li>
+            <li><i data-icon="clock" class="ic"></i> Senin – Minggu, 09.00 – 20.00</li>
+            <li><i data-icon="map-pin" class="ic"></i> Krian, Sidoarjo, Jawa Timur</li>
           </ul>
         </div>
       </div>
 
-      <div class="foot-bottom">
-        <span>© 2026 Optik B Risky. All rights reserved.</span>
-        <div class="foot-social">
-          <a href="#" class="icon-btn" aria-label="Instagram"><i data-icon="instagram"></i></a>
-          <a href="#" class="icon-btn" aria-label="Facebook"><i data-icon="facebook"></i></a>
-          <a href="https://wa.me/6285123297477" class="icon-btn" aria-label="WhatsApp"><i data-icon="whatsapp"></i></a>
-        </div>
+      <div class="foot-bot">
+        <span>© 2026 Optik B Risky · Semua hak dilindungi</span>
+        <span class="row tight">
+          <a href="#">Kebijakan Privasi</a>
+          <span>·</span>
+          <a href="#">Syarat & Ketentuan</a>
+        </span>
       </div>
     </div>
   </footer>
 
-  <!-- ============ CHAT FAB + PANEL ============ -->
-  <button class="chat-fab" id="chat-fab" aria-label="Buka live chat">
-    <span class="dot" aria-hidden="true"></span>
+  <!-- ============== CHAT FAB + PANEL ============== -->
+  <button class="chat-fab" id="chat-fab" aria-label="Buka chat">
+    <span class="live-dot"></span>
     <i data-icon="chat"></i>
-    <span>Live Chat</span>
+    <span>Chat Sekarang</span>
   </button>
 
-  <aside class="chat-panel" id="chat-panel" aria-label="Live chat">
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Live chat">
     <div class="chat-head">
       <div class="avatar">B</div>
       <div class="info">
-        <div class="name">B Risky <em>Care</em></div>
-        <div class="status"><span class="dot"></span>Online · Rata-rata balas 2 menit</div>
+        <div class="name">Tim Optik B Risky</div>
+        <div class="status"><span class="dot"></span> 3 staff online</div>
       </div>
-      <button id="chat-close" aria-label="Tutup chat"><i data-icon="close"></i></button>
+      <button id="chat-close" aria-label="Tutup chat"><i data-icon="x"></i></button>
     </div>
     <div class="chat-body" id="chat-body">
       <form class="chat-gate" id="chat-gate">
-        <h4>Halo, kami siap <em>bantu</em>.</h4>
-        <p>Sebelum mulai, isi data sebentar. Pesan langsung diterima admin yang sedang online.</p>
+        <h4>Halo, mari kita <em>mulai obrolan</em></h4>
+        <p>Isi nama dan email biar tim kami bisa lanjut bantu via chat. Pilih cabang yang paling dekat sama kamu.</p>
         <div class="field">
-          <label for="cg-name">Nama lengkap</label>
-          <input id="cg-name" name="name" type="text" placeholder="Risky Wibowo" required />
+          <label for="ch-name">Nama lengkap</label>
+          <input id="ch-name" name="name" required placeholder="Contoh: Risky Pradana" />
         </div>
         <div class="field">
-          <label for="cg-email">Email</label>
-          <input id="cg-email" name="email" type="email" placeholder="risky@email.com" required />
+          <label for="ch-email">Email</label>
+          <input id="ch-email" name="email" type="email" required placeholder="kamu@email.com" />
         </div>
         <div class="field">
-          <label for="cg-branch">Cabang yang dituju</label>
-          <select id="cg-branch" name="branch" required>
+          <label for="ch-branch">Cabang</label>
+          <select id="ch-branch" name="branch" class="select" required>
             <option value="">— Pilih cabang —</option>
-            <option value="krian">Krian — Pusat</option>
-            <option value="sidoarjo">Sidoarjo Kota</option>
-            <option value="surabaya">Surabaya Selatan</option>
-            <option value="mojokerto">Mojokerto</option>
           </select>
         </div>
         <div class="field">
-          <label for="cg-topic">Topik</label>
-          <select id="cg-topic" name="topic">
-            <option>Konsultasi resep</option>
-            <option>Tanya frame / produk</option>
-            <option>Janji periksa mata</option>
+          <label for="ch-topic">Topik (opsional)</label>
+          <select id="ch-topic" name="topic" class="select">
+            <option>Konsultasi periksa mata</option>
+            <option>Pertanyaan stok / produk</option>
+            <option>Reservasi kunjungan</option>
+            <option>Klaim garansi / reparasi</option>
             <option>Lainnya</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:6px;">
+        <button type="submit" class="btn btn-accent btn-lg btn-block">
+          <i data-icon="arrow-right"></i>
           <span>Mulai Chat</span>
-          <i data-icon="arrow-right" style="font-size:13px;"></i>
         </button>
       </form>
     </div>
-    <div class="chat-foot hidden" id="chat-foot">
-      <button class="icon-btn" style="border-color:transparent;" aria-label="Lampirkan"><i data-icon="paperclip"></i></button>
-      <input id="chat-input" placeholder="Tulis pesan…" autocomplete="off" />
-      <button id="chat-send" aria-label="Kirim"><i data-icon="send"></i></button>
-    </div>
-  </aside>
+    <form class="chat-foot hidden" id="chat-foot">
+      <input id="ch-msg" placeholder="Tulis pesan..." autocomplete="off" />
+      <button type="submit" aria-label="Kirim"><i data-icon="send"></i></button>
+    </form>
+  </div>
 
-  <!-- FRAME DETAIL MODAL -->
-  <div class="modal" id="frame-modal" role="dialog" aria-modal="true" aria-label="Detail frame">
+  <!-- ============== FRAME MODAL ============== -->
+  <div class="modal" id="frame-modal" role="dialog" aria-label="Detail frame">
     <div class="modal-box">
-      <button class="modal-close" id="frame-close" aria-label="Tutup"><i data-icon="close"></i></button>
+      <button class="modal-close" id="modal-close"><i data-icon="x"></i></button>
       <div class="modal-grid">
-        <div class="modal-visual" id="frame-stage">
-          <div class="modal-3d-stage">
+        <div class="modal-visual">
+          <div class="modal-3d-stage" id="frame-stage">
             <div class="modal-3d" id="frame-3d"></div>
-          </div>
-          <div class="modal-spin-hint">
-            <i data-icon="locate"></i><span>Geser kursor untuk putar 3D</span>
           </div>
         </div>
         <div class="modal-info" id="frame-info"></div>
@@ -456,238 +382,236 @@
     </div>
   </div>
 
+  <!-- ============== SCRIPTS ============== -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="assets/js/icons.js"></script>
   <script src="assets/js/common.js"></script>
   <script>
-    // ===========================================================
-    // Showcase 4 frames (with real Pexels photos)
-    // ===========================================================
-    const showcasePicks = [0, 3, 9, 11].map((i) => OBR.catalog[i]);
-    const showGrid = document.getElementById("showcase-grid");
-    showGrid.innerHTML = showcasePicks.map(buildFrameCard).join("");
-    showGrid.querySelectorAll(".frame-card").forEach((card) => {
-      card.addEventListener("click", (e) => {
-        if (e.target.closest("[data-no-modal]")) return;
-        openFrameModal(card.dataset.id);
-      });
-      card.addEventListener("mousemove", (e) => {
-        const r = card.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        const shine = card.querySelector(".shine");
-        if (shine) { shine.style.setProperty("--mx", x + "%"); shine.style.setProperty("--my", y + "%"); }
-      });
+    // wire hero photo + cta image from assets
+    document.getElementById("hero-photo-img").src = OBR.assets.storeInterior;
+    document.getElementById("hero-photo-img").onerror = () => { document.getElementById("hero-photo-img").src = OBR.assets.framesFlatlay; };
+    document.getElementById("cta-img").src = OBR.assets.framesAccent;
+    document.getElementById("cta-img").onerror = () => { document.getElementById("cta-img").src = OBR.assets.framesFlatlay; };
+
+    // populate branch <select> + footer branches
+    const branchSelect = document.getElementById("branch-select");
+    const chBranch = document.getElementById("ch-branch");
+    const footBranches = document.getElementById("foot-branches");
+    OBR.branches.forEach((b) => {
+      branchSelect.insertAdjacentHTML("beforeend", `<option value="${b.id}">${b.name} — ${b.city}</option>`);
+      chBranch.insertAdjacentHTML("beforeend", `<option value="${b.id}">${b.name}</option>`);
+      footBranches.insertAdjacentHTML("beforeend", `<li><a href="#cabang">${b.name}<br><span style="font-size:11px;color:var(--mute);">${b.city}</span></a></li>`);
     });
 
-    function buildFrameCard(it) {
+    // ===== KATALOG TABS + GRID =====
+    const tabs = document.getElementById("cat-tabs");
+    const grid = document.getElementById("product-grid");
+    let currentTab = "all";
+
+    function buildProductCard(it) {
       const old = it.priceOld ? `<s>${OBR.fmtIDR(it.priceOld)}</s>` : "";
-      const badges = it.badges.map((b) => {
-        let cls = "";
-        if (b === "NEW" || b === "BEST") cls = "solid";
-        if (b === "LIMITED") cls = "alert";
-        if (b === "PRO") cls = "dark";
-        return `<span class="badge ${cls}">${b}</span>`;
-      }).join("");
+      const badgeText = it.badges[0] || "";
+      const badge = badgeText ? `<span class="badge">${badgeText}</span>` : "";
       return `
-        <article class="frame-card" data-id="${it.id}">
-          <div class="badges">${badges}</div>
-          <div class="frame-img">
+        <article class="product-card" data-id="${it.id}">
+          <div class="pic">
+            ${badge}
             <img src="${it.image}" alt="${it.name}" loading="lazy"
                  onerror="this.src='${OBR.assets.framesAccent}'" />
-            <div class="shine"></div>
           </div>
-          <div class="frame-meta">
-            <div class="row1">
-              <div>
-                <h3 class="name">${it.name}</h3>
-                <div class="sub">${it.sub}</div>
-              </div>
-              <div class="price">${old}${OBR.fmtIDR(it.price)}</div>
-            </div>
-            <div class="frame-actions">
-              <button data-no-modal type="button" data-ask="${it.id}">Tanya</button>
-              <a href="#" data-no-modal onclick="openFrameModal('${it.id}'); return false;">Detail 3D</a>
-            </div>
+          <div class="info">
+            <div class="name">${it.name}</div>
+            <div class="sub">${it.sub}</div>
+            <div class="price">${old}${OBR.fmtIDR(it.price)}</div>
           </div>
         </article>
       `;
     }
 
-    // tanya frame ini → open chat with prefilled
-    document.body.addEventListener("click", (e) => {
-      const ask = e.target.closest("[data-ask]");
-      if (!ask) return;
-      e.preventDefault();
-      e.stopPropagation();
-      const id = ask.dataset.ask;
-      const it = OBR.catalog.find((c) => c.id === id);
-      openChat();
-      pendingPrefill = it ? `Halo, saya tertarik dengan ${it.name} (${it.sub}). Apakah masih ada stok?` : "";
+    function renderProducts() {
+      let items = OBR.catalog.slice();
+      if (currentTab === "male") items = items.filter((i) => i.gender === "male" || i.gender === "unisex");
+      else if (currentTab === "female") items = items.filter((i) => i.gender === "female" || i.gender === "unisex");
+      else if (currentTab === "kids") items = items.filter((i) => i.gender === "kids");
+      else if (currentTab === "paket") items = items.filter((i) => i.priceOld); // discounted "paket"
+      grid.innerHTML = items.slice(0, 10).map(buildProductCard).join("");
+      grid.querySelectorAll(".product-card").forEach((c) => {
+        c.addEventListener("click", () => openFrameModal(c.dataset.id));
+      });
+    }
+    renderProducts();
+
+    tabs.addEventListener("click", (e) => {
+      const t = e.target.closest(".tab");
+      if (!t) return;
+      tabs.querySelectorAll(".tab").forEach((x) => x.classList.remove("active"));
+      t.classList.add("active");
+      currentTab = t.dataset.tab;
+      renderProducts();
     });
 
-    document.getElementById("ask-exam").addEventListener("click", () => {
-      openChat();
-      pendingPrefill = "Halo, saya ingin booking periksa mata gratis. Slot kapan yang masih tersedia?";
-    });
-
-    // ===========================================================
-    // Frame detail modal (3D rotate via cursor)
-    // ===========================================================
-    const frameModal = document.getElementById("frame-modal");
-    const frameStage = document.getElementById("frame-stage");
+    // ===== FRAME MODAL =====
+    const modal = document.getElementById("frame-modal");
     const frame3d = document.getElementById("frame-3d");
+    const frameStage = document.getElementById("frame-stage");
     const frameInfo = document.getElementById("frame-info");
-    document.getElementById("frame-close").addEventListener("click", () => frameModal.classList.remove("open"));
-    frameModal.addEventListener("click", (e) => { if (e.target === frameModal) frameModal.classList.remove("open"); });
 
-    function openFrameModal(id) {
+    window.openFrameModal = function (id) {
       const it = OBR.catalog.find((c) => c.id === id);
       if (!it) return;
       frame3d.innerHTML = `<img src="${it.image}" alt="${it.name}"
-                                onerror="this.src='${OBR.assets.framesAccent}'" />`;
+                                 onerror="this.src='${OBR.assets.framesAccent}'" />`;
       const swatches = it.colors.map((c, i) => `<span class="swatch ${i === 0 ? "active" : ""}" style="background:${c};"></span>`).join("");
       const old = it.priceOld ? `<s>${OBR.fmtIDR(it.priceOld)}</s>` : "";
       frameInfo.innerHTML = `
-        <div class="crumbs"><span>Koleksi</span> · <strong>${it.sub}</strong></div>
+        <div class="crumbs">Katalog · <strong>${it.shape.toUpperCase()}</strong> · ${it.material.toUpperCase()}</div>
         <h2>${it.name}</h2>
-        <p style="color:var(--mute); line-height:1.65; max-width:46ch; margin:0;">${it.desc}</p>
+        <p>${it.desc}</p>
         <div class="price-line">
-          <span class="price">${OBR.fmtIDR(it.price)}</span>
           ${old}
+          <span class="price">${OBR.fmtIDR(it.price)}</span>
         </div>
         <dl class="specs">
           <div><dt>Bentuk</dt><dd>${it.shape}</dd></div>
           <div><dt>Material</dt><dd>${it.material}</dd></div>
           <div><dt>Gender</dt><dd>${it.gender}</dd></div>
-          <div><dt>Kode</dt><dd>${it.id.toUpperCase()}</dd></div>
+          <div><dt>Berat</dt><dd>${it.weight || (it.material === "titanium" ? 12 : 22)}g</dd></div>
         </dl>
         <div>
-          <span class="tag-mono" style="color:var(--mute);">Pilihan warna</span>
-          <div class="colors" style="margin-top:8px;">${swatches}</div>
+          <div style="font-family: var(--f-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px;">Pilihan warna</div>
+          <div class="colors">${swatches}</div>
         </div>
         <div class="actions">
-          <button class="btn btn-primary magnet" data-ask="${it.id}">
-            <i data-icon="chat" style="font-size:13px;"></i><span>Tanya via Chat</span>
+          <button class="btn btn-accent btn-lg" type="button" onclick="askAboutFrame('${it.id}')">
+            <i data-icon="chat"></i>
+            <span>Tanya frame ini</span>
           </button>
-          <a href="https://wa.me/6285123297477" class="btn btn-ghost magnet" target="_blank" rel="noopener">
-            <i data-icon="whatsapp" style="font-size:13px;"></i><span>WhatsApp</span>
+          <a href="https://wa.me/6285123297477" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
+            <i data-icon="whatsapp"></i>
+            <span>WhatsApp</span>
           </a>
         </div>
       `;
-      frameModal.classList.add("open");
-      setTimeout(() => {
-        document.querySelectorAll("[data-icon]:not([data-icon-rendered])").forEach((el) => {
-          el.innerHTML = `<svg aria-hidden="true"><use href="#i-${el.getAttribute('data-icon')}"/></svg>`;
-          el.setAttribute("data-icon-rendered", "");
-        });
-        frameInfo.querySelectorAll(".magnet").forEach((el) => OBR.bindMagnet(el, 0.18));
-      }, 30);
-    }
+      modal.classList.add("open");
+      // re-render icons
+      document.querySelectorAll("[data-icon]:not([data-icon-rendered])").forEach((el) => {
+        const id = el.getAttribute("data-icon");
+        el.innerHTML = `<svg aria-hidden="true"><use href="#i-${id}"/></svg>`;
+        el.setAttribute("data-icon-rendered", "");
+      });
+    };
 
+    document.getElementById("modal-close").addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("open"); });
+
+    // 3D parallax cursor
     frameStage.addEventListener("mousemove", (e) => {
       const r = frameStage.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width;
       const y = (e.clientY - r.top) / r.height;
-      const ry = (x - 0.5) * 30;
-      const rx = (0.5 - y) * 18;
+      const ry = (x - 0.5) * 24;
+      const rx = (0.5 - y) * 14;
       frame3d.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
     });
     frameStage.addEventListener("mouseleave", () => { frame3d.style.transform = ""; });
-    let autoT = 0;
-    setInterval(() => {
-      if (!frameModal.classList.contains("open")) return;
-      if (frameStage.matches(":hover")) return;
-      autoT += 0.018;
-      const ry = Math.sin(autoT) * 12;
-      const rx = Math.cos(autoT * 0.6) * 4;
-      frame3d.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-    }, 30);
 
-    // ===========================================================
-    // Branches list + map
-    // ===========================================================
-    const list = document.getElementById("branch-list");
-    let userPos = null;
-    function renderBranches(sortFromUser) {
-      let arr = [...OBR.branches];
-      if (sortFromUser && userPos) {
-        arr = arr.map((b) => ({ ...b, dist: OBR.haversine(userPos, b) })).sort((a, b) => a.dist - b.dist);
-      }
-      list.innerHTML = arr.map((b, i) => `
-        <div class="branch-item" data-id="${b.id}">
-          <span class="index">${String(i + 1).padStart(2, "0")}</span>
-          <div>
-            <h4 class="name">${b.name} ${b.online ? '<span class="tag-mono" style="color:#22c55e;">● Online</span>' : '<span class="tag-mono" style="color:var(--mute);">○ Offline</span>'}</h4>
-            <div class="meta">${b.addr} · ${b.hours}</div>
-          </div>
-          ${b.dist != null ? `<span class="dist">${b.dist.toFixed(1)} km</span>` : `<span class="dist">${b.city}</span>`}
-        </div>
-      `).join("");
-      list.querySelectorAll(".branch-item").forEach((el) => {
-        el.addEventListener("click", () => {
-          flyTo(el.dataset.id);
-          list.querySelectorAll(".branch-item").forEach((x) => x.classList.remove("active"));
-          el.classList.add("active");
-        });
-      });
-    }
-    renderBranches(false);
+    // ===== BRANCH FINDER (Leaflet) =====
+    const map = L.map("map", { zoomControl: true, attributionControl: true }).setView([-7.4108, 112.6326], 10);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
 
-    const map = L.map("map", { scrollWheelZoom: false, attributionControl: true }).setView([-7.412, 112.6], 11);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "&copy; OpenStreetMap", maxZoom: 19 }).addTo(map);
-    const markers = {};
-    OBR.branches.forEach((b, i) => {
-      const ic = L.divIcon({
+    const popup = document.getElementById("map-popup");
+    const popupName = document.getElementById("popup-name");
+    const popupAddr = document.getElementById("popup-addr");
+    const popupMaps = document.getElementById("popup-maps");
+
+    OBR.branches.forEach((b) => {
+      const icon = L.divIcon({
         className: "obr-marker-wrap",
-        html: `<div class="obr-marker"><div class="ring"></div><div class="pin">${i + 1}</div></div>`,
-        iconSize: [32, 32], iconAnchor: [16, 16],
+        html: `<div class="obr-marker"><div class="ring"></div><div class="pin"><span>${b.shortLabel}</span></div></div>`,
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
       });
-      const m = L.marker([b.lat, b.lng], { icon: ic }).addTo(map);
-      m.bindPopup(`
-        <strong style="font-family:var(--f-display); font-size:18px; line-height:1.1;">${b.name}</strong><br/>
-        <span style="color:var(--mute); font-size:11px;">${b.addr}</span><br/>
-        <span style="font-family:var(--f-mono); font-size:10px; letter-spacing:0.1em;">${b.hours}</span>
-      `);
-      markers[b.id] = m;
-    });
-    function flyTo(id) {
-      const b = OBR.branches.find((x) => x.id === id);
-      map.flyTo([b.lat, b.lng], 14, { duration: 0.9 });
-      markers[id].openPopup();
-    }
-    document.getElementById("locate-btn").addEventListener("click", () => {
-      if (!navigator.geolocation) return alert("Browser belum mendukung geolokasi.");
-      navigator.geolocation.getCurrentPosition((pos) => {
-        userPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-        renderBranches(true);
-        map.flyTo([userPos.lat, userPos.lng], 11, { duration: 0.8 });
-      }, () => alert("Tidak bisa mengakses lokasi. Cek izin browser."));
-    });
-    document.getElementById("reset-branches").addEventListener("click", () => {
-      userPos = null; renderBranches(false);
-      map.flyTo([-7.412, 112.6], 11, { duration: 0.8 });
+      const m = L.marker([b.lat, b.lng], { icon }).addTo(map);
+      m.on("click", () => {
+        map.flyTo([b.lat, b.lng], 14, { duration: 0.7 });
+        popupName.textContent = `${b.name} — ${b.city}`;
+        popupAddr.textContent = b.addr;
+        popupMaps.href = `https://www.google.com/maps/search/?api=1&query=${b.lat},${b.lng}`;
+        popup.style.display = "block";
+        branchSelect.value = b.id;
+      });
     });
 
-    // ===========================================================
-    // CHAT widget
-    // ===========================================================
-    const fab = document.getElementById("chat-fab");
-    const panel = document.getElementById("chat-panel");
+    branchSelect.addEventListener("change", (e) => {
+      const b = OBR.branches.find((x) => x.id === e.target.value);
+      if (!b) return;
+      map.flyTo([b.lat, b.lng], 14, { duration: 0.7 });
+      popupName.textContent = `${b.name} — ${b.city}`;
+      popupAddr.textContent = b.addr;
+      popupMaps.href = `https://www.google.com/maps/search/?api=1&query=${b.lat},${b.lng}`;
+      popup.style.display = "block";
+    });
+
+    document.getElementById("find-near").addEventListener("click", () => {
+      const dist = document.getElementById("branch-distance");
+      dist.textContent = "Mencari lokasi kamu...";
+      if (!navigator.geolocation) {
+        dist.innerHTML = "<strong style='color:var(--primary);'>Browser tidak mendukung geolocation.</strong>";
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          const sorted = OBR.branches
+            .map((b) => ({ ...b, dist: OBR.haversine({ lat: latitude, lng: longitude }, { lat: b.lat, lng: b.lng }) }))
+            .sort((a, b) => a.dist - b.dist);
+          const nearest = sorted[0];
+          map.flyTo([nearest.lat, nearest.lng], 13, { duration: 0.9 });
+          popupName.textContent = `${nearest.name} — ${nearest.city}`;
+          popupAddr.textContent = nearest.addr;
+          popupMaps.href = `https://www.google.com/maps/search/?api=1&query=${nearest.lat},${nearest.lng}`;
+          popup.style.display = "block";
+          branchSelect.value = nearest.id;
+          dist.innerHTML = `Cabang terdekat: <strong>${nearest.name}</strong> · sekitar ${nearest.dist.toFixed(1)} km dari kamu.`;
+        },
+        () => {
+          dist.innerHTML = "<strong style='color:var(--primary);'>Akses lokasi ditolak.</strong> Pilih cabang manual via dropdown.";
+        }
+      );
+    });
+
+    // ===== CHAT WIDGET =====
+    const chatFab = document.getElementById("chat-fab");
+    const chatPanel = document.getElementById("chat-panel");
     const chatBody = document.getElementById("chat-body");
     const chatFoot = document.getElementById("chat-foot");
-    const chatInput = document.getElementById("chat-input");
-    const chatSend = document.getElementById("chat-send");
+    const chatClose = document.getElementById("chat-close");
     const gateForm = document.getElementById("chat-gate");
+    const msgInput = document.getElementById("ch-msg");
     let convo = null;
     let pendingPrefill = null;
 
-    function openChat() { panel.classList.add("open"); fab.style.display = "none"; }
-    function closeChat() { panel.classList.remove("open"); fab.style.display = ""; }
-    fab.addEventListener("click", openChat);
-    document.getElementById("chat-close").addEventListener("click", closeChat);
-    document.getElementById("open-chat").addEventListener("click", openChat);
-    document.getElementById("hero-chat").addEventListener("click", openChat);
+    function openChat(prefill) {
+      chatPanel.classList.add("open");
+      if (prefill) pendingPrefill = prefill;
+      if (convo) startConvo();
+    }
+
+    [chatFab, document.getElementById("open-chat-header"), document.getElementById("open-chat-hero"), document.getElementById("open-chat-cta"), document.getElementById("nav-chat")].forEach((el) => {
+      if (el) el.addEventListener("click", (e) => { if (el.tagName === "A") e.preventDefault(); openChat(); });
+    });
+
+    chatClose.addEventListener("click", () => chatPanel.classList.remove("open"));
+
+    window.askAboutFrame = function (id) {
+      const it = OBR.catalog.find((c) => c.id === id);
+      if (!it) return;
+      modal.classList.remove("open");
+      openChat(`Halo, saya tertarik dengan ${it.name} (${it.shape} · ${it.material}). Apakah masih tersedia? Harga: ${OBR.fmtIDR(it.price)}.`);
+    };
 
     gateForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -701,19 +625,20 @@
     });
 
     function showQueue() {
+      const branchName = OBR.branches.find((b) => b.id === convo.branch)?.name || convo.branch;
       chatBody.innerHTML = `
         <div class="queue-wait">
           <div class="spinner"></div>
-          <div><span class="num" id="q-num">3</span></div>
+          <div class="num" id="q-num">3</div>
           <div class="lbl">Antrian di depan kamu</div>
-          <p>Admin cabang <strong>${OBR.branches.find(b => b.id === convo.branch)?.name || convo.branch}</strong> akan terhubung sebentar lagi.</p>
+          <p>Admin cabang <strong>${branchName}</strong> akan terhubung sebentar lagi.</p>
         </div>
       `;
       let n = 3;
       const t = setInterval(() => {
         n -= 1;
         const el = document.getElementById("q-num");
-        if (el) el.textContent = n > 0 ? n : "✓";
+        if (el) el.textContent = n > 0 ? n : "0";
         if (n <= 0) { clearInterval(t); setTimeout(startConvo, 700); }
       }, 900);
     }
@@ -721,45 +646,85 @@
     function startConvo() {
       chatBody.innerHTML = "";
       chatFoot.classList.remove("hidden");
-      pushSystem("Terhubung dengan admin · cabang " + (OBR.branches.find(b => b.id === convo.branch)?.name || ""));
-      pushIn("admin", `Halo ${convo.name.split(" ")[0]}, terima kasih sudah menghubungi B Risky. Ada yang bisa kami bantu hari ini?`);
+      const branchName = OBR.branches.find((b) => b.id === convo.branch)?.name || "";
+      pushSystem("Terhubung dengan staff · " + branchName + " · " + OBR.fmtTime());
+      pushIn("Risky", `Halo ${convo.name.split(" ")[0]}, terima kasih sudah menghubungi B Risky. Ada yang bisa kami bantu hari ini?`);
       if (pendingPrefill) {
         setTimeout(() => {
           pushOut(convo.name, pendingPrefill);
           pendingPrefill = null;
-          setTimeout(() => pushIn("admin", "Stoknya masih ada. Apakah berkenan datang langsung atau mau saya bantu reservasikan?"), 1100);
-        }, 600);
+          setTimeout(() => pushIn("Risky", "Stok masih ada. Apakah berkenan datang langsung untuk fitting, atau saya bantu reservasikan?"), 1200);
+        }, 700);
       }
     }
+
     function pushIn(name, text) {
-      const m = document.createElement("div"); m.className = "msg in";
-      m.innerHTML = `<span class="msg sender-name">${name}</span>${text}<span class="time">${OBR.fmtTime()}</span>`;
-      chatBody.appendChild(m); chatBody.scrollTop = chatBody.scrollHeight;
+      chatBody.insertAdjacentHTML("beforeend", `<div class="msg in"><span class="sender-name">${name} · Staff</span>${text}<span class="time">${OBR.fmtTime()}</span></div>`);
+      chatBody.scrollTop = chatBody.scrollHeight;
     }
     function pushOut(name, text) {
-      const m = document.createElement("div"); m.className = "msg out";
-      m.innerHTML = `${text}<span class="time">${OBR.fmtTime()}</span>`;
-      chatBody.appendChild(m); chatBody.scrollTop = chatBody.scrollHeight;
+      chatBody.insertAdjacentHTML("beforeend", `<div class="msg out">${text}<span class="time">${OBR.fmtTime()}</span></div>`);
+      chatBody.scrollTop = chatBody.scrollHeight;
     }
     function pushSystem(text) {
-      const m = document.createElement("div"); m.className = "msg system";
-      m.textContent = text; chatBody.appendChild(m);
+      chatBody.insertAdjacentHTML("beforeend", `<div class="msg system">${text}</div>`);
+      chatBody.scrollTop = chatBody.scrollHeight;
     }
-    chatSend.addEventListener("click", sendMsg);
-    chatInput.addEventListener("keydown", (e) => { if (e.key === "Enter") sendMsg(); });
-    function sendMsg() {
-      const v = chatInput.value.trim(); if (!v) return;
-      pushOut(convo.name, v); chatInput.value = "";
+
+    chatFoot.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const txt = msgInput.value.trim();
+      if (!txt) return;
+      pushOut(convo.name, txt);
+      msgInput.value = "";
+      // mock auto-reply
       setTimeout(() => {
         const replies = [
-          "Baik, saya catat. Ada lagi yang ingin ditanyakan?",
-          "Sebentar, saya cek stoknya dulu ya.",
-          "Untuk frame itu kami sediakan 3 warna. Saya kirim foto sebentar.",
-          "Bisa, kami jadwalkan periksa mata gratis. Hari & jam yang nyaman?",
+          "Baik, saya cek dulu sebentar ya.",
+          "Untuk pertanyaan ini, saya konfirmasi ke teknisi dulu — mohon ditunggu.",
+          "Boleh share foto atau detail tambahannya?",
+          "Saya catat sebagai reservasi. Kapan kamu rencananya datang?",
         ];
-        pushIn("admin", replies[Math.floor(Math.random() * replies.length)]);
+        pushIn("Risky", replies[Math.floor(Math.random() * replies.length)]);
       }, 900 + Math.random() * 800);
-    }
+    });
+
+    // ===== REVEAL ANIMATIONS + COUNTERS =====
+    OBR.setupReveal();
+    OBR.setupCounters();
+
+    // ===== SCROLL PROGRESS STRIP =====
+    (function () {
+      const bar = document.getElementById("scroll-progress");
+      if (!bar) return;
+      function tick() {
+        const h = document.documentElement;
+        const max = (h.scrollHeight - h.clientHeight) || 1;
+        const p = Math.min(100, Math.max(0, (h.scrollTop / max) * 100));
+        bar.style.width = p + "%";
+      }
+      window.addEventListener("scroll", tick, { passive: true });
+      tick();
+    })();
+
+    // ===== HERO PARALLAX (mouse-follow on photo frame) =====
+    (function () {
+      const wrap = document.querySelector(".hero-photo");
+      const frame = document.querySelector(".hero-photo-frame");
+      if (!wrap || !frame) return;
+      const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+      if (isCoarse) return;
+      wrap.addEventListener("mousemove", (e) => {
+        const r = wrap.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+        const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+        frame.style.transform =
+          "rotateY(" + (dx * 5).toFixed(2) + "deg) rotateX(" + (-dy * 4).toFixed(2) + "deg)";
+      });
+      wrap.addEventListener("mouseleave", () => {
+        frame.style.transform = "";
+      });
+    })();
   </script>
 </body>
 </html>
