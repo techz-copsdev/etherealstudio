@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Masuk · Optik B Risky</title>
+<meta name="robots" content="noindex,nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<main class="auth-shell">
+
+  <!-- left art -->
+  <aside class="auth-art">
+    <div class="brand">
+      <span class="brand-mark" style="border-color:#faf6ee"><span data-icon="eye"></span></span>
+      <span>
+        <span class="brand-name" style="color:#faf6ee">Optik B Risky</span>
+        <span class="brand-tag">Internal Console</span>
+      </span>
+    </div>
+
+    <h2 class="serif">
+      Selamat datang kembali, <em>tim Risky.</em>
+    </h2>
+
+    <div class="quote">
+      Setiap pelanggan yang menunggu di chat adalah seseorang yang
+      mempercayai mata mereka pada kita. Layani dengan sabar, jelas, dan jujur.
+    </div>
+
+    <div class="row" style="gap:24px;color:#a59c8e;font-size:11px;letter-spacing:0.18em;text-transform:uppercase">
+      <span>v0.1 · Prototype</span>
+      <span class="spacer"></span>
+      <span>Krian · Sidoarjo</span>
+    </div>
+
+    <span class="eye-deco"></span>
+  </aside>
+
+  <!-- right form -->
+  <section class="auth-form">
+    <div class="top">
+      <a href="../" style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);display:inline-flex;align-items:center;gap:10px">
+        <span data-icon="arrow-right" style="transform:rotate(180deg);display:inline-flex"></span>
+        Kembali ke beranda
+      </a>
+      <button class="icon-btn" data-theme-toggle aria-label="Ganti tema">
+        <span data-icon="sun"></span>
+        <span data-icon="moon"></span>
+      </button>
+    </div>
+
+    <div>
+      <span class="eyebrow">Admin Portal</span>
+      <h1 class="serif">Masuk ke Console.</h1>
+      <p class="sub">Hanya untuk staff &amp; admin Optik B Risky. Jika Anda pelanggan, kembali ke
+        <a href="../" style="color:var(--rust);text-decoration:underline">beranda</a> dan gunakan tombol chat.</p>
+    </div>
+
+    <form onsubmit="event.preventDefault(); doLogin();">
+      <div class="field">
+        <label>Email</label>
+        <input id="email" type="email" placeholder="staff@optikbrisky.id" required autocomplete="username">
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input id="password" type="password" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+
+      <div class="below">
+        <label style="display:inline-flex;align-items:center;gap:8px;font-size:12px;cursor:pointer">
+          <input type="checkbox" id="remember" style="accent-color:var(--rust)"> Ingat di perangkat ini
+        </label>
+        <a href="#" style="font-size:12px">Lupa password?</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top:6px">
+        Masuk Console <span data-icon="arrow-right"></span>
+      </button>
+
+      <div class="alt">
+        Akses staff baru? Hubungi admin pusat di
+        <a href="https://wa.me/6285123297477" style="color:var(--rust)">+62 851 2329 7477</a>.
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<script src="../assets/js/icons.js"></script>
+<script src="../assets/js/common.js"></script>
+<script>
+function doLogin() {
+  const e = document.getElementById("email").value.trim();
+  const p = document.getElementById("password").value.trim();
+  if (!e || !p) return;
+  // prototype: any non-empty creds → admin
+  sessionStorage.setItem("obr-admin", JSON.stringify({ email: e, name: e.split("@")[0] }));
+  location.href = "../admin/";
+}
+</script>
+</body>
+</html>

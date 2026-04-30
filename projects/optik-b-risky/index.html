@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Optik B Risky — Periksa Mata Gratis di Krian, Sidoarjo</title>
+<meta name="description" content="Optik B Risky melayani periksa mata gratis (komputer & manual), kacamata + lensa mulai 100 ribu. Krian, Sidoarjo. Konsultasi langsung via live chat.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Leaflet (OpenStreetMap) for branch finder -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin>
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin></script>
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ===== nav ===== -->
+<header class="shell nav">
+  <a class="brand" href="/">
+    <span class="brand-mark"><i data-icon="eye" aria-hidden="true"></i></span>
+    <span>
+      <span class="brand-name">Optik B Risky</span>
+      <span class="brand-tag">Krian · Sidoarjo · Est. 2014</span>
+    </span>
+  </a>
+
+  <nav class="nav-menu">
+    <a href="#" class="active">Beranda</a>
+    <a href="#layanan">Layanan</a>
+    <a href="#cabang">Cabang</a>
+    <a href="#harga">Harga</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+
+  <div class="nav-actions">
+    <button class="icon-btn" data-theme-toggle aria-label="Ganti tema">
+      <span data-icon="sun" class="t-light"></span>
+      <span data-icon="moon" class="t-dark hidden"></span>
+    </button>
+    <a href="https://wa.me/6285123297477" class="btn btn-ghost" target="_blank" rel="noopener">
+      <span data-icon="whatsapp"></span> WhatsApp
+    </a>
+    <button class="btn btn-primary" onclick="OBR_Chat.open()">
+      <span data-icon="chat"></span> Mulai Konsultasi
+    </button>
+  </div>
+</header>
+
+<!-- ===== hero ===== -->
+<section class="shell hero">
+  <div class="hero-text">
+    <span class="eyebrow">Periksa Mata Gratis · Komputer &amp; Manual</span>
+
+    <h2 class="serif">
+      Penglihatan jernih, <em>tanpa antrian.</em>
+      Konsultasikan mata Anda dari rumah.
+    </h2>
+
+    <p>
+      Optik B Risky membantu Anda menemukan kacamata, lensa, atau resep yang paling pas —
+      lewat percakapan singkat dengan staff optisi kami secara langsung di web.
+      Tanpa form panjang, tanpa janji muluk.
+    </p>
+
+    <div class="hero-cta">
+      <button class="btn btn-rust btn-lg" onclick="OBR_Chat.open()">
+        <span data-icon="chat"></span> Tanya Langsung Sekarang
+      </button>
+      <a href="#cabang" class="btn btn-ghost btn-lg">
+        <span data-icon="pin"></span> Cari Cabang Terdekat
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <strong>10 +</strong>
+        <span>Tahun melayani</span>
+      </div>
+      <div>
+        <strong>4</strong>
+        <span>Cabang Jawa Timur</span>
+      </div>
+      <div>
+        <strong>100 rb</strong>
+        <span>Mulai dari (frame + lensa)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <span class="ring"></span>
+    <span class="ring ring-2"></span>
+    <span class="ring ring-3"></span>
+
+    <span class="tick" style="top:0; left:50%; transform:translateX(-50%) rotate(0deg);"></span>
+    <span class="tick" style="bottom:0; left:50%; transform:translateX(-50%) rotate(0deg);"></span>
+    <span class="tick" style="left:0; top:50%; transform:translateY(-50%) rotate(90deg);"></span>
+    <span class="tick" style="right:0; top:50%; transform:translateY(-50%) rotate(90deg);"></span>
+
+    <div class="photo">
+      <!-- inline SVG illustration so prototype works with no network -->
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#e7dfd1">
+        <defs>
+          <radialGradient id="g1" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#f1ebe1"/>
+            <stop offset="100%" stop-color="#cbbfa9"/>
+          </radialGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2a241f"/>
+            <stop offset="100%" stop-color="#14110f"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="600" fill="url(#g1)"/>
+        <!-- abstract face silhouette -->
+        <ellipse cx="300" cy="600" rx="220" ry="260" fill="#2a241f" opacity="0.85"/>
+        <ellipse cx="300" cy="320" rx="170" ry="210" fill="#3d342c"/>
+        <!-- glasses -->
+        <g stroke="#14110f" stroke-width="6" fill="none">
+          <circle cx="230" cy="300" r="62" fill="#0d0b09"/>
+          <circle cx="370" cy="300" r="62" fill="#0d0b09"/>
+          <line x1="292" y1="300" x2="308" y2="300"/>
+          <path d="M168 290 L140 270 L130 282"/>
+          <path d="M432 290 L460 270 L470 282"/>
+        </g>
+        <!-- lens highlights -->
+        <ellipse cx="220" cy="288" rx="14" ry="8" fill="#f1ebe1" opacity="0.55"/>
+        <ellipse cx="360" cy="288" rx="14" ry="8" fill="#f1ebe1" opacity="0.55"/>
+        <!-- subtle rust accent -->
+        <path d="M300 380 q-30 20 0 36 q30 -16 0 -36 z" fill="#b85c2c" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <div class="badge badge-tl">
+      <span data-icon="shield"></span>
+      Garansi resmi
+    </div>
+    <div class="badge badge-br">
+      <span data-icon="check"></span>
+      <div>
+        <div style="font-family:var(--f-display);font-size:18px;line-height:1">Periksa Gratis</div>
+        <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mute);margin-top:2px">Komputer + Manual</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== services ===== -->
+<section id="layanan" class="services">
+  <div class="shell">
+    <div class="sect-head">
+      <span class="eyebrow">Yang Kami Kerjakan</span>
+      <h3 class="serif">Layanan optik <em>lengkap dalam satu tempat.</em></h3>
+    </div>
+
+    <div class="grid">
+      <article class="service">
+        <span class="num">N° 01</span>
+        <h4 class="title">Pemeriksaan Mata Gratis</h4>
+        <p>Refraksi dengan auto-refractometer dan validasi manual oleh refraksionis kami. Gratis tanpa minimal pembelian.</p>
+        <span class="arrow"><span data-icon="arrow-up-right"></span></span>
+      </article>
+
+      <article class="service">
+        <span class="num">N° 02</span>
+        <h4 class="title">Frame &amp; Lensa</h4>
+        <p>Paket frame + lensa mulai dari Rp 100.000. Pilihan brand original maupun house-brand sesuai budget.</p>
+        <span class="arrow"><span data-icon="arrow-up-right"></span></span>
+      </article>
+
+      <article class="service">
+        <span class="num">N° 03</span>
+        <h4 class="title">Lensa Kontak</h4>
+        <p>Konsultasi pemakaian softlens / RGP, fitting kornea, hingga perawatan harian-bulanan-tahunan.</p>
+        <span class="arrow"><span data-icon="arrow-up-right"></span></span>
+      </article>
+
+      <article class="service">
+        <span class="num">N° 04</span>
+        <h4 class="title">Konsultasi Online</h4>
+        <p>Belum sempat datang? Tanya dulu via live chat — staff kami menjawab langsung sesuai antrian saat jam operasional.</p>
+        <span class="arrow"><span data-icon="arrow-up-right"></span></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== branches ===== -->
+<section id="cabang" class="shell branches">
+  <div class="branch-controls">
+    <div>
+      <span class="eyebrow">Cabang Kami</span>
+      <h3 class="serif" style="font-size:clamp(28px,3vw,44px);line-height:1.1;margin:14px 0 18px;">
+        Pilih cabang <em>terdekat</em> dari Anda.
+      </h3>
+      <p class="muted" style="font-size:14px;line-height:1.7;margin:0;max-width:38ch;">
+        Klik <strong>Gunakan lokasi saya</strong> untuk otomatis mengurutkan cabang berdasarkan jarak.
+        Atau pilih manual dari daftar di bawah.
+      </p>
+    </div>
+
+    <div class="row">
+      <button class="btn btn-primary" id="btn-locate">
+        <span data-icon="locate"></span> Gunakan Lokasi Saya
+      </button>
+      <button class="btn btn-ghost" id="btn-reset">Tampilkan semua</button>
+    </div>
+
+    <div class="branch-list" id="branch-list"></div>
+  </div>
+
+  <div class="map-wrap">
+    <div class="map-pill"><span data-icon="pin"></span> Live · OpenStreetMap</div>
+    <div id="map"></div>
+  </div>
+</section>
+
+<!-- ===== price strip ===== -->
+<section id="harga" class="pricing">
+  <div class="shell">
+    <div class="sect-head" style="display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;">
+      <div>
+        <span class="eyebrow">Harga &amp; Paket</span>
+        <h3 class="serif" style="color:var(--paper)">Transparan,<br><em>tanpa kejutan.</em></h3>
+      </div>
+      <p style="color:#a59c8e;max-width:42ch;font-size:13px;margin:0;">
+        Harga dasar di bawah belum termasuk lensa khusus seperti progressive,
+        photochromic, atau lensa premium. Tanya staff untuk rekomendasi tepat.
+      </p>
+    </div>
+
+    <div class="grid">
+      <article class="price-card">
+        <span class="tag">Pilihan Hemat</span>
+        <span class="label">Paket Reguler</span>
+        <div class="num">Rp 100<small>rb</small></div>
+        <ul>
+          <li><span data-icon="check"></span>Frame house-brand</li>
+          <li><span data-icon="check"></span>Lensa standar single vision</li>
+          <li><span data-icon="check"></span>Pemeriksaan mata gratis</li>
+          <li><span data-icon="check"></span>Garansi 1 bulan</li>
+        </ul>
+      </article>
+
+      <article class="price-card feature">
+        <span class="tag">Paling Dicari</span>
+        <span class="label">Paket Premium</span>
+        <div class="num">Rp 350<small>rb</small></div>
+        <ul>
+          <li><span data-icon="check"></span>Frame branded pilihan</li>
+          <li><span data-icon="check"></span>Lensa anti-radiasi + anti gores</li>
+          <li><span data-icon="check"></span>Pemeriksaan komputer + manual</li>
+          <li><span data-icon="check"></span>Garansi 6 bulan</li>
+        </ul>
+      </article>
+
+      <article class="price-card">
+        <span class="tag">Khusus</span>
+        <span class="label">Progressive / Khusus</span>
+        <div class="num">Custom</div>
+        <ul>
+          <li><span data-icon="check"></span>Lensa progressive / bifocal</li>
+          <li><span data-icon="check"></span>Photochromic / blueray cut</li>
+          <li><span data-icon="check"></span>Konsultasi resep mata khusus</li>
+          <li><span data-icon="check"></span>Tanya staff via chat</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== footer ===== -->
+<footer id="kontak" class="foot shell">
+  <div class="foot-grid">
+    <div class="foot-col">
+      <div class="brand" style="margin-bottom:18px">
+        <span class="brand-mark"><span data-icon="eye"></span></span>
+        <span>
+          <span class="brand-name">Optik B Risky</span>
+          <span class="brand-tag">Sejak 2014</span>
+        </span>
+      </div>
+      <p style="font-size:13px;color:var(--ink-soft);max-width:36ch;line-height:1.7;margin:0;">
+        Optik keluarga di Krian, Sidoarjo. Melayani periksa mata gratis dan
+        kacamata berkualitas dengan harga jujur.
+      </p>
+    </div>
+
+    <div class="foot-col">
+      <h5>Kontak</h5>
+      <ul>
+        <li><div class="kv-line"><span data-icon="pin"></span> Ruko Central Point, Krian</div></li>
+        <li><div class="kv-line"><span data-icon="phone"></span> +62 851-2329-7477</div></li>
+        <li><div class="kv-line"><span data-icon="clock"></span> 09.00 – 20.00 setiap hari</div></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h5>Jelajah</h5>
+      <ul>
+        <li><a href="#layanan">Layanan</a></li>
+        <li><a href="#cabang">Cabang</a></li>
+        <li><a href="#harga">Harga</a></li>
+        <li><a href="#" onclick="OBR_Chat.open();return false;">Mulai Konsultasi</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h5>Sosial</h5>
+      <ul>
+        <li><a href="#"><div class="kv-line"><span data-icon="instagram"></span> @optikbrisky</div></a></li>
+        <li><a href="#"><div class="kv-line"><span data-icon="facebook"></span> Optik B Risky</div></a></li>
+        <li><a href="https://wa.me/6285123297477" target="_blank" rel="noopener"><div class="kv-line"><span data-icon="whatsapp"></span> WhatsApp</div></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <span>© 2024 Optik B Risky · Krian, Sidoarjo</span>
+    <span>Crafted with care · Not an AI template.</span>
+  </div>
+</footer>
+
+<!-- ===== chat widget ===== -->
+<button class="chat-fab" onclick="OBR_Chat.open()" aria-label="Buka chat">
+  <span class="dot"></span>
+  <span data-icon="chat"></span>
+  Tanya Staff
+</button>
+
+<aside class="chat-panel" id="chat-panel" aria-hidden="true">
+  <header class="chat-head">
+    <span class="avatar serif" id="chat-avatar">B</span>
+    <div class="info">
+      <div class="name" id="chat-title">Optik B Risky</div>
+      <div class="status"><span class="dot"></span><span id="chat-status">Staff online · siap membantu</span></div>
+    </div>
+    <button onclick="OBR_Chat.close()" aria-label="Tutup"><span data-icon="close"></span></button>
+  </header>
+
+  <div class="chat-body" id="chat-body">
+    <!-- gate (form) -->
+    <div class="chat-gate" id="chat-gate">
+      <h4 class="serif">Sebelum mulai chat,<br><em class="italic" style="color:var(--rust)">kenalan dulu.</em></h4>
+      <p>Kami simpan riwayat percakapan agar staff bisa melanjutkan dari mana Anda berhenti — tidak akan dipakai untuk promosi.</p>
+
+      <div class="field">
+        <label>Nama lengkap</label>
+        <input id="g-name" type="text" placeholder="Mis. Risky Pratama" autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input id="g-email" type="email" placeholder="nama@email.com" autocomplete="email">
+      </div>
+
+      <div class="field">
+        <label>Pilih cabang yang ingin dihubungi</label>
+        <select id="g-branch" style="font:inherit;background:var(--paper);padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);outline:none;"></select>
+      </div>
+
+      <button class="btn btn-rust btn-block" onclick="OBR_Chat.submitGate()">
+        Lanjut ke antrian <span data-icon="arrow-right"></span>
+      </button>
+    </div>
+
+    <!-- queue + messages render dynamically here -->
+    <div id="chat-stream" class="hidden" style="display:flex;flex-direction:column;gap:12px;"></div>
+  </div>
+
+  <footer class="chat-foot hidden" id="chat-foot">
+    <button class="icon-btn" style="border-color:var(--line)" aria-label="Lampirkan"><span data-icon="paperclip"></span></button>
+    <input id="chat-input" type="text" placeholder="Tulis pesan…" onkeydown="if(event.key==='Enter')OBR_Chat.send()">
+    <button onclick="OBR_Chat.send()" aria-label="Kirim"><span data-icon="send"></span></button>
+  </footer>
+</aside>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/common.js"></script>
+<script>
+/* ============================================================
+   Branch finder + Leaflet map
+   ============================================================ */
+const BR = OBR.branches;
+let userLoc = null;
+let map, markers = [], userMarker = null;
+
+function renderBranchList(sorted = BR) {
+  const list = document.getElementById("branch-list");
+  list.innerHTML = sorted.map((b, i) => `
+    <div class="branch-item" data-id="${b.id}" onclick="focusBranch('${b.id}')">
+      <span class="index">${String(i + 1).padStart(2, "0")}</span>
+      <div>
+        <div class="name">${b.name} ${b.online ? '<span class="tag sage" style="margin-left:8px">Online</span>' : '<span class="tag" style="margin-left:8px">Offline</span>'}</div>
+        <div class="meta">${b.address}</div>
+      </div>
+      <div class="dist">${b.distance != null ? b.distance.toFixed(1) + " km" : ""}</div>
+    </div>
+  `).join("");
+}
+
+function fillSelect() {
+  const sel = document.getElementById("g-branch");
+  sel.innerHTML = BR.map(b => `<option value="${b.id}">${b.name}${b.online ? "" : " (offline)"}</option>`).join("");
+}
+
+function focusBranch(id) {
+  document.querySelectorAll(".branch-item").forEach(el => el.classList.toggle("active", el.dataset.id === id));
+  const b = BR.find(x => x.id === id);
+  if (map && b) {
+    map.flyTo([b.lat, b.lng], 13, { duration: 0.8 });
+    const m = markers.find(x => x._brId === id);
+    if (m) m.openPopup();
+  }
+}
+
+function initMap() {
+  if (!window.L) { setTimeout(initMap, 200); return; }
+  map = L.map("map", { zoomControl: false, attributionControl: false }).setView([-7.42, 112.6], 10);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19, attribution: "© OpenStreetMap"
+  }).addTo(map);
+  L.control.zoom({ position: "bottomright" }).addTo(map);
+  L.control.attribution({ position: "bottomleft", prefix: "" }).addTo(map);
+
+  BR.forEach(b => {
+    const ic = L.divIcon({
+      className: "obr-marker",
+      html: `<div style="width:36px;height:36px;border-radius:50%;background:#b85c2c;border:3px solid #faf6ee;box-shadow:0 4px 14px rgba(0,0,0,.25);display:grid;place-items:center;color:#faf6ee;font-family:'Fraunces',serif;font-weight:600">${b.name[0]}</div>`,
+      iconSize: [36, 36], iconAnchor: [18, 18]
+    });
+    const m = L.marker([b.lat, b.lng], { icon: ic }).addTo(map);
+    m._brId = b.id;
+    m.bindPopup(`<strong style="font-family:Fraunces,serif;font-size:15px">${b.name}</strong><br><span style="font-size:11px;color:#666">${b.address}</span><br><a href="https://wa.me/6285123297477" style="color:#b85c2c;font-size:11px">Hubungi WhatsApp</a>`);
+    markers.push(m);
+  });
+}
+
+function locate() {
+  if (!navigator.geolocation) {
+    alert("Browser Anda tidak mendukung deteksi lokasi.");
+    return;
+  }
+  const btn = document.getElementById("btn-locate");
+  btn.disabled = true;
+  btn.innerHTML = `<span class="dot" style="width:10px;height:10px;border-radius:50%;background:var(--paper);animation:pulse 1.5s infinite;display:inline-block"></span> Mendeteksi…`;
+  navigator.geolocation.getCurrentPosition((pos) => {
+    userLoc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+    BR.forEach(b => b.distance = OBR.haversine(userLoc, b));
+    BR.sort((a, b) => a.distance - b.distance);
+    renderBranchList();
+    if (map) {
+      if (userMarker) map.removeLayer(userMarker);
+      userMarker = L.marker([userLoc.lat, userLoc.lng], {
+        icon: L.divIcon({
+          className: "",
+          html: `<div style="width:18px;height:18px;border-radius:50%;background:#5a6f64;border:3px solid #faf6ee;box-shadow:0 0 0 6px rgba(90,111,100,0.25)"></div>`,
+          iconSize: [18, 18], iconAnchor: [9, 9]
+        })
+      }).addTo(map);
+      const group = L.featureGroup([userMarker, ...markers]);
+      map.fitBounds(group.getBounds().pad(0.3));
+    }
+    btn.disabled = false;
+    btn.innerHTML = `<span data-icon="locate"></span> Lokasi terdeteksi`;
+    document.querySelectorAll("[data-icon]:not([data-icon-rendered])").forEach(el => {
+      el.innerHTML = `<svg aria-hidden="true"><use href="#i-${el.getAttribute("data-icon")}"/></svg>`;
+      el.setAttribute("data-icon-rendered", "");
+    });
+  }, () => {
+    btn.disabled = false;
+    btn.innerHTML = `<span data-icon="locate"></span> Coba lagi`;
+    alert("Tidak dapat mengakses lokasi. Aktifkan izin lokasi browser, atau pilih cabang manual.");
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  fillSelect();
+  renderBranchList();
+  initMap();
+  document.getElementById("btn-locate").addEventListener("click", locate);
+  document.getElementById("btn-reset").addEventListener("click", () => {
+    BR.forEach(b => delete b.distance);
+    renderBranchList();
+    if (map) map.flyTo([-7.42, 112.6], 10, { duration: 0.6 });
+  });
+});
+
+/* ============================================================
+   Chat widget
+   ============================================================ */
+const OBR_Chat = (() => {
+  const panel = () => document.getElementById("chat-panel");
+  const stream = () => document.getElementById("chat-stream");
+  const gate = () => document.getElementById("chat-gate");
+  const foot = () => document.getElementById("chat-foot");
+
+  let user = null;
+  let queuePos = 0;
+  let chatStarted = false;
+
+  function open() {
+    panel().classList.add("open");
+    panel().setAttribute("aria-hidden", "false");
+  }
+  function close() {
+    panel().classList.remove("open");
+    panel().setAttribute("aria-hidden", "true");
+  }
+
+  function escape(s) { return (s || "").replace(/[<>&"']/g, c => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" })[c]); }
+
+  function sysMsg(text) {
+    stream().insertAdjacentHTML("beforeend", `<div class="msg system">${escape(text)}</div>`);
+    stream().parentElement.scrollTop = stream().parentElement.scrollHeight;
+  }
+  function inMsg(text, sender = "Staff") {
+    stream().insertAdjacentHTML("beforeend",
+      `<div class="msg in"><strong style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mute);display:block;margin-bottom:4px">${escape(sender)}</strong>${escape(text)}<span class="time">${OBR.fmtTime()}</span></div>`);
+    stream().parentElement.scrollTop = stream().parentElement.scrollHeight;
+  }
+  function outMsg(text) {
+    stream().insertAdjacentHTML("beforeend",
+      `<div class="msg out">${escape(text)}<span class="time">${OBR.fmtTime()}</span></div>`);
+    stream().parentElement.scrollTop = stream().parentElement.scrollHeight;
+  }
+
+  function submitGate() {
+    const name = document.getElementById("g-name").value.trim();
+    const email = document.getElementById("g-email").value.trim();
+    const branch = document.getElementById("g-branch").value;
+    if (!name || !email) {
+      alert("Mohon lengkapi nama dan email terlebih dahulu.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Format email tidak valid.");
+      return;
+    }
+    user = { name, email, branch };
+    const br = OBR.branches.find(b => b.id === branch);
+
+    document.getElementById("chat-avatar").textContent = OBR.initial(name);
+    document.getElementById("chat-title").textContent = `${br.name}`;
+
+    gate().classList.add("hidden");
+    stream().classList.remove("hidden");
+    foot().classList.remove("hidden");
+
+    queuePos = Math.max(1, Math.floor(Math.random() * 3));
+    showQueue(br);
+  }
+
+  function showQueue(br) {
+    stream().innerHTML = `
+      <div class="queue-wait">
+        <div class="spinner"></div>
+        <div class="num" id="q-num">${queuePos}</div>
+        <div class="lbl">Antrian Anda</div>
+        <p>Staff <strong>${escape(br.name)}</strong> sedang melayani pelanggan lain. Mohon tunggu sebentar — rata-rata kurang dari 3 menit.</p>
+      </div>
+    `;
+    const tick = () => {
+      queuePos--;
+      const n = document.getElementById("q-num");
+      if (!n) return;
+      n.textContent = queuePos;
+      if (queuePos <= 0) {
+        startConversation(br);
+      } else {
+        setTimeout(tick, 2200);
+      }
+    };
+    setTimeout(tick, 2200);
+  }
+
+  function startConversation(br) {
+    chatStarted = true;
+    stream().innerHTML = "";
+    sysMsg("Anda terhubung dengan staff.");
+    setTimeout(() => inMsg(`Halo Kak ${user.name.split(" ")[0]}, saya Indra dari ${br.name}. Ada yang bisa saya bantu?`, "Indra"), 600);
+  }
+
+  function send() {
+    const inp = document.getElementById("chat-input");
+    const v = inp.value.trim();
+    if (!v) return;
+    inp.value = "";
+    if (!chatStarted) {
+      sysMsg("Mohon tunggu hingga staff terhubung.");
+      return;
+    }
+    outMsg(v);
+    setTimeout(() => {
+      const replies = [
+        "Baik, dicatat ya kak. Untuk keperluan resep dokter, sudah pernah periksa di kami sebelumnya?",
+        "Untuk frame yang Kakak maksud, kami punya beberapa pilihan. Boleh sebutkan budget kisaran Kakak?",
+        "Siap, kalau berkenan datang langsung agar bisa kami fitting & periksa mata gratis. Cabang mana yang paling dekat?",
+        "Boleh kirim foto resep atau ukuran lensa lama jika ada, kak?"
+      ];
+      inMsg(replies[Math.floor(Math.random() * replies.length)], "Indra");
+    }, 1200);
+  }
+
+  return { open, close, submitGate, send };
+})();
+</script>
+</body>
+</html>
