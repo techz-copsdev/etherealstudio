@@ -1,0 +1,107 @@
+[
+  {
+    "id": "P001",
+    "slug": "kaos-polos-cotton-combed-30s",
+    "name": "Kaos Polos Cotton Combed 30s",
+    "description": "Kaos polos bahan cotton combed 30s, jahitan rapi, cocok untuk reseller dan event. Tersedia ukuran S-XXL.",
+    "image": "/images/product-tshirt.svg",
+    "category": "Fashion",
+    "unit": "pcs",
+    "basePrice": 35000,
+    "minOrder": 12,
+    "tiers": [
+      { "minQty": 12, "pricePerUnit": 35000, "label": "Lusin" },
+      { "minQty": 36, "pricePerUnit": 32000, "label": "3 Lusin" },
+      { "minQty": 72, "pricePerUnit": 28000, "label": "6 Lusin" },
+      { "minQty": 144, "pricePerUnit": 25000, "label": "1 Kodi+" }
+    ],
+    "active": true
+  },
+  {
+    "id": "P002",
+    "slug": "totebag-kanvas-blacu",
+    "name": "Totebag Kanvas Blacu",
+    "description": "Totebag bahan kanvas blacu tebal, jahitan double, cocok untuk seminar kit, souvenir, dan branding UMKM.",
+    "image": "/images/product-totebag.svg",
+    "category": "Aksesoris",
+    "unit": "pcs",
+    "basePrice": 18000,
+    "minOrder": 24,
+    "tiers": [
+      { "minQty": 24, "pricePerUnit": 18000 },
+      { "minQty": 50, "pricePerUnit": 16500 },
+      { "minQty": 100, "pricePerUnit": 14500, "label": "Hemat 20%" },
+      { "minQty": 250, "pricePerUnit": 12500 }
+    ],
+    "active": true
+  },
+  {
+    "id": "P003",
+    "slug": "kopi-bubuk-arabika-1kg",
+    "name": "Kopi Bubuk Arabika 1Kg",
+    "description": "Kopi arabika single origin Gayo, fresh roasted, dikemas vacuum 1kg. Cocok untuk kafe, reseller, dan kantor.",
+    "image": "/images/product-coffee.svg",
+    "category": "F&B",
+    "unit": "kg",
+    "basePrice": 145000,
+    "minOrder": 5,
+    "tiers": [
+      { "minQty": 5, "pricePerUnit": 145000 },
+      { "minQty": 10, "pricePerUnit": 138000 },
+      { "minQty": 25, "pricePerUnit": 130000, "label": "Reseller" },
+      { "minQty": 50, "pricePerUnit": 122000, "label": "Distributor" }
+    ],
+    "active": true
+  },
+  {
+    "id": "P004",
+    "slug": "sambal-kemasan-200gr",
+    "name": "Sambal Kemasan 200gr",
+    "description": "Sambal khas Nusantara, dikemas higienis dalam botol 200gr. Tahan 6 bulan tanpa pengawet kimia.",
+    "image": "/images/product-sambal.svg",
+    "category": "F&B",
+    "unit": "botol",
+    "basePrice": 22000,
+    "minOrder": 24,
+    "tiers": [
+      { "minQty": 24, "pricePerUnit": 22000 },
+      { "minQty": 60, "pricePerUnit": 20000 },
+      { "minQty": 144, "pricePerUnit": 18000, "label": "Grosir" }
+    ],
+    "active": true
+  },
+  {
+    "id": "P005",
+    "slug": "hijab-pashmina-ceruti",
+    "name": "Hijab Pashmina Ceruti",
+    "description": "Hijab pashmina bahan ceruti baby doll, jatuh, tidak menerawang. Tersedia 20+ warna.",
+    "image": "/images/product-hijab.svg",
+    "category": "Fashion",
+    "unit": "pcs",
+    "basePrice": 28000,
+    "minOrder": 12,
+    "tiers": [
+      { "minQty": 12, "pricePerUnit": 28000 },
+      { "minQty": 36, "pricePerUnit": 25000 },
+      { "minQty": 72, "pricePerUnit": 22000 }
+    ],
+    "active": true
+  },
+  {
+    "id": "P006",
+    "slug": "masker-kain-3-lapis",
+    "name": "Masker Kain 3 Lapis",
+    "description": "Masker kain 3 lapis dengan filter pocket, washable, custom logo bisa request.",
+    "image": "/images/product-mask.svg",
+    "category": "Aksesoris",
+    "unit": "pcs",
+    "basePrice": 7500,
+    "minOrder": 50,
+    "tiers": [
+      { "minQty": 50, "pricePerUnit": 7500 },
+      { "minQty": 200, "pricePerUnit": 6500 },
+      { "minQty": 500, "pricePerUnit": 5500, "label": "Bulk" }
+    ],
+    "active": true
+  }
+]
