@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#F8FAFC"/>
+  <rect x="120" y="140" width="160" height="120" rx="8" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="160" cy="180" r="14" fill="#CBD5E1"/>
+  <path d="M140 240 L185 195 L220 220 L260 180 L280 200 L280 250 L140 250 Z" fill="#CBD5E1"/>
+  <text x="200" y="290" text-anchor="middle" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="14" font-weight="600">No image</text>
+</svg>

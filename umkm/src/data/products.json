@@ -1,0 +1,167 @@
+[
+  {
+    "id": "P001",
+    "slug": "kopi-bubuk-premium-250gr",
+    "name": "Kopi Bubuk Premium 250gr",
+    "description": "Kopi bubuk premium hasil roasting fresh dari biji pilihan, aroma kuat dan rasa seimbang. Cocok untuk kafe, kantor, maupun reseller.",
+    "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&auto=format&fit=crop&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&auto=format&fit=crop&q=80"
+    ],
+    "category": "makanan-minuman",
+    "unit": "pcs",
+    "basePrice": 18000,
+    "minOrder": 10,
+    "tiers": [
+      { "minQty": 10, "pricePerUnit": 18000, "label": "10–49 pcs" },
+      { "minQty": 50, "pricePerUnit": 17000, "label": "50–99 pcs" },
+      { "minQty": 100, "pricePerUnit": 16000, "label": "100+ pcs" }
+    ],
+    "active": true
+  },
+  {
+    "id": "P002",
+    "slug": "gula-pasir-premium-1kg",
+    "name": "Gula Pasir Premium 1kg",
+    "description": "Gula pasir putih premium kemasan 1kg, butiran halus dan bersih. Stok ready dalam jumlah besar untuk kebutuhan harian usaha kuliner.",
+    "image": "https://images.unsplash.com/photo-1610725602588-bd6de3aa7d54?w=800&auto=format&fit=crop&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1610725602588-bd6de3aa7d54?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1581790067751-3074a3b75e0a?w=800&auto=format&fit=crop&q=80"
+    ],
+    "category": "sembako",
+    "unit": "pcs",
+    "basePrice": 13500,
+    "minOrder": 12,
+    "tiers": [
+      { "minQty": 12, "pricePerUnit": 13500, "label": "12–49 pcs" },
+      { "minQty": 50, "pricePerUnit": 13000, "label": "50–99 pcs" },
+      { "minQty": 100, "pricePerUnit": 12500, "label": "100+ pcs" }
+    ],
+    "active": true
+  },
+  {
+    "id": "P003",
+    "slug": "minyak-goreng-1l",
+    "name": "Minyak Goreng 1L",
+    "description": "Minyak goreng kemasan botol 1 liter, kualitas premium, jernih. Cocok untuk warung makan dan pedagang kuliner.",
+    "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=800&auto=format&fit=crop&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1631164208114-46d10cf3a2bf?w=800&auto=format&fit=crop&q=80"
+    ],
+    "category": "sembako",
+    "unit": "pcs",
+    "basePrice": 20000,
+    "minOrder": 12,
+    "tiers": [
+      { "minQty": 12, "pricePerUnit": 20000, "label": "12–47 pcs" },
+      { "minQty": 48, "pricePerUnit": 19500, "label": "48–95 pcs" },
+      { "minQty": 96, "pricePerUnit": 18800, "label": "96+ pcs" }
+    ],
+    "active": true
+  },
+  {
+    "id": "P004",
+    "slug": "tisu-wajah-250-sheet",
+    "name": "Tisu Wajah 250 Sheet",
+    "description": "Tisu wajah lembut isi 250 lembar per kotak, dua lapis, tidak mudah robek. Hemat untuk stok rumah dan kantor.",
+    "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=800&auto=format&fit=crop&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1584555613497-9ecf9dd4d9d9?w=800&auto=format&fit=crop&q=80"
+    ],
+    "category": "perlengkapan-rumah",
+    "unit": "pcs",
+    "basePrice": 9500,
+    "minOrder": 12,
+    "tiers": [
+      { "minQty": 12, "pricePerUnit": 9500, "label": "12–47 pcs" },
+      { "minQty": 48, "pricePerUnit": 9000, "label": "48–95 pcs" },
+      { "minQty": 96, "pricePerUnit": 8500, "label": "96+ pcs" }
+    ],
+    "active": true
+  },
+  {
+    "id": "P005",
+    "slug": "deterjen-bubuk-1kg",
+    "name": "Deterjen Bubuk 1kg",
+    "description": "Deterjen bubuk wangi tahan lama, busa melimpah, ekonomis untuk laundry maupun rumah tangga.",
+    "image": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=800&auto=format&fit=crop&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=800&auto=format&fit=crop&q=80"
+    ],
+    "category": "pembersih",
+    "unit": "pcs",
+    "basePrice": 18000,
+    "minOrder": 12,
+    "tiers": [
+      { "minQty": 12, "pricePerUnit": 18000, "label": "12–47 pcs" },
+      { "minQty": 48, "pricePerUnit": 17000, "label": "48–95 pcs" },
+      { "minQty": 96, "pricePerUnit": 16000, "label": "96+ pcs" }
+    ],
+    "active": true
+  },
+  {
+    "id": "P006",
+    "slug": "sabun-mandi-batang-90gr",
+    "name": "Sabun Mandi Batang 90gr",
+    "description": "Sabun mandi padat aroma segar, kemasan 90gr per batang, lembut di kulit, harga grosir untuk reseller.",
+    "image": "https://images.unsplash.com/photo-1607006344380-b6775a0824a7?w=800&auto=format&fit=crop&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1607006344380-b6775a0824a7?w=800&auto=format&fit=crop&q=80"
+    ],
+    "category": "pembersih",
+    "unit": "pcs",
+    "basePrice": 4500,
+    "minOrder": 24,
+    "tiers": [
+      { "minQty": 24, "pricePerUnit": 4500, "label": "24–71 pcs" },
+      { "minQty": 72, "pricePerUnit": 4200, "label": "72–143 pcs" },
+      { "minQty": 144, "pricePerUnit": 3900, "label": "144+ pcs" }
+    ],
+    "active": true
+  },
+  {
+    "id": "P007",
+    "slug": "beras-premium-5kg",
+    "name": "Beras Premium 5kg",
+    "description": "Beras premium pulen, butiran utuh, packaging 5kg vakum. Cocok untuk warung & rumah makan.",
+    "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&auto=format&fit=crop&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&auto=format&fit=crop&q=80"
+    ],
+    "category": "sembako",
+    "unit": "pcs",
+    "basePrice": 70000,
+    "minOrder": 5,
+    "tiers": [
+      { "minQty": 5, "pricePerUnit": 70000, "label": "5–19 pcs" },
+      { "minQty": 20, "pricePerUnit": 68000, "label": "20–49 pcs" },
+      { "minQty": 50, "pricePerUnit": 65000, "label": "50+ pcs" }
+    ],
+    "active": true
+  },
+  {
+    "id": "P008",
+    "slug": "air-mineral-600ml-dus",
+    "name": "Air Mineral 600ml (1 dus)",
+    "description": "Air mineral kemasan 600ml, isi 24 botol per dus. Stok harian kantor, event, kafe.",
+    "image": "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=800&auto=format&fit=crop&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=800&auto=format&fit=crop&q=80"
+    ],
+    "category": "makanan-minuman",
+    "unit": "dus",
+    "basePrice": 38000,
+    "minOrder": 5,
+    "tiers": [
+      { "minQty": 5, "pricePerUnit": 38000, "label": "5–19 dus" },
+      { "minQty": 20, "pricePerUnit": 36000, "label": "20–49 dus" },
+      { "minQty": 50, "pricePerUnit": 34000, "label": "50+ dus" }
+    ],
+    "active": true
+  }
+]
