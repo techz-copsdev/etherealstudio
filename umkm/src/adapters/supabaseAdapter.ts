@@ -3,142 +3,127 @@ import type { Order } from "@/modules/order/invoice";
 import type { Product } from "@/modules/product/types";
 import { localAdapter } from "./localAdapter";
 import { normalizeWhatsAppNumber } from "@/modules/whatsapp/format";
+import { getServerSupabase } from "@/services/supabaseClient";
 
 /**
  * Supabase-backed data adapter.
  *
- * The actual `@supabase/supabase-js` client is loaded lazily so the package
- * stays optional. Any failure (missing env, network, schema) silently falls
- * back to {@link localAdapter} so the UI never breaks.
- *
  * Required env (server-only):
- *   SUPABASE_URL
- *   SUPABASE_SERVICE_KEY
+ *   SUPABASE_URL              (or NEXT_PUBLIC_SUPABASE_URL)
+ *   SUPABASE_SERVICE_KEY      (or NEXT_PUBLIC_SUPABASE_ANON_KEY)
  *
- * Schema (suggested):
- *   table products (id text primary key, slug text, name text, ...)
- *   table orders   (id text primary key, created_at timestamptz, payload jsonb)
+ * On any failure (network, missing env, schema mismatch), falls back to
+ * {@link localAdapter} so the UI never breaks.
+ *
+ * Schema: see `schema.sql` in repo root.
+ *   table products (id text pk, payload jsonb)
+ *   table orders   (id text pk, created_at timestamptz, payload jsonb)
  */
 
-interface MinimalSupabaseClient {
-  from(table: string): {
-    select(cols?: string): Promise<{ data: unknown; error: unknown }>;
-    insert(row: unknown): Promise<{ data: unknown; error: unknown }>;
-    update(row: unknown): {
-      eq(col: string, val: unknown): Promise<{ data: unknown; error: unknown }>;
-    };
-    delete(): {
-      eq(col: string, val: unknown): Promise<{ data: unknown; error: unknown }>;
-    };
-  };
+interface ProductRow {
+  id: string;
+  payload: Product;
 }
 
-let cachedClient: MinimalSupabaseClient | null | undefined;
-
-async function getClient(): Promise<MinimalSupabaseClient | null> {
-  if (cachedClient !== undefined) return cachedClient;
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_KEY;
-  if (!url || !key) {
-    cachedClient = null;
-    return cachedClient;
-  }
-  try {
-    // Dynamic import keeps @supabase/supabase-js optional. The package may
-    // not be installed in lean deployments — typecheck shouldn't require it.
-    const moduleName = "@supabase/supabase-js";
-    const dyn: (s: string) => Promise<unknown> = new Function(
-      "s",
-      "return import(s)"
-    ) as (s: string) => Promise<unknown>;
-    const mod: unknown = await dyn(moduleName).catch(() => null);
-    if (!mod || typeof mod !== "object") {
-      cachedClient = null;
-      return cachedClient;
-    }
-    const factory = (mod as { createClient?: (u: string, k: string) => MinimalSupabaseClient })
-      .createClient;
-    if (!factory) {
-      cachedClient = null;
-      return cachedClient;
-    }
-    cachedClient = factory(url, key);
-    return cachedClient;
-  } catch {
-    cachedClient = null;
-    return cachedClient;
-  }
+interface OrderRow {
+  id: string;
+  created_at: string;
+  payload: Order;
 }
 
 export const supabaseAdapter: DataAdapter = {
   async getProducts(): Promise<Product[]> {
-    const client = await getClient();
-    if (!client) return localAdapter.getProducts();
+    const sb = getServerSupabase();
+    if (!sb) return localAdapter.getProducts();
     try {
-      const { data, error } = await client.from("products").select("*");
-      if (error || !Array.isArray(data)) throw error;
-      return (data as Product[]).filter((p) => p.active);
+      const { data, error } = await sb.from("products").select("payload").order("id");
+      if (error || !Array.isArray(data)) throw error ?? new Error("no data");
+      return (data as { payload: Product }[])
+        .map((r) => r.payload)
+        .filter((p) => p && p.active);
     } catch {
       return localAdapter.getProducts();
     }
   },
-  async getProduct(id) {
-    const client = await getClient();
-    if (!client) return localAdapter.getProduct(id);
+
+  async getProduct(idOrSlug) {
+    const sb = getServerSupabase();
+    if (!sb) return localAdapter.getProduct(idOrSlug);
     try {
-      const { data, error } = await client.from("products").select("*");
-      if (error || !Array.isArray(data)) throw error;
-      const all = data as Product[];
-      return all.find((p) => p.id === id || p.slug === id) ?? null;
+      const { data, error } = await sb.from("products").select("payload");
+      if (error || !Array.isArray(data)) throw error ?? new Error("no data");
+      const products = (data as { payload: Product }[]).map((r) => r.payload);
+      return products.find((p) => p.id === idOrSlug || p.slug === idOrSlug) ?? null;
     } catch {
-      return localAdapter.getProduct(id);
+      return localAdapter.getProduct(idOrSlug);
     }
   },
+
   async upsertProduct(product) {
-    const client = await getClient();
-    if (!client) return localAdapter.upsertProduct(product);
+    const sb = getServerSupabase();
+    if (!sb) return localAdapter.upsertProduct(product);
     try {
-      await client.from("products").insert(product);
+      const row: ProductRow = { id: product.id, payload: product };
+      const { error } = await sb.from("products").upsert(row, { onConflict: "id" });
+      if (error) throw error;
+      // Mirror locally for offline reads
+      await localAdapter.upsertProduct(product).catch(() => undefined);
       return product;
     } catch {
       return localAdapter.upsertProduct(product);
     }
   },
+
   async deleteProduct(id) {
-    const client = await getClient();
-    if (!client) return localAdapter.deleteProduct(id);
+    const sb = getServerSupabase();
+    if (!sb) return localAdapter.deleteProduct(id);
     try {
-      await client.from("products").delete().eq("id", id);
+      const { error } = await sb.from("products").delete().eq("id", id);
+      if (error) throw error;
+      await localAdapter.deleteProduct(id).catch(() => undefined);
     } catch {
-      return localAdapter.deleteProduct(id);
+      await localAdapter.deleteProduct(id);
     }
   },
 
-  async createOrder(order: Order) {
-    const client = await getClient();
-    if (!client) return localAdapter.createOrder(order);
+  async createOrder(order: Order): Promise<Order> {
+    const sb = getServerSupabase();
+    if (!sb) return localAdapter.createOrder(order);
     try {
-      await client.from("orders").insert(order);
+      const row: OrderRow = {
+        id: order.id,
+        created_at: order.createdAt,
+        payload: order
+      };
+      const { error } = await sb.from("orders").insert(row);
+      if (error) throw error;
+      await localAdapter.createOrder(order).catch(() => undefined);
       return order;
     } catch {
       return localAdapter.createOrder(order);
     }
   },
-  async getOrders() {
-    const client = await getClient();
-    if (!client) return localAdapter.getOrders();
+
+  async getOrders(): Promise<Order[]> {
+    const sb = getServerSupabase();
+    if (!sb) return localAdapter.getOrders();
     try {
-      const { data, error } = await client.from("orders").select("*");
-      if (error || !Array.isArray(data)) throw error;
-      return data as Order[];
+      const { data, error } = await sb
+        .from("orders")
+        .select("payload")
+        .order("created_at", { ascending: false });
+      if (error || !Array.isArray(data)) throw error ?? new Error("no data");
+      return (data as { payload: Order }[]).map((r) => r.payload);
     } catch {
       return localAdapter.getOrders();
     }
   },
+
   async getOrder(id) {
     const orders = await this.getOrders();
     return orders.find((o) => o.id === id) ?? null;
   },
+
   async findOrder(query) {
     if (!query) return null;
     const trimmed = query.trim();
@@ -150,12 +135,27 @@ export const supabaseAdapter: DataAdapter = {
     if (!wa) return null;
     return orders.find((o) => normalizeWhatsAppNumber(o.customerWa) === wa) ?? null;
   },
+
   async updateOrder(id, patch: UpdateOrderInput) {
-    const client = await getClient();
-    if (!client) return localAdapter.updateOrder(id, patch);
+    const sb = getServerSupabase();
+    if (!sb) return localAdapter.updateOrder(id, patch);
     try {
-      await client.from("orders").update(patch).eq("id", id);
-      return localAdapter.updateOrder(id, patch);
+      const existing = await this.getOrder(id);
+      if (!existing) return null;
+      const updated: Order = {
+        ...existing,
+        ...patch,
+        status: patch.status ?? existing.status,
+        resi: patch.resi ?? existing.resi,
+        courier: patch.courier ?? existing.courier
+      };
+      const { error } = await sb
+        .from("orders")
+        .update({ payload: updated })
+        .eq("id", id);
+      if (error) throw error;
+      await localAdapter.updateOrder(id, patch).catch(() => undefined);
+      return updated;
     } catch {
       return localAdapter.updateOrder(id, patch);
     }

@@ -1,62 +1,97 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { Hero } from "@/components/layout/Hero";
+import { FeatureRow } from "@/components/layout/FeatureRow";
+import { CategoryGrid } from "@/components/product/CategoryGrid";
 import { ProductGrid } from "@/components/product/ProductGrid";
+import { PublicShippingCalculator } from "@/components/order/PublicShippingCalculator";
+import { PublicOrderTracker } from "@/components/order/PublicOrderTracker";
 import { getDataAdapter } from "@/services/data";
-import { config } from "@/config/app.config";
-import { buildWaMeLink } from "@/modules/whatsapp/format";
+import categories from "@/data/categories.json";
+import type { Product } from "@/modules/product/types";
 
 export const dynamic = "force-dynamic";
 
-export default async function HomePage() {
+interface Props {
+  searchParams?: { q?: string; category?: string };
+}
+
+export default async function HomePage({ searchParams }: Props) {
   const adapter = getDataAdapter();
-  let products = [] as Awaited<ReturnType<typeof adapter.getProducts>>;
+  let products: Product[] = [];
   try {
     products = await adapter.getProducts();
   } catch {
     products = [];
   }
 
+  const q = (searchParams?.q ?? "").trim().toLowerCase();
+  const cat = (searchParams?.category ?? "").trim().toLowerCase();
+  const filtered = products.filter((p) => {
+    if (cat && p.category.toLowerCase() !== cat) return false;
+    if (q) {
+      const hay = `${p.name} ${p.description} ${p.category}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const popular = filtered.slice(0, 4);
+  const others = filtered.slice(4);
+
   return (
     <>
-      <section className="hero">
+      <Hero />
+      <FeatureRow />
+
+      <section className="section" id="kategori">
         <Container>
-          <div className="stack" style={{ maxWidth: 720 }}>
-            <span className="badge badge-primary">UMKM Bulk Order</span>
-            <h1>{config.brand.tagline}</h1>
-            <p className="muted" style={{ fontSize: 16 }}>
-              Pilih produk, atur jumlah, lalu checkout langsung via WhatsApp.
-              Tanpa login. Tanpa ribet.
-            </p>
-            <div className="hero-actions">
-              <a href="#produk" className="btn btn-lg">Lihat Katalog</a>
-              <a
-                className="btn btn-lg btn-secondary"
-                target="_blank"
-                rel="noopener noreferrer"
-                href={buildWaMeLink(
-                  config.whatsappNumber,
-                  `Halo ${config.brand.name}, saya mau tanya katalog grosir.`
-                )}
-              >
-                Chat WhatsApp
-              </a>
-              {config.enableTracking && (
-                <Link className="btn btn-lg btn-ghost" href="/track">
-                  Lacak Pesanan →
-                </Link>
-              )}
-            </div>
+          <div className="section-head">
+            <h2>Kategori Produk</h2>
+            <Link href="/#produk">Lihat semua →</Link>
           </div>
+          <CategoryGrid categories={categories} />
         </Container>
       </section>
 
-      <section className="section" id="produk">
+      <section className="section" id="produk" style={{ paddingTop: 0 }}>
         <Container>
-          <div className="row-between" style={{ marginBottom: 16 }}>
-            <h2 style={{ margin: 0 }}>Produk Grosir</h2>
-            <span className="muted small">{products.length} produk</span>
+          <div className="section-head">
+            <h2>{cat || q ? "Hasil Pencarian" : "Produk Terlaris"}</h2>
+            <Link href="/#produk">Lihat semua →</Link>
           </div>
-          <ProductGrid products={products} />
+          <ProductGrid products={popular} emptyMessage="Tidak ada produk yang cocok." />
+        </Container>
+      </section>
+
+      {others.length > 0 && (
+        <section className="section" style={{ paddingTop: 0 }}>
+          <Container>
+            <div className="section-head">
+              <h2>Produk Lainnya</h2>
+            </div>
+            <ProductGrid products={others} />
+          </Container>
+        </section>
+      )}
+
+      <section className="section" id="cek-ongkir" style={{ background: "var(--bg)", paddingTop: 48 }}>
+        <Container>
+          <div className="section-head">
+            <h2>Cek Ongkir</h2>
+            <span className="muted small">Estimasi cepat sebelum order</span>
+          </div>
+          <PublicShippingCalculator />
+        </Container>
+      </section>
+
+      <section className="section" id="lacak-pesanan">
+        <Container>
+          <div className="section-head">
+            <h2>Lacak Pesanan</h2>
+            <span className="muted small">Tanpa login. Pakai ID atau no. WhatsApp.</span>
+          </div>
+          <PublicOrderTracker />
         </Container>
       </section>
     </>

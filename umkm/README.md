@@ -1,164 +1,143 @@
-# UMKM Bulk Order
+# BulkOrder. — UMKM bulk-order Next.js app
 
-Production-ready, scalable, and reusable Next.js app for UMKM bulk-order with a
-**WhatsApp-first checkout flow**. No login, no payment gateway — just fast
-catalog → calculator → invoice → WhatsApp.
+Production-ready, scalable Next.js (App Router) app for UMKM grosir/bulk-order
+with **WhatsApp-first checkout**. No customer login, no payment gateway — just
+fast catalog → calculator → invoice → WhatsApp.
 
 ## Highlights
 
-- **WhatsApp-first checkout** via `wa.me` redirect (with optional WA Business
-  API layer; always falls back to `wa.me`).
+- **WhatsApp-first checkout** via `wa.me` redirect (popup-blocker fallback to
+  direct navigation).
 - **Tier-based pricing** with smart "tambah X pcs untuk hemat" suggestion.
-- **Region-based shipping** + admin manual override. Falls back to a default
-  rate when the region is unknown.
+- **Region-based shipping** + admin override + default fallback.
 - **Order tracking without login** — search by invoice ID *or* WhatsApp number.
-- **Modular courier tracking** (`trackJNE` / `trackJNT` / `trackAnterAja`)
-  behind server-side API routes, with a documented fallback when the upstream
-  is unavailable.
-- **Admin dashboard** — manage products, orders, status updates, plus price &
-  shipping calculators.
-- **Adapter pattern** — swap between `localAdapter` (file-based JSON) and
-  `supabaseAdapter` (Supabase) via a single config flag. Cloud failures
-  silently fall back to local data.
+- **Modular courier tracking** (`trackJNE` / `trackJNT` / `trackAnterAja`).
+- **Admin dashboard**: products CRUD with image upload + auto-compress,
+  orders with resi/courier modal, price & shipping calculators, WhatsApp-style
+  chat UI for demo.
+- **Adapter pattern** — `localAdapter` (file-based JSON) ↔ `supabaseAdapter`
+  (Supabase). Cloud failures fall back silently to local.
+- **Image compression** — browser-side compression to ≤250KB WebP before upload
+  to Supabase Storage (huge savings, retains quality).
 - **Light/dark mode** without reload, persisted in `localStorage`, fallback to
   light if storage fails.
-- **Edge-to-edge full-width** UI, business-style. No glassmorphism, no random
-  gradients.
+- **Edge-to-edge full-width** business UI. No glassmorphism, no random
+  gradients, no AI-style design.
+- **Lucide icons** + real Unsplash photos (not just inline SVGs).
 
 ## Stack
 
 - Next.js 14 (App Router) + React 18 + TypeScript
-- Plain CSS with CSS variables (no Tailwind needed — easy to customize)
-- File-system data layer for local mode; pluggable cloud adapter
+- Plain CSS with CSS variables (no Tailwind)
+- `lucide-react` icons
+- `@supabase/supabase-js` + `browser-image-compression` (cloud mode only)
 
-## Getting started
+## Quick start (local mode)
 
 ```bash
 cd umkm
 cp .env.example .env.local
+# (edit .env.local — local mode works with defaults)
 npm install
 npm run dev    # http://localhost:3000
 ```
 
-Build & run:
+Admin gate code (default): `admin123` — see `NEXT_PUBLIC_ADMIN_CODE`.
+
+## Cloud mode (Supabase)
+
+1. Create a Supabase project.
+2. Open Supabase Dashboard → **SQL Editor → New query**, paste the entire
+   contents of `schema.sql` (in this repo's root), and run.
+3. In `.env.local`:
+   ```
+   NEXT_PUBLIC_APP_MODE=cloud
+   NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_...
+   SUPABASE_URL=https://xxxxx.supabase.co
+   SUPABASE_SERVICE_KEY=eyJhbGc...                # server-only, full DB access
+   NEXT_PUBLIC_SUPABASE_BUCKET=products
+   ```
+4. Restart dev server: `npm run dev`.
+
+When Supabase is reachable, products/orders are persisted there. When it
+isn't, the app silently falls back to the local JSON adapter so you never
+see broken UI.
+
+> ⚠️ **Rotate the service role key** after sharing it. It bypasses all RLS
+> policies and is meant for server-side trusted use only.
+
+## Build / lint / typecheck
 
 ```bash
-npm run build
-npm run start
+npm run build       # production build
+npm run start       # serve production build
+npm run lint        # next lint
+npm run typecheck   # tsc --noEmit
 ```
 
-Lint & typecheck:
-
-```bash
-npm run lint
-npm run typecheck
-```
-
-## Configuration
-
-All knobs live in `src/config/app.config.ts`. Override at runtime via
-`NEXT_PUBLIC_*` env vars. See `.env.example`.
-
-```ts
-export const config = {
-  mode: "local",                          // "local" | "cloud"
-  whatsappNumber: "6281234567890",
-  enableLiveChat: true,
-  enableTracking: true
-}
-```
-
-## Project layout
+## Project structure
 
 ```
-/src
-  /app                    — App Router pages + API routes
-    /api/orders/...
-    /api/products/...
-    /api/tracking/[courier]
-    /admin/...
-    /products/[slug]
-    /track
-  /components
-    /ui      — Button, ThemeToggle, ...
-    /product — ProductCard, QuantityCalculator, TierTable, LiveChatButton
-    /order   — InvoiceSummary, WhatsAppCheckoutButton, OrderTrackingForm
-    /admin   — AdminProductForm, AdminOrderList, AdminPriceCalculator, AdminShippingCalculator
-    /layout  — Container, SiteHeader, SiteFooter
-  /modules
-    /product   — types, helpers, tier resolution, suggestions
-    /pricing   — order totals, recommend selling price
-    /shipping  — region table + calculator with override + fallback
-    /tracking  — modular trackJNE / trackJNT / trackAnterAja with fallbacks
-    /whatsapp  — number normalization, message formatting, send (wa.me + optional API)
-    /order     — invoice id generator, currency formatter
-  /services
-    data.ts    — resolves the active DataAdapter from config
-  /adapters
+src/
+  app/                        # Next App Router pages + API routes
+    page.tsx                  # Storefront homepage
+    cara-order/               # How-to-order page
+    products/[slug]/          # Product detail
+    track/                    # Standalone tracking page
+    admin/                    # Admin shell + sub-pages
+    api/                      # /api/products, /api/orders, /api/upload, /api/tracking/[courier]
+  components/
+    layout/                   # Hero, FeatureRow, Header, Footer, Container
+    product/                  # ProductCard, ProductGallery, QuantityCalculator, TierTable, LiveChatButton
+    order/                    # PublicShippingCalculator, PublicOrderTracker, WhatsAppCheckoutButton, OrderTrackingForm
+    admin/                    # AdminSidebar, AdminProductForm, ImageUploader, AdminChatUI, AdminAuthGate
+    chat/                     # FloatingChatButton ("Tanya Admin")
+    ui/                       # ThemeToggle
+  modules/
+    product/                  # Pricing helpers (tier resolution, suggest upgrade)
+    order/                    # Invoice ID, currency formatting
+    shipping/                 # Region table + calculator
+    tracking/                 # JNE/JNT/AnterAja modular trackers
+    whatsapp/                 # wa.me link builder + message formatters
+    image/                    # Browser-side compress utility
+  adapters/
+    localAdapter.ts           # JSON-on-disk adapter
+    supabaseAdapter.ts        # Supabase adapter w/ local fallback
     types.ts
-    localAdapter.ts     — JSON file-based, file-system backed
-    supabaseAdapter.ts  — optional, falls back to local on any failure
-  /config
-    app.config.ts
-  /data
-    products.json (seed)
+  services/
+    data.ts                   # Adapter resolver
+    supabaseClient.ts         # Server Supabase client
+  config/
+    app.config.ts             # Single source of runtime config
+  data/
+    products.json             # Seed catalog (Unsplash URLs)
+    categories.json           # Category list with Unsplash thumbs
+schema.sql                    # Supabase tables + RLS + storage bucket
 ```
 
-## Data adapter contract
+## Image compression
 
-```ts
-interface DataAdapter {
-  getProducts(): Promise<Product[]>;
-  getProduct(id: string): Promise<Product | null>;
-  upsertProduct(product: Product): Promise<Product>;
-  deleteProduct(id: string): Promise<void>;
+When admin uploads a product image:
+1. **Browser-side**: `browser-image-compression` reduces it to ≤250KB and
+   converts to WebP at quality 0.82, max 1600px on the longer edge.
+2. **API route** (`/api/upload`): forwards to Supabase Storage (`products`
+   bucket) and returns the public URL. If Supabase is unavailable, returns
+   a `data:` URL so the demo keeps working.
 
-  createOrder(order: Order): Promise<Order>;
-  getOrders(): Promise<Order[]>;
-  getOrder(id: string): Promise<Order | null>;
-  findOrder(query: string): Promise<Order | null>; // by id or WA number
-  updateOrder(id: string, patch: UpdateOrderInput): Promise<Order | null>;
-}
-```
+This typically shrinks 3–5MB phone photos to 50–150KB with no visible
+quality loss — saving Supabase Storage quota dramatically.
 
-Cloud mode requires `SUPABASE_URL`, `SUPABASE_SERVICE_KEY`, and
-`@supabase/supabase-js` installed (`npm i @supabase/supabase-js`). Without
-these, the cloud adapter transparently falls back to the local adapter.
+## Customization
 
-## Tracking
+Most knobs live in `src/config/app.config.ts` and are populated from env vars
+at build/runtime — see `.env.example` for the full list.
 
-`/api/tracking/{courier}?resi=...` calls modular `trackJNE`, `trackJNT`,
-`trackAnterAja` functions in `src/modules/tracking/`. Configure provider URLs
-& tokens via env (`JNE_API_URL`, `JNE_API_TOKEN`, etc.). When unconfigured or
-upstream fails, the response includes `fallback: true` and the UI shows
-*"Status tidak tersedia, hubungi admin"* with a WhatsApp button.
+For style overrides edit `src/app/globals.css` (uses CSS variables defined
+at `:root`; dark mode overrides at `[data-theme="dark"]`).
 
-## Edge cases handled
+---
 
-- Invalid / negative quantity → clamped to zero, button disabled
-- Quantity below `minOrder` → warning shown, checkout disabled
-- Missing product / unknown slug → dedicated 404 page
-- Unknown shipping region → falls back to `config.shipping.defaultCost`
-- Tracking failure → human-readable fallback + WhatsApp escape hatch
-- WhatsApp popup blocked → falls back to same-tab navigation, then UI message
-
-## Admin
-
-Visit `/admin`. Default access code is `admin123` (override via
-`NEXT_PUBLIC_ADMIN_CODE`). Note this is a lightweight gate — front with a
-reverse proxy / SSO for production.
-
-## Deploy to Vercel
-
-1. Push repo to GitHub
-2. Import in Vercel
-3. Set env vars (see `.env.example`)
-4. Deploy
-
-In Vercel, the local adapter's filesystem writes are ephemeral. For persistent
-data on Vercel, switch `NEXT_PUBLIC_APP_MODE` to `cloud` and configure
-Supabase.
-
-## License
-
-MIT — sell, fork, customize.
+**Tip:** sell as reusable source by giving the buyer the ZIP and the
+`schema.sql`. They paste it into their own Supabase project, fill in the
+env vars, and they're live.

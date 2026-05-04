@@ -3,11 +3,12 @@ import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ThemeBootstrapScript } from "@/components/ui/ThemeToggle";
+import { FloatingChatButton } from "@/components/chat/FloatingChatButton";
 import { config } from "@/config/app.config";
 
 export const metadata: Metadata = {
   title: {
-    default: `${config.brand.name} — Pesan Grosir via WhatsApp`,
+    default: `${config.brand.name} — ${config.brand.tagline}`,
     template: `%s · ${config.brand.name}`
   },
   description: config.brand.tagline,
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
+        <FloatingChatButton />
       </body>
     </html>
   );

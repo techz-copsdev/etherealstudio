@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { PricingTier, Product } from "@/modules/product/types";
+import { ImageUploader } from "./ImageUploader";
 
 interface Props {
   initial?: Product;
@@ -15,7 +16,7 @@ function blankProduct(): Product {
     slug: "",
     name: "",
     description: "",
-    image: "/images/product-tshirt.svg",
+    image: "",
     category: "",
     unit: "pcs",
     basePrice: 0,
@@ -165,11 +166,10 @@ export function AdminProductForm({ initial, onSaved, onCancel }: Props) {
             />
           </div>
         </div>
-        <label htmlFor="p-img">URL Gambar</label>
-        <input
-          id="p-img"
+        <ImageUploader
           value={product.image}
-          onChange={(e) => update("image", e.target.value)}
+          onChange={(url) => update("image", url)}
+          label="Gambar Produk"
         />
 
         <div className="row-between" style={{ marginTop: 12 }}>

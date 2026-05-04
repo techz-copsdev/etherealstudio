@@ -12,7 +12,10 @@ export interface Product {
   slug: string;
   name: string;
   description: string;
+  /** Primary image URL (used in cards & detail hero). */
   image: string;
+  /** Optional additional images (thumbnails on detail page). */
+  gallery?: string[];
   category: string;
   unit: string;
   basePrice: number;

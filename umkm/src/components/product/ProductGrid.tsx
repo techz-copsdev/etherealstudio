@@ -3,13 +3,14 @@ import { ProductCard } from "./ProductCard";
 
 interface Props {
   products: Product[];
+  emptyMessage?: string;
 }
 
-export function ProductGrid({ products }: Props) {
+export function ProductGrid({ products, emptyMessage }: Props) {
   if (!products.length) {
     return (
       <div className="empty">
-        Belum ada produk. Tambahkan di halaman admin.
+        {emptyMessage ?? "Belum ada produk. Tambahkan di halaman admin."}
       </div>
     );
   }

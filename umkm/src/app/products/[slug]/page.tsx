@@ -2,10 +2,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
+import { ProductGallery } from "@/components/product/ProductGallery";
 import { QuantityCalculator } from "@/components/product/QuantityCalculator";
 import { LiveChatButton } from "@/components/product/LiveChatButton";
 import { getDataAdapter } from "@/services/data";
 import { formatCurrency } from "@/modules/order/invoice";
+import categories from "@/data/categories.json";
 
 export const dynamic = "force-dynamic";
 
@@ -41,37 +43,50 @@ export default async function ProductDetailPage({ params }: Params) {
     (a, b) => a.pricePerUnit - b.pricePerUnit
   )[0];
   const startsFrom = lowestTier?.pricePerUnit ?? product.basePrice;
+  const cat = categories.find((c) => c.slug === product.category);
+  const gallery = product.gallery && product.gallery.length > 0
+    ? product.gallery
+    : [product.image];
 
   return (
     <section className="section">
       <Container>
-        <div className="small muted" style={{ marginBottom: 16 }}>
-          <Link href="/">← Kembali ke katalog</Link>
-        </div>
+        <nav className="breadcrumb" aria-label="Breadcrumb">
+          <Link href="/">Beranda</Link>
+          <span className="sep">›</span>
+          <Link href={`/?category=${product.category}#produk`}>
+            {cat?.name ?? product.category}
+          </Link>
+          <span className="sep">›</span>
+          <span className="current">{product.name}</span>
+        </nav>
+
         <div className="pd-grid">
-          <div className="pd-image">
-            <img src={product.image} alt={product.name} />
-          </div>
-          <div className="stack">
-            <div className="row">
-              <span className="badge badge-muted">{product.category}</span>
-              <span className="badge badge-primary">Grosir</span>
+          <ProductGallery images={gallery} alt={product.name} />
+
+          <div className="stack-loose">
+            <div>
+              <h1 style={{ marginBottom: 6 }}>{product.name}</h1>
+              <div className="muted small">Min. Order {product.minOrder} {product.unit}</div>
             </div>
-            <h1 style={{ marginBottom: 4 }}>{product.name}</h1>
-            <div className="row-between">
-              <div>
-                <div className="small muted">Mulai dari</div>
-                <div
-                  className="tabular"
-                  style={{ fontSize: 22, fontWeight: 700, color: "var(--primary-dark)" }}
-                >
-                  {formatCurrency(startsFrom)} <span className="muted small">/ {product.unit}</span>
-                </div>
+
+            <div className="row" style={{ gap: 12 }}>
+              <div
+                className="tabular"
+                style={{ fontSize: 28, fontWeight: 800, color: "var(--primary-dark)" }}
+              >
+                {formatCurrency(startsFrom)}
               </div>
-              <LiveChatButton product={product} />
+              <span className="muted">/ {product.unit}</span>
+              <div style={{ marginLeft: "auto" }}>
+                <LiveChatButton product={product} size="sm" />
+              </div>
             </div>
-            <p className="muted">{product.description}</p>
+
+            <p className="muted" style={{ margin: 0 }}>{product.description}</p>
+
             <hr className="divider" />
+
             <QuantityCalculator product={product} />
           </div>
         </div>

@@ -28,6 +28,11 @@ export interface AppConfig {
     /** Optional simple gate. Compared client-side only — not for real auth. */
     accessCode: string;
   };
+  supabase: {
+    url: string;
+    anonKey: string;
+    bucket: string;
+  };
 }
 
 const env = (key: string, fallback: string): string => {
@@ -40,10 +45,10 @@ const env = (key: string, fallback: string): string => {
 export const config: AppConfig = {
   mode: (env("NEXT_PUBLIC_APP_MODE", "local") as AppMode),
   brand: {
-    name: env("NEXT_PUBLIC_BRAND_NAME", "UMKM Grosir"),
+    name: env("NEXT_PUBLIC_BRAND_NAME", "BulkOrder."),
     tagline: env(
       "NEXT_PUBLIC_BRAND_TAGLINE",
-      "Pesan grosir cepat, checkout langsung via WhatsApp"
+      "Solusi Belanja Grosir Mudah & Cepat via WhatsApp"
     )
   },
   whatsappNumber: env("NEXT_PUBLIC_WHATSAPP_NUMBER", "6281234567890"),
@@ -59,5 +64,14 @@ export const config: AppConfig = {
   },
   admin: {
     accessCode: env("NEXT_PUBLIC_ADMIN_CODE", "admin123")
+  },
+  supabase: {
+    url: env("NEXT_PUBLIC_SUPABASE_URL", ""),
+    anonKey: env("NEXT_PUBLIC_SUPABASE_ANON_KEY", ""),
+    bucket: env("NEXT_PUBLIC_SUPABASE_BUCKET", "products")
   }
 };
+
+/** True only when both URL and key are configured (used by Supabase adapter). */
+export const isSupabaseConfigured = (): boolean =>
+  Boolean(config.supabase.url && config.supabase.anonKey);

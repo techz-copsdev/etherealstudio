@@ -12,19 +12,23 @@ export function ProductCard({ product }: Props) {
   )[0];
   const startsFrom = lowestTier?.pricePerUnit ?? product.basePrice;
   return (
-    <Link href={`/products/${product.slug}`} className="product-card" aria-label={product.name}>
-      <div className="img">
+    <article className="product-card">
+      <Link href={`/products/${product.slug}`} className="img" aria-label={product.name}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={product.image} alt={product.name} loading="lazy" />
-      </div>
+      </Link>
       <div className="body">
-        <span className="badge badge-muted">{product.category}</span>
-        <span className="name">{product.name}</span>
-        <span className="muted small">Min. order {product.minOrder} {product.unit}</span>
-        <div className="row-between" style={{ marginTop: 4 }}>
-          <span className="muted small">Mulai dari</span>
-          <span className="price tabular">{formatCurrency(startsFrom)}</span>
+        <Link href={`/products/${product.slug}`} className="name" style={{ color: "inherit" }}>
+          {product.name}
+        </Link>
+        <span className="min">Min. Order {product.minOrder} {product.unit}</span>
+        <div className="price tabular">{formatCurrency(startsFrom)}</div>
+        <div className="actions">
+          <Link href={`/products/${product.slug}`} className="btn btn-sm btn-block">
+            Lihat Detail
+          </Link>
         </div>
       </div>
-    </Link>
+    </article>
   );
 }
