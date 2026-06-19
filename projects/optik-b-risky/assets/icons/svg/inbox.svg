@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- REPLACE-ME: ganti file ini dengan asset inbox (24x24, stroke = currentColor) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 13 h6 l1 3 h4 l1 -3 h6"/>
+  <path d="M3 13 v6 a2 2 0 0 0 2 2 h14 a2 2 0 0 0 2 -2 v-6"/>
+  <path d="M3 13 l3 -8 a2 2 0 0 1 2 -1.5 h8 a2 2 0 0 1 2 1.5 l3 8"/>
+</svg>

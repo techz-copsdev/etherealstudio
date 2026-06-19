@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- REPLACE-ME: ganti file ini dengan asset phone (24x24, stroke = currentColor) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 4 h3 l2 5 l-2.5 1.5 a11 11 0 0 0 6 6 L15 14 l5 2 v3 a2 2 0 0 1 -2 2 c-9 0 -16 -7 -16 -16 a2 2 0 0 1 2 -2 z"/>
+</svg>
